@@ -1,0 +1,55 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Counters"></a>
+
+<a name="Counters-1"></a>
+<h2 class="chapter">Counters</h2>
+
+<a name="index-counters_002c-a-list-of"></a>
+<a name="index-variables_002c-a-list-of"></a>
+
+<p>Everything LaTeX numbers for you has a counter associated with
+it. The name of the counter is often the same as the name of the
+environment or command associated with the number, except that the
+counter&#8217;s name has no backslash <code>\</code>.  Thus, associated with
+the <code>\chapter</code> command is the <code>chapter</code> counter that keeps
+track of the chapter number.  
+</p>
+<p>Below is a list of the counters used in LaTeX&#8217;s standard document
+classes to control numbering.
+</p>
+<div class="example">
+<pre class="example">part            paragraph       figure          enumi
+chapter         subparagraph    table           enumii
+section         page            footnote        enumiii
+subsection      equation        mpfootnote      enumiv
+subsubsection
+</pre></div>
+
+<p>The <code>mpfootnote</code> counter is used by the <code>\footnote</code> command
+inside of a minipage (see <a href="minipage.html">minipage</a>).  The counters <code>enumi</code>
+through <code>enumiv</code> are used in the <code>enumerate</code> environment, for
+up to four levels of nesting (see <a href="enumerate.html">enumerate</a>).
+</p>
+<p>New counters are created with <code>\newcounter</code>.  See <a href="g_t_005cnewcounter.html">\newcounter</a>.
+</p>
+
+<table border="0" cellspacing="0" class="menu">
+<tbody><tr><td align="left" valign="top">&#8226; <a accesskey="1" href="g_t_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html">\alph \Alph \arabic \roman \Roman \fnsymbol</a>:</td><td>  </td><td align="left" valign="top">Print value of a counter.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="2" href="g_t_005cusecounter.html">\usecounter</a>:</td><td>  </td><td align="left" valign="top">Use a specified counter in a list environment.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="3" href="g_t_005cvalue.html">\value</a>:</td><td>  </td><td align="left" valign="top">Use the value of a counter in an expression.  
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="4" href="g_t_005csetcounter.html">\setcounter</a>:</td><td>  </td><td align="left" valign="top">Set the value of a counter.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="5" href="g_t_005caddtocounter.html">\addtocounter</a>:</td><td>  </td><td align="left" valign="top">Add a quantity to a counter.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="6" href="g_t_005crefstepcounter.html">\refstepcounter</a>:</td><td>  </td><td align="left" valign="top">Add to a counter.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="7" href="g_t_005cstepcounter.html">\stepcounter</a>:</td><td>  </td><td align="left" valign="top">Add to a counter, resetting subsidiary counters.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="8" href="g_t_005cday-_005cmonth-_005cyear.html">\day \month \year</a>:</td><td>  </td><td align="left" valign="top">Numeric date values.
+</td></tr>
+</tbody></table>
+
+
+</body></html>

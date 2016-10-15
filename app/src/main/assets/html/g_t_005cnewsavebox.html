@@ -1,0 +1,25 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cnewsavebox"></a>
+
+<a name="g_t_005cnewsavebox_003a-Allocating-a-box"></a>
+<h3 class="section"><code>\newsavebox</code>: Allocating a box</h3>
+
+<a name="index-_005cnewsavebox"></a>
+<a name="index-box_002c-allocating-new"></a>
+
+<p>Allocate a &#8220;bin&#8221; for holding a box.  Synopsis:
+</p>
+<div class="example">
+<pre class="example">\newsavebox{\<var>cmd</var>}
+</pre></div>
+
+<p>Defines <code>\<var>cmd</var></code> to refer to a new bin for storing boxes.
+Such a box is for holding typeset material, to use multiple times
+(see <a href="Boxes.html">Boxes</a>) or to measure or manipulate.  The name
+<code>\<var>cmd</var></code> must start with a backslash (&#8216;<samp>\</samp>&#8217;), and must not
+be already defined.
+</p>
+<p>The allocation of a box is global.  This command is fragile
+(see <a href="g_t_005cprotect.html">\protect</a>).
+</p>
+
+</body></html>

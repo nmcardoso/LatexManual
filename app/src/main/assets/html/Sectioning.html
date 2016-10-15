@@ -1,0 +1,91 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Sectioning"></a>
+
+<a name="Sectioning-1"></a>
+<h2 class="chapter">Sectioning</h2>
+
+<a name="index-sectioning-commands"></a>
+
+<p>Sectioning commands provide the means to structure your text into units:
+</p>
+<dl compact="compact">
+<dt><code>\part</code>
+<a name="index-_005cpart"></a>
+</dt>
+<dt><code>\chapter</code>
+<a name="index-_005cchapter"></a>
+</dt>
+<dd><p>(<code>report</code> and <code>book</code> class only)
+</p></dd>
+<dt><code>\section</code>
+<a name="index-_005csection"></a>
+</dt>
+<dt><code>\subsection</code>
+<a name="index-_005csubsection"></a>
+</dt>
+<dt><code>\subsubsection</code>
+<a name="index-_005csubsubsection"></a>
+</dt>
+<dt><code>\paragraph</code>
+<a name="index-_005cparagraph"></a>
+</dt>
+<dt><code>\subparagraph</code>
+<a name="index-_005csubparagraph"></a>
+</dt>
+</dl>
+
+<p>All sectioning commands take the same general form, e.g.,
+</p>
+<div class="example">
+<pre class="example">\chapter[<var>toctitle</var>]{<var>title</var>}
+</pre></div>
+
+<p>In addition to providing the heading <var>title</var> in the main text, the
+section title can appear in two other places:
+</p>
+<ol>
+<li> The table of contents.
+</li><li> The running head at the top of the page.
+</li></ol>
+
+<p>You may not want the same text in these places as in the main text.
+To handle this, the sectioning commands have an optional argument
+<var>toctitle</var> that, when given, specifies the text for these other
+places.
+</p>
+<a name="index-_002a_002dform-of-sectioning-commands"></a>
+<p>Also, all sectioning commands have <code>*</code>-forms that print
+<var>title</var> as usual, but do not include a number and do not make an
+entry in the table of contents.  For instance:
+</p>
+<div class="example">
+<pre class="example">\section*{Preamble}
+</pre></div>
+
+<a name="index-_005cappendix"></a>
+<a name="index-appendix_002c-creating"></a>
+<p>The <code>\appendix</code> command changes the way following sectional units
+are numbered.  The <code>\appendix</code> command itself generates no text
+and does not affect the numbering of parts.  The normal use of this
+command is something like
+</p>
+<div class="example">
+<pre class="example">\chapter{A Chapter}
+&#8230;
+\appendix
+\chapter{The First Appendix}
+</pre></div>
+
+<a name="index-secnumdepth-counter"></a>
+<a name="index-section-numbers_002c-printing"></a>
+<p>The <code>secnumdepth</code> counter controls printing of section numbers.
+The setting
+</p>
+<div class="example">
+<pre class="example">\setcounter{secnumdepth}{<var>level</var>}
+</pre></div>
+
+<p>suppresses heading numbers at any depth <em>&gt; <var>level</var></em>, where
+<code>chapter</code> is level zero.  (See <a href="g_t_005csetcounter.html">\setcounter</a>.)
+</p>
+
+</body></html>

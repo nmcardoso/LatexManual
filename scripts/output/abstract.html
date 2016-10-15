@@ -1,0 +1,59 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="abstract"></a>
+
+<a name="abstract-1"></a>
+<h3 class="section"><code>abstract</code></h3>
+
+<a name="index-environment_002c-abstract"></a>
+<a name="index-abstract-environment"></a>
+<a name="index-abstracts"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{abstract}
+...
+\end{abstract}
+</pre></div>
+
+<p>Produce an abstract, possibly of multiple paragraphs.  This environment
+is only defined in the <code>article</code> and <code>report</code> document classes
+(see <a href="Document-classes.html">Document classes</a>).
+</p>
+<p>Using the example below in the <code>article</code> class produces a displayed
+paragraph.  Document class option <code>titlepage</code> causes the abstract
+to be on a separate page (see <a href="Document-class-options.html">Document class options</a>); this is the
+default only in the <code>report</code> class.
+</p>
+<div class="example">
+<pre class="example">\begin{abstract}
+  We compare all known accounts of the proposal made by Porter Alexander 
+  to Robert E Lee at the Appomattox Court House that the army continue in 
+  a guerrilla war, which Lee refused.
+\end{abstract}
+</pre></div>
+
+<p>The next example produces a one column abstract in a two column document (for
+a more flexible solution, use the package <samp>abstract</samp>).
+</p>
+<div class="example">
+<pre class="example">\documentclass[twocolumn]{article}
+  ...
+\begin{document}
+\title{Babe Ruth as Cultural Progenitor: a Atavistic Approach}
+\author{Smith \\ Jones \\ Robinson\thanks{Railroad tracking grant.}}
+\twocolumn[
+  \begin{@twocolumnfalse}
+     \maketitle
+     \begin{abstract}
+       Ruth was not just the Sultan of Swat, he was the entire swat team.
+     \end{abstract}
+   \end{@twocolumnfalse}
+   ]
+{   % by-hand insert a footnote at page bottom
+ \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+ \footnotetext[1]{Thanks for all the fish.}
+}
+</pre></div>
+
+
+</body></html>

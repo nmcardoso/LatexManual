@@ -1,0 +1,38 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cusecounter"></a>
+
+<a name="g_t_005cusecounter_007bcounter_007d"></a>
+<h3 class="section"><code>\usecounter{<var>counter</var>}</code></h3>
+
+<a name="index-_005cusecounter"></a>
+<a name="index-list-items_002c-specifying-counter"></a>
+<a name="index-numbered-items_002c-specifying-counter"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\usecounter{<var>counter</var>}
+</pre></div>
+
+<p>In the <code>list</code> environment, when used in the second argument, this
+command sets up <var>counter</var> to number the list items.  It initializes
+<var>counter</var> to zero, and arranges that when <code>\item</code> is called
+without its optional argument then <var>counter</var> is incremented by
+<code>\refstepcounter</code>, making its value be the current <code>ref</code>
+value.  This command is fragile (see <a href="g_t_005cprotect.html">\protect</a>).
+</p>
+<p>Put in the preamble, this makes a new list environment enumerated with
+<var>testcounter</var>:
+</p>
+<div class="example">
+<pre class="example">\newcounter{testcounter}
+\newenvironment{test}{%
+  \begin{list}{}{%
+    \usecounter{testcounter}
+  }
+}{%
+  \end{list}
+}
+</pre></div>
+
+
+</body></html>

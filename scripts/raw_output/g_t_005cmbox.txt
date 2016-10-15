@@ -1,0 +1,1 @@
+        The \mbox command creates a box just wide enough to hold the text created by its argument.  The text is not broken into lines, so it can be used to prevent hyphenation.   

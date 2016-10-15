@@ -1,0 +1,1 @@
+        \enlargethispage{size}  \enlargethispage*{size}  Enlarge the \textheight for the current page by the specified amount; e.g., \enlargethispage{\baselineskip} will allow one additional line.  The starred form tries to squeeze the material together on the page as much as possible. This is normally used together with an explicit \pagebreak.   

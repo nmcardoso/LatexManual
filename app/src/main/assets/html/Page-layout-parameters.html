@@ -1,0 +1,214 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Page-layout-parameters"></a>
+
+<a name="Page-layout-parameters-1"></a>
+<h3 class="section">Page layout parameters</h3>
+
+<a name="index-page-layout-parameters"></a>
+<a name="index-parameters_002c-page-layout"></a>
+<a name="index-layout_002c-page-parameters-for"></a>
+<a name="index-header_002c-parameters-for"></a>
+<a name="index-footer_002c-parameters-for"></a>
+<a name="index-running-header-and-footer"></a>
+
+<dl compact="compact">
+<dt><code>\columnsep</code>
+<a name="index-_005ccolumnsep-1"></a>
+</dt>
+<dt><code>\columnseprule</code>
+<a name="index-_005ccolumnseprule-1"></a>
+</dt>
+<dt><code>\columnwidth</code>
+<a name="index-_005ccolumnwidth-1"></a>
+</dt>
+<dd><a name="index-_005ccolumnsep-2"></a>
+<a name="index-_005ccolumnseprule-2"></a>
+<a name="index-_005ccolumnwidth-2"></a>
+<p>The distance between the two columns, the width of a rule between the
+columns, and the width of the columns, when the document class option
+<code>twocolumn</code> is in effect (see <a href="Document-class-options.html">Document class options</a>).
+See <a href="g_t_005ctwocolumn.html">\twocolumn</a>.
+</p>
+</dd>
+<dt><code>\headheight</code>
+<a name="index-_005cheadheight"></a>
+</dt>
+<dd><a name="index-_005cheadheight-1"></a>
+<p>Height of the box that contains the running head.  The default in the
+<code>article</code>, <code>report</code>, and <code>book</code> classes is &#8216;<samp>12pt</samp>&#8217;,
+at all type sizes.
+</p>
+</dd>
+<dt><code>\headsep</code>
+<a name="index-_005cheadsep"></a>
+</dt>
+<dd><a name="index-_005cheadsep-1"></a>
+<p>Vertical distance between the bottom of the header line and the top of
+the main text.  The default in the <code>article</code> and <code>report</code>
+classes is &#8216;<samp>25pt</samp>&#8217;.  In the <code>book</code> class the default is: if the
+document is set at 10pt then it is &#8216;<samp>0.25in</samp>&#8217;, and at 11pt and 12pt
+it is &#8216;<samp>0.275in</samp>&#8217;.
+</p>
+</dd>
+<dt><code>\footskip</code>
+<a name="index-_005cfootskip"></a>
+</dt>
+<dd><a name="index-_005cfootskip-1"></a>
+<p>Distance from the baseline of the last line of text to the baseline of
+the page footer.  The default in the <code>article</code> and <code>report</code>
+classes is &#8216;<samp>30pt</samp>&#8217;.  In the <code>book</code> class the default is: when
+the type size is 10pt the default is &#8216;<samp>0.35in</samp>&#8217;, while at 11pt it is
+&#8216;<samp>0.38in</samp>&#8217;, and at 12pt it is &#8216;<samp>30pt</samp>&#8217;.
+</p>
+</dd>
+<dt><code>\linewidth</code>
+<a name="index-_005clinewidth"></a>
+</dt>
+<dd><a name="index-_005clinewidth-1"></a>
+<p>Width of the current line, decreased for each nested <code>list</code>
+(see <a href="list.html">list</a>).  That is, the nominal value for <code>\linewidth</code> is to
+equal <code>\textwidth</code> but for each nested list the <code>\linewidth</code>
+is decreased by the sum of that list&#8217;s <code>\leftmargin</code> and
+<code>\rightmargin</code> (see <a href="itemize.html">itemize</a>).
+</p>
+</dd>
+<dt><code>\marginparpush</code>
+<a name="index-_005cmarginparpush"></a>
+</dt>
+<dt><code>\marginsep</code>
+<a name="index-_005cmarginsep"></a>
+</dt>
+<dt><code>\marginparwidth</code>
+<a name="index-_005cmarginparwidth"></a>
+</dt>
+<dd><a name="index-_005cmarginparpush-1"></a>
+<a name="index-_005cmarginsep-1"></a>
+<a name="index-_005cmarginparwidth-1"></a>
+<p>The minimum vertical space between two marginal notes, the horizontal
+space between the text body and the marginal notes, and the horizontal
+width of the notes.
+</p>
+<p>Normally marginal notes appear on the outside of the page, but the
+declaration <code>\reversemarginpar</code> changes that (and
+<code>\normalmarginpar</code> changes it back).
+</p>
+<p>The defaults for <code>\marginparpush</code> in both <code>book</code> and
+<code>article</code> classes are: &#8216;<samp>7pt</samp>&#8217; if the document is set at 12pt,
+and &#8216;<samp>5pt</samp>&#8217; if the document is set at 11pt or 10pt.
+</p>
+<p>For <code>\marginsep</code>, in <code>article</code> class the default is
+&#8216;<samp>10pt</samp>&#8217; except if the document is set at 10pt and in two-column mode
+where the default is &#8216;<samp>11pt</samp>&#8217;.
+</p>
+<p>For <code>\marginsep</code> in <code>book</code> class the default is &#8216;<samp>10pt</samp>&#8217; in
+two-column mode and &#8216;<samp>7pt</samp>&#8217; in one-column mode.  
+</p>
+<p>For <code>\marginparwidth</code> in both <code>book</code> and <code>article</code>
+classes, in two-column mode the default is 60% of <code>\paperwidth
+- \textwidth</code>, while in one-column mode it is 50% of that
+distance.
+</p>
+</dd>
+<dt><code>\oddsidemargin</code>
+<a name="index-_005coddsidemargin-1"></a>
+</dt>
+<dt><code>\evensidemargin</code>
+<a name="index-_005cevensidemargin-1"></a>
+</dt>
+<dd><a name="index-_005coddsidemargin-2"></a>
+<a name="index-_005cevensidemargin-2"></a>
+<p>The <code>\oddsidemargin</code> is the extra distance between the left side of
+the page and the text&#8217;s left margin, on odd-numbered pages when the
+document class option <code>twoside</code> is chosen and on all pages when
+<code>oneside</code> is in effect.  When <code>twoside</code> is in effect, on
+even-numbered pages the extra distance on the left is
+<code>evensidemargin</code>.
+</p>
+<p>LaTeX&#8217;s default is that <code>\oddsidemargin</code> is 40% of the
+difference between <code>\paperwidth</code> and <code>\textwidth</code>, and
+<code>\evensidemargin</code> is the remainder.
+</p>
+</dd>
+<dt><code>\paperheight</code>
+<a name="index-_005cpaperheight"></a>
+</dt>
+<dd><a name="index-_005cpaperheight-1"></a>
+<p>The height of the paper, as distinct from the height of the print area.
+It is normally set with a document class option, as in
+<code>\documentclass[a4paper]{article}</code> (see <a href="Document-class-options.html">Document class options</a>).
+</p>
+</dd>
+<dt><code>\paperwidth</code>
+<a name="index-_005cpaperwidth"></a>
+</dt>
+<dd><a name="index-_005cpaperwidth-1"></a>
+<p>The width of the paper, as distinct from the width of the print area.
+It is normally set with a document class option, as in
+<code>\documentclass[a4paper]{article}</code> (see <a href="Document-class-options.html">Document class options</a>).
+</p>
+</dd>
+<dt><code>\textheight</code>
+<a name="index-_005ctextheight"></a>
+</dt>
+<dd><a name="index-_005ctextheight-1"></a>
+<p>The normal vertical height of the page body.  If the document is set at
+a nominal type size of 10pt then for an <code>article</code> or <code>report</code>
+the default is &#8216;<samp>43\baselineskip</samp>&#8217;, while for a <code>book</code> it is
+&#8216;<samp>41\baselineskip</samp>&#8217;.  At a type size of 11pt the default is
+&#8216;<samp>38\baselineskip</samp>&#8217; for all document classes.  At 12pt it is
+&#8216;<samp>36\baselineskip</samp>&#8217; for all classes.
+</p>
+</dd>
+<dt><code>\textwidth</code>
+<a name="index-_005ctextwidth"></a>
+</dt>
+<dd><a name="index-_005ctextwidth-1"></a>
+<p>The full horizontal width of the entire page body.  For an
+<code>article</code> or <code>report</code> document, the default is &#8216;<samp>345pt</samp>&#8217;
+when the chosen type size is 10pt, the default is &#8216;<samp>360pt</samp>&#8217; at 11pt,
+and it is &#8216;<samp>390pt</samp>&#8217; at 12pt.  For a <code>book</code> document, the default
+is &#8216;<samp>4.5in</samp>&#8217; at a type size of 10pt, and &#8216;<samp>5in</samp>&#8217; at 11pt or 12pt.
+</p>
+<p>In multi-column output, <code>\textwidth</code> remains the width of the
+entire page body, while <code>\columnwidth</code> is the width of one column
+(see <a href="g_t_005ctwocolumn.html">\twocolumn</a>).
+</p>
+<p>In lists (see <a href="list.html">list</a>), <code>\textwidth</code> remains the width of the
+entire page body (and <code>\columnwidth</code> the width of the entire
+column), while <code>\linewidth</code> may decrease for nested lists.
+</p>
+<p>Inside a minipage (see <a href="minipage.html">minipage</a>) or <code>\parbox</code>
+(see <a href="g_t_005cparbox.html">\parbox</a>), all the width-related parameters are set to the
+specified width, and revert to their normal values at the end of the
+<code>minipage</code> or <code>\parbox</code>.
+</p>
+<a name="index-_005chsize"></a>
+<a name="index-_005chsize-1"></a>
+<p>This entry is included for completeness: <code>\hsize</code> is the TeX
+primitive parameter used when text is broken into lines.  It should not
+be used in normal LaTeX documents.
+</p>
+</dd>
+<dt><code>\topmargin</code>
+<a name="index-_005ctopmargin"></a>
+</dt>
+<dd><a name="index-topmargin"></a>
+<p>Space between the top of the TeX page (one inch from the top of the
+paper, by default) and the top of the header.  The value is computed
+based on many other parameters: <code>\paperheight - 2in -
+\headheight - \headsep - \textheight - \footskip</code>,
+and then divided by two.
+</p>
+</dd>
+<dt><code>\topskip</code>
+<a name="index-_005ctopskip"></a>
+</dt>
+<dd><a name="index-_005ctopskip-1"></a>
+<p>Minimum distance between the top of the page body and the baseline of
+the first line of text.  For the standard classes, the default is the
+same as the font size, e.g., &#8216;<samp>10pt</samp>&#8217; at a type size of 10pt.
+</p>
+</dd>
+</dl>
+
+
+</body></html>

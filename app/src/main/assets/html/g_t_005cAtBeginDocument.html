@@ -1,0 +1,24 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cAtBeginDocument"></a>
+
+<h4 class="node-heading">\AtBeginDocument</h4>
+
+<a name="index-_005cAtBeginDocument"></a>
+<a name="index-beginning-of-document-hook"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\AtBeginDocument{<var>code</var>}
+</pre></div>
+
+<p>Save <var>code</var> and execute it when <code>\begin{document}</code> is
+executed, at the very end of the preamble.  The code is executed after
+the font selection tables have been set up, so the normal font for the
+document is the current font.  However, the code is executed as part of
+the preamble so you cannot do any typesetting with it.
+</p>
+<p>You can issue this command more than once; the successive code lines
+will be executed in the order that you gave them.
+</p>
+
+</body></html>

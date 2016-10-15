@@ -1,0 +1,1 @@
+        This environment is used for creating letters.  See Letters.   

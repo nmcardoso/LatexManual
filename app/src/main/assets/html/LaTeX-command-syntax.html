@@ -1,0 +1,51 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="LaTeX-command-syntax"></a>
+
+<a name="LaTeX-command-syntax-1"></a>
+<h3 class="section">LaTeX command syntax</h3>
+
+<a name="index-command-syntax"></a>
+<a name="index-_005c-character-starting-commands"></a>
+<a name="index-_005b_002e_002e_002e_005d-for-optional-arguments"></a>
+<a name="index-_007b_002e_002e_002e_007d-for-required-arguments"></a>
+<p>In the LaTeX input file, a command name starts with a backslash
+character, <code>\</code>.  The name itself then consists of either
+(a) a string of letters or (b) a single non-letter.
+</p>
+<p>LaTeX commands names are case sensitive so that <code>\pagebreak</code>
+differs from <code>\Pagebreak</code> (the latter is not a standard command).
+Most commands are lowercase, but in any event you must enter all
+commands in the same case as they are defined.
+</p>
+<p>A command may be followed by zero, one, or more arguments. These
+arguments may be either required or optional.  Required arguments are
+contained in curly braces, <code>{...}</code>.  Optional arguments are
+contained in square brackets, <code>[...]</code>.  Generally, but not
+universally, if the command accepts an optional argument, it comes
+first, before any required arguments.
+</p>
+<p>Inside of an optional argument, to use the character close square
+bracket (<code>]</code>) hide it inside curly braces, as
+in <code>\item[closing bracket {]}]</code>.  Similarly, if an optional
+argument comes last, with no required argument after it, then to make
+the first character of the following text be an open square bracket,
+hide it inside curly braces.
+</p>
+<p>LaTeX has the convention that some commands have a <code>*</code> form that
+is related to the form without a <code>*</code>, such as <code>\chapter</code> and
+<code>\chapter*</code>.  The exact difference in behavior varies from command
+to command.
+</p>
+<p>This manual describes all accepted options and <code>*</code>-forms for the
+commands it covers (barring unintentional omissions, a.k.a. bugs).
+</p>
+<table border="0" cellspacing="0" class="menu">
+<tbody><tr><td align="left" valign="top">&#8226; <a accesskey="1" href="Environment.html">Environment</a>:</td><td>  </td><td align="left" valign="top">Area of the source with distinct behavior.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="2" href="Declaration.html">Declaration</a>:</td><td>  </td><td align="left" valign="top">Change the value or meaning of a command.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="3" href="g_t_005cmakeatletter-and-_005cmakeatother.html">\makeatletter and \makeatother</a>:</td><td>  </td><td align="left" valign="top">Change the status of the at-sign character.
+</td></tr>
+</tbody></table>
+
+
+</body></html>

@@ -1,0 +1,35 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cvline"></a>
+
+<a name="g_t_005cvline-1"></a>
+<h4 class="subsection"><code>\vline</code></h4>
+
+<a name="index-_005cvline"></a>
+<p>Draw a vertical line in a <code>tabular</code> or <code>array</code> environment
+extending the full height and depth of an entry&#8217;s row.  Can also be
+used in an @-expression, although its synonym vertical
+bar <code>|</code> is more common.  This command is rarely used in the
+body of a table; typically a table&#8217;s vertical lines are specified in
+<code>tabular</code>&#8217;s <var>cols</var> argument and overridden as needed with
+<code>\multicolumn</code>.
+</p>
+<p>This example illustrates some pitfalls.  In the first line&#8217;s second
+entry the <code>\hfill</code> moves the <code>\vline</code> to the left edge of the
+cell.  But that is different than putting it halfway between the two
+columns, so in that row between the first and second columns there are
+two vertical rules, with the one from the <code>{c|cc}</code> specifier
+coming before the one produced by the <code>\vline\hfill</code>.  In contrast,
+the first line&#8217;s third entry shows the usual way to put a vertical bar
+between two columns.  In the second line, the <code>ghi</code> is the widest
+entry in its column so in the <code>\vline\hfill</code> the <code>\hfill</code> has
+no effect and the vertical line in that entry appears immediately next
+to the <code>g</code>, with no whitespace.
+</p>
+<div class="example">
+<pre class="example">\begin{tabular}{c|cc}
+  x   &amp;\vline\hfill y   &amp;\multicolumn{1}{|r}{z} \\  
+  abc &amp;def &amp;\vline\hfill ghi 
+\end{tabular}
+</pre></div>
+
+
+</body></html>

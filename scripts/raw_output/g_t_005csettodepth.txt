@@ -1,0 +1,1 @@
+       Synopsis:   \settodepth{\len}{text}   The \settodepth command sets the value of a length command \len equal to the depth of the text argument.   

@@ -1,0 +1,99 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cmulticolumn"></a>
+
+<a name="g_t_005cmulticolumn-1"></a>
+<h4 class="subsection"><code>\multicolumn</code></h4>
+
+<a name="index-_005cmulticolumn"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\multicolumn{<var>numcols</var>}{<var>cols</var>}{<var>text</var>}
+</pre></div>
+
+<p>Make an <code>array</code> or <code>tabular</code> entry that spans several columns.
+The first argument <var>numcols</var> gives the number of columns to span.
+The second argument <var>cols</var> specifies the formatting of the entry,
+with <code>c</code> for centered, <code>l</code> for flush left, or <code>r</code> for
+flush right.  The third argument <var>text</var> gives the contents of that
+entry.
+</p>
+<p>In this example, in the first row, the second and third columns are
+spanned by the single heading &#8216;<samp>Name</samp>&#8217;.
+</p>
+<div class="example">
+<pre class="example">\begin{tabular}{lccl} 
+  \textit{ID}       &amp;\multicolumn{2}{c}{\textit{Name}} &amp;\textit{Age} \\ \hline % row one 
+  978-0-393-03701-2 &amp;O'Brian &amp;Patrick                  &amp;55           \\        % row two 
+    ...
+\end{tabular}
+</pre></div>
+
+<p>What counts as a column is: the column format specifier for the
+<code>array</code> or <code>tabular</code> environment is broken into parts, where
+each part (except the first) begins with <code>l</code>, <code>c</code>, <code>r</code>,
+or <code>p</code>.  So from <code>\begin{tabular}{|r|ccp{1.5in}|}</code>
+the parts are <code>|r|</code>, <code>c</code>, <code>c</code>,
+and <code>p{1.5in}|</code>.
+</p>
+<p>The <var>cols</var> argument overrides the <code>array</code> or <code>tabular</code>
+environment&#8217;s intercolumn area default adjoining this multicolumn
+entry. To affect that area, this argument can contain vertical bars
+<code>|</code> indicating the placement of vertical rules, and <code>@{...}</code>
+expressions.  Thus if <var>cols</var> is &#8216;<samp>|c|</samp>&#8217; then this multicolumn
+entry will be centered and a vertical rule will come in the intercolumn
+area before it and after it.  This table details the exact behavior.
+</p>
+<div class="example">
+<pre class="example">\begin{tabular}{|cc|c|c|}
+  \multicolumn{1}{r}{w}       % entry one
+    &amp;\multicolumn{1}{|r|}{x}  % entry two 
+    &amp;\multicolumn{1}{|r}{y}   % entry three
+    &amp;z                        % entry four
+\end{tabular}
+</pre></div>
+
+<p>Before the first entry the output will not have a vertical rule because
+the <code>\multicolumn</code> has the <var>cols</var> specifier &#8216;<samp>r</samp>&#8217; with no
+initial vertical bar.  Between entry one and entry two there will be a
+vertical rule; although the first <var>cols</var> does not have an ending
+vertical bar, the second <var>cols</var> does have a starting one.  Between
+entry two and entry three there is a single vertical rule; despite that
+the <var>cols</var> in both of the surrounding <code>multicolumn</code>&#8217;s call for
+a vertical rule, you only get one rule.  Between entry three and entry
+four there is no vertical rule; the default calls for one but the
+<var>cols</var> in the entry three <code>\multicolumn</code> leaves it out, and
+that takes precedence.  Finally, following entry four there is a
+vertical rule because of the default.
+</p>
+<p>The number of spanned columns <var>numcols</var> can be 1.  Besides giving
+the ability to change the horizontal alignment, this also is useful to
+override for one row the <code>tabular</code> definition&#8217;s default intercolumn
+area specification, including the placement of vertical rules.
+</p>
+<p>In the example below, in the <code>tabular</code> definition the first column
+is specified to default to left justified but in the first row the entry
+is centered with <code>\multicolumn{1}{c}{\textsc{Period}}</code>.
+Also in the first row, the second and third columns are spanned by a
+single entry with <code>\multicolumn{2}{c}{\textsc{Span}}</code>,
+overriding the specification to center those two columns on the page
+range en-dash.
+</p>
+<div class="example">
+<pre class="example">\begin{tabular}{l|r@{--}l} 
+  \multicolumn{1}{c}{\textsc{Period}}  
+    &amp;multicolumn{2}{c}{\textsc{Span}} \\ \hline
+  Baroque          &amp;1600           &amp;1760         \\
+  Classical        &amp;1730           &amp;1820         \\
+  Romantic         &amp;1780           &amp;1910         \\
+  Impressionistic  &amp;1875           &amp;1925
+\end{tabular}
+</pre></div>
+
+<p>Note that although the <code>tabular</code> specification by default puts a
+vertical rule between the first and second columns, because there is no
+vertical bar in the <var>cols</var> of either of the first row&#8217;s
+<code>\multicolumn</code> commands, no rule appears in the first row.
+</p>
+
+</body></html>

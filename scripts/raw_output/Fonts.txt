@@ -1,0 +1,1 @@
+        Two important aspects of selecting a font are specifying a size and a style.  The LaTeX commands for doing this are described here.    Font styles:Select roman, italics, etc.   Font sizes:Select point size.   Low-level font commands:Select encoding, family, series, shape.     

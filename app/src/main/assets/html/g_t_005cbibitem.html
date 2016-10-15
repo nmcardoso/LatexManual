@@ -1,0 +1,29 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cbibitem"></a>
+
+<a name="g_t_005cbibitem-1"></a>
+<h4 class="subsection"><code>\bibitem</code></h4>
+
+<a name="index-_005cbibitem"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\bibitem[<var>label</var>]{<var>cite_key</var>}
+</pre></div>
+
+<p>The <code>\bibitem</code> command generates an entry labelled by <var>label</var>.
+If the <var>label</var> argument is missing, a number is automatically
+generated using the <code>enumi</code> counter.  The <var>cite_key</var> is a
+<a name="index-citation-key"></a>
+<em>citation key</em> consisting in any sequence of
+letters, numbers, and punctuation symbols not containing a comma.
+</p>
+<p>This command writes an entry to the <samp>.aux</samp> file containing the
+item&#8217;s <var>cite_key</var> and <var>label</var>.  When the <samp>.aux</samp> file is
+read by the <code>\begin{document}</code> command, the item&#8217;s <var>label</var> is
+associated with <code>cite_key</code>, causing references to <var>cite_key</var>
+with a <code>\cite</code> command (see <a href="g_t_005ccite.html">\cite</a>) to produce the associated
+<var>label</var>.
+</p>
+
+</body></html>

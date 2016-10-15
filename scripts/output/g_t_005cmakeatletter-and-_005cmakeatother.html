@@ -1,0 +1,59 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cmakeatletter-and-_005cmakeatother"></a>
+
+<h4 class="node-heading">\makeatletter and \makeatother</h4>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\makeatletter
+  ... definition of commands with @ in their name ..
+\makeatother
+</pre></div>
+
+<p>Used to redefine internal LaTeX commands.  <code>\makeatletter</code> makes
+the at-sign character <code>@</code> have the category code of a letter,
+11.  <code>\makeatother</code> sets the category code of <code>@</code> to 12,
+its original value.
+</p>
+<p>As each character is read by TeX for LaTeX, it is assigned a
+character category code, or 
+<a name="index-catcode"></a>
+<a name="index-character-category-code"></a>
+<a name="index-category-code_002c-character"></a>
+<em>catcode</em> for shorter. For instance, the backslash <code>\</code> is
+assigned the catcode 0, for characters that start a command.  These two
+commands alter the catcode assigned to <code>@</code>.
+</p>
+<p>The alteration is needed because many of LaTeX&#8217;s commands use
+<code>@</code> in their name, to prevent users from accidentally defining a
+command that replaces one of LaTeX&#8217;s own.  Command names consist of a
+category 0 character, ordinarily backslash, followed by letters,
+category 11 characters (except that a command name can also consist
+of a category 0 character followed by a single non-letter symbol).
+So under the default category codes, user-defined commands cannot
+contain an <code>@</code>.  But <code>\makeatletter</code> and <code>\makeatother</code>
+allow users to define or redefine commands named with <code>@</code>.
+</p>
+<p>Use these inside a <samp>.tex</samp> file, in the preamble.  Don&#8217;t use them
+inside <samp>.sty</samp> or <samp>.cls</samp> files since the <code>\usepackage</code>
+and <code>\documentclass</code> commands set the at sign to have the character
+code of a letter.
+</p>
+<p>The example code below, if put in the preamble, redefines the
+section command to center the section title, put it in bold type,
+and adjust the spacing.
+</p>
+<div class="example">
+<pre class="example">\makeatletter
+\renewcommand\section{%
+  \@startsection{section}% Name
+  {1}% Level: 0=part, 1=chapter, etc.
+  {0pt}% Heading indent
+  {-3.5ex plus -1ex minus -.2ex}% Beforeskip (if neg, no head indent)
+  {2.3ex plus.2ex}% Afterskip (if neg, run-in heading)
+  {\centering\normalfont\Large\bfseries}} % Style of head
+\makeatother
+</pre></div>
+
+
+</body></html>

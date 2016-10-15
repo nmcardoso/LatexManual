@@ -1,0 +1,1 @@
+       Synopsis:   \rule[raise]{width}{thickness}   The \rule command produces rules, that is, lines or rectangles.  The arguments are:   raise How high to raise the rule (optional).   width The length of the rule (mandatory).   thickness The thickness of the rule (mandatory).     

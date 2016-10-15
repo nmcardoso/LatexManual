@@ -1,0 +1,1 @@
+         LaTeX defines counters for the day of the month (\day, 131), month of the year (\month, 112), and year (\year, Common Era).  When TeX starts up, they are set to the current values on the system where TeX is running.  They are not updated as the job progresses.  The related command \today produces a string representing the current day (see \today).   

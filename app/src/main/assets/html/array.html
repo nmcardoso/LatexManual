@@ -1,0 +1,84 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="array"></a>
+
+<a name="array-1"></a>
+<h3 class="section"><code>array</code></h3>
+
+<a name="index-environment_002c-array"></a>
+<a name="index-array-environment"></a>
+<a name="index-arrays_002c-math"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{array}{<var>cols</var>}
+  <var>column 1 entry</var> &amp;<var>column 2 entry</var> ... &amp;<var>column n entry</var> \\
+  ...
+\end{array}
+</pre></div>
+
+<p>or
+</p>
+<div class="example">
+<pre class="example">\begin{array}[<var>pos</var>]{<var>cols</var>}
+  <var>column 1 entry</var> &amp;<var>column 2 entry</var> ... &amp;<var>column n entry</var> \\
+  ...
+\end{array}
+</pre></div>
+
+<p>Produce a mathematical array.  This environment can only be used in math
+mode, and normally appears within a displayed mathematics environment
+such as <code>equation</code> (see <a href="equation.html">equation</a>).  Column entries are
+separated by an ampersand (<code>&amp;</code>).  Rows are terminated with
+double-backslashes (see <a href="g_t_005c_005c.html">\\</a>).  
+</p>
+<p>The required argument <var>cols</var> describes the number of columns, their
+alignment, and the formatting of the intercolumn regions.  See
+<a href="tabular.html">tabular</a> for the complete description of <var>cols</var>, and of the
+other common features of the two environments, including the optional
+<var>pos</var> argument.
+</p>
+<p>There are two ways that <code>array</code> diverges from <code>tabular</code>.  The
+first is that <code>array</code> entries are typeset in math mode, in
+textstyle (except if the <var>cols</var> definition specifies the column with
+<code>p{...}</code>, which causes the entry to be typeset in text mode).
+The second is that, instead of <code>tabular</code>&#8217;s parameter
+<code>\tabcolsep</code>, LaTeX&#8217;s intercolumn space in an <code>array</code> is governed
+by
+<a name="index-_005carraycolsep"></a>
+<code>\arraycolsep</code>, which gives half the width between columns. The
+default for this is &#8216;<samp>5pt</samp>&#8217;.
+</p>
+<p>To obtain arrays with braces the standard is to use the <samp>amsmath</samp>
+package.  It comes with environments <code>pmatrix</code> for an array
+surrounded by parentheses <code>(...)</code>, <code>bmatrix</code> for an array
+surrounded by square brackets <code>[...]</code>, <code>Bmatrix</code> for an
+array surrounded by curly braces <code>{...}</code>, <code>vmatrix</code> for
+an array surrounded by vertical bars <code>|...|</code>, and
+<code>Vmatrix</code> for an array surrounded by double vertical
+bars <code>||...||</code>, along with a number of other array constructs.
+</p>
+<p>Here is an example of an array:
+</p>
+<div class="example">
+<pre class="example">\begin{equation}
+  \begin{array}{cr}
+    \sqrt{y}  &amp;12.3 \\
+    x^2       &amp;3.4       
+  \end{array}
+\end{equation}
+</pre></div>
+
+<p>The next example works if <code>\usepackage{amsmath}</code> is in the
+preamble:
+</p>
+<div class="example">
+<pre class="example">\begin{equation}
+  \begin{vmatrix}{cc}
+    a  &amp;b \\
+    c  &amp;d       
+  \end{vmatrix}=ad-bc
+\end{equation}
+</pre></div>
+
+
+</body></html>

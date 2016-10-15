@@ -1,0 +1,1 @@
+       Synopsis:   \put(xcoord,ycoord){ ... }   The \put command places the material specified by the (mandatory) argument in braces at the given coordinate, (xcoord,ycoord).   

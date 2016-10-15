@@ -1,0 +1,41 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005censuremath"></a>
+
+<a name="g_t_005censuremath-1"></a>
+<h3 class="section"><code>\ensuremath</code></h3>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\ensuremath{<var>formula</var>}
+</pre></div>
+
+<p>The <code>\ensuremath</code> command ensures that <var>formula</var> is typeset in
+math mode whatever the current mode in which the command is used.
+</p>
+<p>For instance:
+</p>
+<div class="example">
+<pre class="example">\documentclass{report}
+\newcommand{\ab}{\ensuremath{(\delta, \varepsilon)}}
+\begin{document}
+Now, the \ab\ pair is equal to \(\ab = (\frac{1}{\pi}, 0)\), ...
+\end{document}
+</pre></div>
+
+<p>One can redefine commands that can be used only in math mode so that
+they ca be used in any mode like in the following example given for
+<code>\leadsto</code>:
+</p>
+<div class="example">
+<pre class="example">\documentclass{report}
+\usepackage{amssymb}
+\newcommand{\originalMeaningOfLeadsTo}{}
+\let\originalMeaningOfLeadsTo\leadsto
+\renewcommand\leadsto{\ensuremath{\originalMeaningOfLeadsTo}}
+\begin{document}
+All roads \leadsto\ Rome.
+\end{document}
+</pre></div>
+
+
+</body></html>

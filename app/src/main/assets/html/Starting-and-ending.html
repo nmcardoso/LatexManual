@@ -1,0 +1,42 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Starting-and-ending"></a>
+
+<a name="Starting-and-ending-1"></a>
+<h3 class="section">Starting and ending</h3>
+
+<a name="Starting-_0026-ending"></a><a name="index-starting-and-ending"></a>
+<a name="index-ending-and-starting"></a>
+<a name="index-hello_002c-world"></a>
+
+<p>LaTeX files have a simple global structure, with a standard beginning
+and ending.  Here is a &#8220;hello, world&#8221; example:
+</p>
+<div class="example">
+<pre class="example">\documentclass{article}
+\begin{document}
+Hello, \LaTeX\ world.
+\end{document}
+</pre></div>
+
+<a name="index-document-class_002c-defined"></a>
+<p>Here, the &#8216;<samp>article</samp>&#8217; is the so-called <em>document class</em>,
+implemented in a file <samp>article.cls</samp>.  Any document class can be
+used.  A few document classes are defined by LaTeX itself, and vast
+array of others are widely available.  See <a href="Document-classes.html">Document classes</a>.
+</p>
+<a name="index-preamble_002c-defined"></a>
+<p>You can include other LaTeX commands between the
+<code>\documentclass</code> and the <code>\begin{document}</code> commands.
+This area is called the <em>preamble</em>.
+</p>
+<p>The <code>\begin{document} ... \end{document}</code> is a so-called
+<a name="index-environment"></a>
+<em>environment</em>; the &#8216;<samp>document</samp>&#8217; environment (and no others) is
+required in all LaTeX documents (see <a href="document.html">document</a>).  LaTeX
+provides many environments itself, and many more are defined separately.
+See <a href="Environments.html">Environments</a>.
+</p>
+<p>The following sections discuss how to produce PDF or other output from
+a LaTeX input file.
+</p>
+
+</body></html>

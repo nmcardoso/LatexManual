@@ -1,0 +1,56 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="description"></a>
+
+<a name="description-1"></a>
+<h3 class="section"><code>description</code></h3>
+
+<a name="index-environment_002c-description"></a>
+<a name="index-description-environment"></a>
+<a name="index-labelled-lists_002c-creating"></a>
+<a name="index-description-lists_002c-creating"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{description}
+\item [<var>first label</var>] text of first item
+\item [<var>second label</var>] text of second item
+  ...
+\end{description}
+</pre></div>
+
+<p>Environment to make a labelled list of items.  Each item&#8217;s <var>label</var>
+is typeset in bold, flush-left.  Each item&#8217;s text may contain multiple
+paragraphs.  Although the labels on the items are optional there is no
+sensible default, so all items should have labels.
+</p>
+<a name="index-_005citem"></a>
+<p>The list consists of at least one item, created with the <code>\item</code>
+command (see <a href="g_t_005citem.html">\item</a>).  Having no items causes the LaTeX error
+&#8216;<samp>Something's wrong--perhaps a missing \item</samp>&#8217;).
+</p>
+<a name="index-bold-typewriter_002c-avoiding"></a>
+<a name="index-typewriter-labels-in-lists"></a>
+<p>Since the labels are in bold style, if the label text calls for a font
+change given in argument style (see <a href="Font-styles.html">Font styles</a>) then it will
+come out bold.  For instance, if the label text calls for typewriter
+with <code>\item[\texttt{label text}]</code> then it will appear in bold
+typewriter, if that is available. The simplest way to get non-bold
+typewriter is to use declarative style: <code>\item[{\tt label
+text}]</code>.  Similarly, to get the standard roman font, use
+<code>\item[{\rm label text}]</code>.
+</p>
+<p>For other major LaTeX labelled list environments, see <a href="itemize.html">itemize</a>
+and <a href="enumerate.html">enumerate</a>.  For information about customizing list layout, see
+<a href="list.html">list</a>; also, the package <samp>enumitem</samp> is useful for this.
+</p>
+<p>This example shows the environment used for a sequence of definitions.
+</p>
+<div class="example">
+<pre class="example">\begin{definition}
+  \item[lama] A priest.
+  \item[llama] A beast.
+\end{definition}
+</pre></div>
+
+
+</body></html>

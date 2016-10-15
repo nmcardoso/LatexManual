@@ -1,0 +1,42 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005ccentering"></a>
+
+<a name="g_t_005ccentering-1"></a>
+<h4 class="subsection"><code>\centering</code></h4>
+
+<a name="index-_005ccentering"></a>
+<a name="index-centering-text_002c-declaration-for"></a>
+
+<p>Declaration that causes material in its scope to be centered.  It is
+most often used inside an environment such as <code>figure</code>, or in a
+<code>parbox</code>.
+</p>
+<p>Unlike the <code>center</code> environment, the <code>\centering</code> command does
+not add vertical space above and below the text.
+</p>
+<p>It also does not start a new paragraph; it simply changes how LaTeX
+formats paragraph units.  If <code>ww {\centering xx \\ yy} zz</code> is
+surrounded by blank lines then LaTeX will create a paragraph whose
+first line &#8216;<samp>ww xx</samp>&#8217; is centered and whose second line, not centered,
+contains &#8216;<samp>yy zz</samp>&#8217;.  Usually what is desired is for the scope of the
+declaration to contain a blank line or the <code>\end</code> command of an
+environment such as <code>figure</code> or <code>table</code> that ends the
+paragraph unit.  Thus, if <code>{\centering xx \\ yy\par} zz</code> is
+surrounded by blank lines then it makes a new paragraph with two
+centered lines &#8216;<samp>xx</samp>&#8217; and &#8216;<samp>yy</samp>&#8217;, followed by a new paragraph with
+&#8216;<samp>zz</samp>&#8217; that is formatted as usual.  See also the following example.
+</p>
+<p>This example&#8217;s <code>\centering</code> causes the graphic to be horizontally
+centered.  
+</p>
+<div class="example">
+<pre class="example">\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{ctan_lion.png}
+  \caption{CTAN Lion}  \label{fig:CTANLion}
+\end{figure}
+</pre></div>
+
+<p>The scope of the <code>\centering</code> ends with the <code>\end{figure}</code>.
+</p>
+
+</body></html>

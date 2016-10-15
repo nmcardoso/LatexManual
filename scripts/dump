@@ -1,0 +1,4 @@
+.open data.db
+.output file.sql
+.dump
+.quit

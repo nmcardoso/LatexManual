@@ -1,0 +1,1 @@
+       The \addtocontents{ext}{text} command adds text (or formatting commands) directly to the .ext file that generates the table of contents or lists of figures or tables.   ext The extension of the file on which information is to be written, typically one of: toc (table of contents), lof (list of figures), or lot (list of tables).   text The text to be written.     

@@ -1,0 +1,95 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Units-of-length"></a>
+
+<a name="Units-of-length-1"></a>
+<h3 class="section">Units of length</h3>
+
+<a name="index-units_002c-of-length"></a>
+
+<p>TeX and LaTeX know about these units both inside and outside of
+math mode.
+</p>
+<dl compact="compact">
+<dt><code>pt</code></dt>
+<dd><a name="index-pt"></a>
+<a name="index-Point"></a>
+<p>Point 1/72.27 inch.  The conversion to metric units, to two decimal
+places, is 1point = 2.85mm = 28.45cm. 
+</p>
+</dd>
+<dt><code>pc</code></dt>
+<dd><a name="index-pica"></a>
+<a name="index-pc"></a>
+<p>Pica, 12 pt
+</p>
+</dd>
+<dt><code>in</code></dt>
+<dd><a name="index-in"></a>
+<a name="index-inch"></a>
+<p>Inch,  72.27 pt
+</p>
+</dd>
+<dt><code>bp</code></dt>
+<dd><a name="index-bp"></a>
+<a name="index-Big-point"></a>
+<p>Big point, 1/72 inch.  This length is the definition of a point in
+PostScript and many desktop publishing systems.
+</p>
+</dd>
+<dt><code>cm</code></dt>
+<dd><a name="index-Centimeter"></a>
+<a name="index-cm"></a>
+<p>Centimeter
+</p>
+</dd>
+<dt><code>mm</code></dt>
+<dd><a name="index-Millimeter"></a>
+<a name="index-mm"></a>
+<p>Millimeter
+</p>
+</dd>
+<dt><code>dd</code></dt>
+<dd><a name="index-Didot-point"></a>
+<a name="index-dd"></a>
+<p>Didot point, 1.07 pt
+</p>
+</dd>
+<dt><code>cc</code></dt>
+<dd><a name="index-Cicero"></a>
+<a name="index-cc"></a>
+<p>Cicero, 12 dd
+</p>
+</dd>
+<dt><code>sp</code></dt>
+<dd><a name="index-Scaled-point"></a>
+<a name="index-sp"></a>
+<p>Scaled point, 1/65536 pt
+</p>
+</dd>
+</dl>
+
+<a name="index-ex"></a>
+<a name="index-x_002dheight"></a>
+<a name="index-ex-1"></a>
+<a name="index-m_002dwidth"></a>
+<a name="index-em"></a>
+<a name="index-em-1"></a>
+<p>Two other lengths that are often used are values set by the designer of
+the font.  The x-height of the current font <em>ex</em>, traditionally the
+height of the lower case letter x, is often used for vertical
+lengths. Similarly <em>em</em>, traditionally the width of the capital
+letter M, is often used for horizontal lengths (there is also
+<code>\enspace</code>, which is <code>0.5em</code>).  Use of these can help make a
+definition work better across font changes.  For example, a definition
+of the vertical space between list items given as
+<code>\setlength{\itemsep}{1ex plus 0.05ex minus 0.01ex}</code> is more
+likely to still be reasonable if the font is changed than a definition
+given in points.
+</p>
+<a name="index-mu_002c-math-unit"></a>
+<a name="index-mu"></a>
+<p>In math mode, many definitions are expressed in terms of the math unit
+<em>mu</em> given by 1 em = 18 mu, where the em is taken from the current
+math symbols family.  See <a href="Spacing-in-math-mode.html">Spacing in math mode</a>.
+</p>
+
+</body></html>

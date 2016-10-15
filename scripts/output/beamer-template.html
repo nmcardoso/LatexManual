@@ -1,0 +1,38 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="beamer-template"></a>
+
+<a name="beamer-template-1"></a>
+<h3 class="section"><code>beamer</code> template</h3>
+
+<a name="index-beamer-template-and-class"></a>
+<a name="index-template_002c-beamer"></a>
+
+<p>The <code>beamer</code> class creates presentation slides.  It has a vast
+array of features, but here is a basic template:
+</p>
+<pre class="verbatim">\documentclass{beamer}
+
+\title{Beamer Class template}
+\author{Alex Author}
+\date{July 31, 2007}
+
+\begin{document}
+
+\maketitle
+
+% without [fragile], any {verbatim} code gets mysterious errors.
+\begin{frame}[fragile]
+ \frametitle{First Slide}
+
+\begin{verbatim}
+  This is \verbatim!
+\end{verbatim}
+
+\end{frame}
+
+\end{document}
+</pre>
+<p>One web resource for this:
+<a href="http://robjhyndman.com/hyndsight/beamer/">http://robjhyndman.com/hyndsight/beamer/</a>.
+</p>
+
+</body></html>

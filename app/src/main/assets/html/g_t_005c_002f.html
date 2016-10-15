@@ -1,0 +1,34 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005c_002f"></a>
+
+<a name="g_t_005c_002f_003a-Insert-italic-correction"></a>
+<h3 class="section"><code>\/</code>: Insert italic correction</h3>
+
+<a name="index-_005c_002f"></a>
+<a name="index-italic-correction"></a>
+
+<p>The <code>\/</code> command produces an <em>italic correction</em>.  This is a
+small space defined by the font designer for a given character,
+to avoid the character colliding with whatever follows.  The italic
+<i>f</i> character typically has a large italic correction value.
+</p>
+<p>If the following character is a period or comma, it&#8217;s not necessary to
+insert an italic correction, since those punctuation symbols have a
+very small height.  However, with semicolons or colons, as well as
+normal letters, it can help. Compare
+<i>f: f;</i> (in the TeX output, the &#8216;f&#8217;s are nicely separated)
+with <i>f: f;</i>.
+</p>
+<p>When changing fonts with commands such as <code>\textit{italic
+text}</code> or <code>{\itshape italic text}</code>, LaTeX will
+automatically insert an italic correction if appropriate (see <a href="Font-styles.html">Font styles</a>).
+</p>
+<p>Despite the name, roman characters can also have an italic
+correction.  Compare
+pdfTeX (in the TeX output, there is a small space after the &#8216;f&#8217;)
+with pdfTeX.
+</p>
+<p>There is no concept of italic correction in math mode; spacing is done
+in a different way.
+</p>
+
+</body></html>

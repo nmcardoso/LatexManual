@@ -1,0 +1,170 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="itemize"></a>
+
+<a name="itemize-1"></a>
+<h3 class="section"><code>itemize</code></h3>
+
+<a name="index-environment_002c-itemize"></a>
+<a name="index-itemize-environment"></a>
+<a name="index-_005citem-2"></a>
+<a name="index-lists-of-items"></a>
+<a name="index-unordered-lists"></a>
+<a name="index-bulleted-lists"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{itemize}
+\item <var>item1</var>
+\item <var>item2</var>
+...
+\end{itemize}
+</pre></div>
+
+<p>The <code>itemize</code> environment produces an &#8220;unordered&#8221;, &#8220;bulleted&#8221;
+list.  Itemizations can be nested within one another, up to four
+levels deep.  They can also be nested within other paragraph-making
+environments, such as <code>enumerate</code> (see <a href="enumerate.html">enumerate</a>).
+</p>
+<p>Each item of an <code>itemize</code> list begins with an <code>\item</code> command.
+There must be at least one <code>\item</code> command within the environment.
+</p>
+<p>By default, the marks at each level look like this:
+</p>
+<ol>
+<li> &#8226; (bullet)
+</li><li> <b>-<span class="nolinebreak">-</span><!-- /@w --></b> (bold en-dash)
+</li><li> * (asterisk)
+</li><li> . (centered dot, rendered here as a period)
+</li></ol>
+
+<a name="index-_005clabelitemi"></a>
+<a name="index-_005clabelitemii"></a>
+<a name="index-_005clabelitemiii"></a>
+<a name="index-_005clabelitemiv"></a>
+<p>The <code>itemize</code> environment uses the commands <code>\labelitemi</code>
+through <code>\labelitemiv</code> to produce the default label.  So, you can
+use <code>\renewcommand</code> to change the labels.  For instance, to have
+the first level use diamonds:
+</p>
+<div class="example">
+<pre class="example">\renewcommand{\labelitemi}{$\diamond$}
+</pre></div>
+
+<a name="index-_005cleftmargin"></a>
+<a name="index-_005cleftmargini"></a>
+<a name="index-_005cleftmarginii"></a>
+<a name="index-_005cleftmarginiii"></a>
+<a name="index-_005cleftmarginiv"></a>
+<a name="index-_005cleftmarginv"></a>
+<a name="index-_005cleftmarginvi"></a>
+<p>The <code>\leftmargini</code> through <code>\leftmarginvi</code> parameters define
+the distance between the left margin of the enclosing environment and
+the left margin of the list.  By convention, <code>\leftmargin</code> is set
+to the appropriate <code>\leftmargin<var>N</var></code> when a new level of
+nesting is entered.
+</p>
+<p>The defaults vary from &#8216;<samp>.5em</samp>&#8217; (highest levels of nesting) to
+&#8216;<samp>2.5em</samp>&#8217; (first level), and are a bit reduced in two-column mode.
+This example greatly reduces the margin space for outermost lists:
+</p>
+<div class="example">
+<pre class="example">\setlength{\leftmargini}{1.25em} % default 2.5em
+</pre></div>
+
+<p>Some parameters that affect list formatting:
+</p>
+<dl compact="compact">
+<dt><code>\itemindent</code>
+<a name="index-_005citemindent"></a>
+</dt>
+<dd><p>Extra indentation before each item in a list; default zero.
+</p>
+</dd>
+<dt><code>\labelsep</code>
+<a name="index-_005clabelsep"></a>
+</dt>
+<dd><p>Space between the label and text of an item; default &#8216;<samp>.5em</samp>&#8217;.
+</p>
+</dd>
+<dt><code>\labelwidth</code>
+<a name="index-_005clabelwidth"></a>
+</dt>
+<dd><p>Width of the label; default &#8216;<samp>2em</samp>&#8217;, or &#8216;<samp>1.5em</samp>&#8217; in two-column mode.
+</p>
+</dd>
+<dt><code>\listparindent</code>
+<a name="index-_005clistparindent"></a>
+</dt>
+<dd><p>Extra indentation added to second and subsequent paragraphs within a
+list item; default &#8216;<samp>0pt</samp>&#8217;.
+</p>
+</dd>
+<dt><code>\rightmargin</code>
+<a name="index-_005crightmargin"></a>
+</dt>
+<dd><p>Horizontal distance between the right margin of the list and the
+enclosing environment; default &#8216;<samp>0pt</samp>&#8217;, except in the <code>quote</code>,
+<code>quotation</code>, and <code>verse</code> environments, where it is set equal
+to <code>\leftmargin</code>.
+</p>
+</dd>
+</dl>
+
+<p>Parameters affecting vertical spacing between list items (rather
+loose, by default).
+</p>
+<dl compact="compact">
+<dt><code>\itemsep</code>
+<a name="index-_005citemsep"></a>
+</dt>
+<dd><p>Vertical space between items.  The default is <code>2pt plus1pt
+minus1pt</code> for <code>10pt</code> documents, <code>3pt plus2pt minus1pt</code> for
+<code>11pt</code>, and <code>4.5pt plus2pt minus1pt</code> for <code>12pt</code>.
+</p>
+</dd>
+<dt><code>\parsep</code>
+<a name="index-_005cparsep"></a>
+</dt>
+<dd><p>Extra vertical space between paragraphs within a list item.  Defaults
+are the same as <code>\itemsep</code>.
+</p>
+</dd>
+<dt><code>\topsep</code>
+<a name="index-_005ctopsep"></a>
+</dt>
+<dd><p>Vertical space between the first item and the preceding paragraph.
+For top-level lists, the default is <code>8pt plus2pt minus4pt</code> for
+<code>10pt</code> documents, <code>9pt plus3pt minus5pt</code> for <code>11pt</code>,
+and <code>10pt plus4pt minus6pt</code> for <code>12pt</code>.  These are reduced
+for nested lists.
+</p>
+</dd>
+<dt><code>\partopsep</code>
+<a name="index-_005cpartopsep"></a>
+</dt>
+<dd><p>Extra space added to <code>\topsep</code> when the list environment starts a
+paragraph.  The default is <code>2pt plus1pt minus1pt</code> for <code>10pt</code>
+documents, <code>3pt plus1pt minus1pt</code> for <code>11pt</code>, and <code>3pt
+plus2pt minus2pt</code> for <code>12pt</code>.
+</p>
+</dd>
+</dl>
+
+<a name="index-_005cparskip-example"></a>
+<p>Especially for lists with short items, it may be desirable to elide
+space between items.  Here is an example defining an <code>itemize*</code>
+environment with no extra spacing between items, or between paragraphs
+within a single item (<code>\parskip</code> is not list-specific,
+see <a href="g_t_005cparskip.html">\parskip</a>):
+</p>
+<div class="example">
+<pre class="example">\newenvironment{itemize*}%
+  {\begin{itemize}%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parsep}{0pt}}%
+    \setlength{\parskip}{0pt}}%
+  {\end{itemize}}
+</pre></div>
+
+
+</body></html>

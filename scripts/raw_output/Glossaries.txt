@@ -1,0 +1,1 @@
+        The command \makeglossary enables creating glossaries.    The command \glossary{text} writes a glossary entry for text to an auxiliary file with the .glo extension.   Specifically, what gets written is the command \glossaryentry{text}{pageno}, where pageno is the current \thepage value.   The glossary package on CTAN provides support for fancier glossaries.   

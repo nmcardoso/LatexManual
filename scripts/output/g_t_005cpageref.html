@@ -1,0 +1,33 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cpageref"></a>
+
+<a name="g_t_005cpageref_007bkey_007d"></a>
+<h3 class="section"><code>\pageref{<var>key</var>}</code></h3>
+
+<a name="index-_005cpageref"></a>
+<a name="index-cross-referencing-with-page-number"></a>
+<a name="index-page-number_002c-cross-referencing"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\pageref{<var>key</var>}
+</pre></div>
+
+<p>Produce the page number of the place in the text where the corresponding
+<code>\label</code>{<var>key</var>} command appears.
+</p>
+<p>In this example the <code>\label{eq:main}</code> is used both for the
+formula number and for the page number.  (Note that the two references
+are forward references, so this document would need to be compiled twice
+to resolve those.)
+</p>
+<div class="example">
+<pre class="example">The main result is formula~\ref{eq:main} on page~\pageref{eq:main}.
+  ...
+\begin{equation} \label{eq:main}
+   \mathbf{P}=\mathbf{NP}
+\end{equation}
+</pre></div>
+
+
+</body></html>

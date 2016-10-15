@@ -1,0 +1,1 @@
+       Synopsis:   \settoheight{\len}{text}   The \settoheight command sets the value of a length command \len equal to the height of the text argument.    

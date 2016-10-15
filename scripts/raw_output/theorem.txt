@@ -1,0 +1,1 @@
+         Synopsis:   \begin{theorem} theorem-text \end{theorem}   The theorem environment produces Theorem n in boldface followed by theorem-text, where the numbering possibilities for n are described under \newtheorem (see \newtheorem).   

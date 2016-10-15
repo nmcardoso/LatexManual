@@ -1,0 +1,1 @@
+       Synopsis:   \multiput(x,y)(delta_x,delta_y){n}{obj}   The \multiput command copies the object obj in a regular pattern across a picture.  obj is first placed at position (x,y), then at (x+\delta x,y+\delta y), and so on, n times.   

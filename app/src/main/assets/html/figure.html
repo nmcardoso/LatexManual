@@ -1,0 +1,68 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="figure"></a>
+
+<a name="figure-1"></a>
+<h3 class="section"><code>figure</code></h3>
+
+<a name="index-environment_002c-figure"></a>
+<a name="index-figure-environment"></a>
+<a name="index-inserting-figures"></a>
+<a name="index-figures_002c-inserting"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{figure}[<var>placement</var>]
+  figure body
+\caption[<var>loftitle</var>]{<var>title</var>}
+\label{<var>label}</var>
+\end{figure}
+</pre></div>
+
+<p>or
+</p>
+<div class="example">
+<pre class="example">\begin{figure*}[<var>placement</var>]
+  figure body
+\caption[<var>loftitle</var>]{<var>title</var>}
+\label{<var>label}</var>
+\end{figure*}
+</pre></div>
+
+<p>A class of floats (see <a href="Floats.html">Floats</a>).  Because they cannot be split across
+pages, they are not typeset in sequence with the normal text but instead
+are &#8220;floated&#8221; to a convenient place, such as the top of a following
+page.
+</p>
+<p>For the possible values of <var>placement</var> and their effect on the 
+float placement algorithm, see <a href="Floats.html">Floats</a>.
+</p>
+<p>The starred form <code>figure*</code> is used when a document is in
+double-column mode (see <a href="g_t_005ctwocolumn.html">\twocolumn</a>).  It produces a figure that
+spans both columns, at the top of the page.  To add the possibility of
+placing at a page bottom see the discussion of <var>placement</var> <code>b</code>
+in <a href="Floats.html">Floats</a>.
+</p>
+<p>The figure body is typeset in a <code>parbox</code> of width <code>\textwidth</code>
+and so it can contain text, commands, etc.
+</p>
+<p>The label is optional; it is used for cross references (see <a href="Cross-references.html">Cross references</a>).
+<a name="index-_005ccaption"></a>
+The optional <code>\caption</code> command specifies caption text for the
+figure.  By default it is numbered.  If <var>loftitle</var> is present, it is
+used in the list of figures instead of <var>title</var> (see <a href="Tables-of-contents.html">Tables of contents</a>).
+</p>
+<p>This example makes a figure out of a graphic.  It requires one of the
+packages <samp>graphics</samp> or <samp>graphicx</samp>.  The graphic, with its
+caption, will be placed at the top of a page or, if it is pushed to the
+end of the document, on a page of floats.
+</p>
+<div class="example">
+<pre class="example">\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.5\textwidth]{CTANlion.png}
+  \caption{The CTAN lion, by Duane Bibby}
+\end{figure}
+</pre></div>
+
+
+</body></html>

@@ -1,0 +1,38 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cref"></a>
+
+<a name="g_t_005cref_007bkey_007d"></a>
+<h3 class="section"><code>\ref{<var>key</var>}</code></h3>
+
+<a name="index-_005cref"></a>
+<a name="index-cross-referencing_002c-symbolic"></a>
+<a name="index-section-number_002c-cross-referencing"></a>
+<a name="index-equation-number_002c-cross-referencing"></a>
+<a name="index-figure-number_002c-cross-referencing"></a>
+<a name="index-footnote-number_002c-cross-referencing"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\ref{<var>key</var>}
+</pre></div>
+
+<p>Produces the number of the sectional unit,
+equation, footnote, figure, &#8230;, of the corresponding
+<code>\label</code> command (see <a href="g_t_005clabel.html">\label</a>).  It does not produce any text,
+such as the word &#8216;Section&#8217; or &#8216;Figure&#8217;, just the bare number itself.
+</p>
+<p>In this example, the <code>\ref{popular}</code> produces &#8216;<samp>2</samp>&#8217;.  Note
+that it is a forward reference since it comes before
+<code>\label{popular}</code>.
+</p>
+<div class="example">
+<pre class="example">The most widely-used format is item number~\ref{popular}.
+\begin{enumerate}
+\item Plain \TeX
+\item \label{popular} \LaTeX
+\item Con\TeX t
+\end{enumerate}
+</pre></div>
+
+
+</body></html>

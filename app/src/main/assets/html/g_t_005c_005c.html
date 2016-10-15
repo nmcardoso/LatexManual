@@ -1,0 +1,46 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005c_005c"></a>
+
+<a name="g_t_005c_005c-1"></a>
+<h3 class="section"><code>\\</code></h3>
+
+<a name="index-_005c_005c-force-line-break"></a>
+<a name="index-new-line_002c-starting"></a>
+<a name="index-line-break_002c-forcing"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\\[<var>morespace</var>]
+</pre></div>
+
+<p>or 
+</p>
+<div class="example">
+<pre class="example">\\*[<var>morespace</var>]
+</pre></div>
+
+<p>Start a new line.  The optional argument <var>morespace</var> specifies extra
+vertical space to be insert before the next line.  This can be a
+negative length.  The text before the break is set at its normal length,
+that is, it is not stretched to fill out the line width.
+</p>
+<p>Explicit line breaks in the text body are unusual in LaTeX.  In
+particular, to start a new paragraph instead leave a blank line.  This
+command is mostly used outside of the main flow of text such as in
+a <code>tabular</code> or <code>array</code> environment.
+</p>
+<p>Under ordinary circumstances (e.g., outside of a <code>p{...}</code> column
+in a <code>tabular</code> environment) the <code>\newline</code> command is a synonym for
+<code>\\</code> (see <a href="g_t_005cnewline.html">\newline</a>).
+</p>
+<p>In addition to starting a new line, the starred form <code>\\*</code> tells
+LaTeX not to start a new page between the two lines, by issuing a
+<code>\nobreak</code>.
+</p>
+<div class="example">
+<pre class="example">\title{My story: \\[0.25in]
+       a tale of woe}
+</pre></div>
+
+
+</body></html>

@@ -1,0 +1,1 @@
+    A command that changes the value, or changes the meaning, of some other command or parameter.  For instance, the \mainmatter command changes the setting of page numbers from roman numerals to arabic.   

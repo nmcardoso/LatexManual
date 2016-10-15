@@ -1,0 +1,43 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="minipage"></a>
+
+<a name="minipage-1"></a>
+<h3 class="section"><code>minipage</code></h3>
+
+<a name="index-environment_002c-minipage"></a>
+<a name="index-minipage-environment"></a>
+<a name="index-minipage_002c-creating-a"></a>
+
+<div class="example">
+<pre class="example">\begin{minipage}[<var>position</var>][<var>height</var>][<var>inner-pos</var>]{<var>width</var>}
+<var>text</var>
+\end{minipage}
+</pre></div>
+
+<p>The <code>minipage</code> environment typesets its body <var>text</var> in a
+block that will not be broken across pages.  This is similar to the
+<code>\parbox</code> command (see <a href="g_t_005cparbox.html">\parbox</a>), but unlike <code>\parbox</code>,
+other paragraph-making environments can be used inside a minipage.
+</p>
+<p>The arguments are the same as for <code>\parbox</code> (see <a href="g_t_005cparbox.html">\parbox</a>).
+</p>
+<a name="index-indentation-of-paragraphs_002c-in-minipage"></a>
+<a name="index-paragraph-indentation_002c-in-minipage"></a>
+<a name="index-_005cparindent"></a>
+<p>By default, paragraphs are not indented in the <code>minipage</code>
+environment.  You can restore indentation with a command such as
+<code>\setlength{\parindent}{1pc}</code> command.
+</p>
+<a name="index-footnotes-in-figures"></a>
+<a name="index-figures_002c-footnotes-in"></a>
+<p>Footnotes in a <code>minipage</code> environment are handled in a way that is
+particularly useful for putting footnotes in figures or tables.  A
+<code>\footnote</code> or <code>\footnotetext</code> command puts the footnote at
+the bottom of the minipage instead of at the bottom of the page, and it
+uses the <code>\mpfootnote</code> counter instead of the ordinary
+<code>footnote</code> counter (see <a href="Counters.html">Counters</a>).
+</p>
+<p>However, don&#8217;t put one minipage inside another if you are using
+footnotes; they may wind up at the bottom of the wrong minipage.
+</p>
+
+</body></html>

@@ -1,0 +1,31 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005caddvspace"></a>
+
+<a name="g_t_005caddvspace-1"></a>
+<h3 class="section"><code>\addvspace</code></h3>
+
+<a name="index-_005caddvspace"></a>
+<a name="index-vertical-space"></a>
+<a name="index-space_002c-inserting-vertical"></a>
+
+<p><code>\addvspace{<var>length</var>}</code>
+</p>
+<p>Add a vertical space of height <var>length</var>, which is a rubber length
+(see <a href="Lengths.html">Lengths</a>).  However, if vertical space has already been added to
+the same point in the output by a previous <code>\addvspace</code> command
+then this command will not add more space than what is needed to make
+the natural length of the total vertical space equal to <var>length</var>.
+</p>
+<p>Use this command to adjust the vertical space above or below an
+environment that starts a new paragraph.  For instance, a Theorem
+environment is defined to begin and end with <code>\addvspace{...}</code>
+so that two consecutive Theorem&#8217;s are separated by one vertical space,
+not two.
+</p>
+<p>This command is fragile (see <a href="g_t_005cprotect.html">\protect</a>).
+</p>
+<p>The error &#8216;<samp>Something's wrong--perhaps a missing \item</samp>&#8217; means that
+you were not in vertical mode when you invoked this command; one way to
+change that is to precede this command with a <code>\par</code> command.
+</p>
+
+</body></html>

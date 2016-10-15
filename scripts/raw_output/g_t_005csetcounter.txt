@@ -1,0 +1,1 @@
+         Synopsis:   \setcounter{counter}{value}   The \setcounter command globally sets the value of counter to the value argument.  Note that the counter name does not start with a backslash.  In this example the section value appears as V.   \setcounter{section}{5} Here it is in Roman: \Roman{section}.    

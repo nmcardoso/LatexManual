@@ -1,0 +1,57 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Footnotes-in-a-table"></a>
+
+<a name="Footnotes-in-a-table-1"></a>
+<h3 class="section">Footnotes in a table</h3>
+
+<a name="index-Footnotes_002c-in-a-table"></a>
+
+<p>Inside a <code>table</code> environment the <code>\footnote</code> command does not
+work.  For instance, if the code below appears on its own then the
+footnote simply disappears; there is a footnote mark in the table cell
+but nothing is set at the bottom of the page.
+</p>
+<div class="example">
+<pre class="example">\begin{center}
+     \begin{tabular}{l|l}
+     \textsc{Ship}  &amp;\textsc{Book} \\ \hline 
+     \textit{HMS Sophie}     &amp;Master and Commander  \\ 
+     \textit{HMS Polychrest} &amp;Post Captain  \\  
+     \textit{HMS Lively}     &amp;Post Captain \\
+     \textit{HMS Surprise}   &amp;A number of books\footnote{Starting with HMS Surprise.}
+     \end{tabular}
+\end{center}
+</pre></div>
+
+<p>The solution is to surround the <code>tabular</code> environment with a
+<code>minipage</code> environment, as here (see <a href="minipage.html">minipage</a>).
+</p>
+<div class="example">
+<pre class="example">\begin{center}
+  \begin{minipage}{.5\textwidth}
+    ... tabular material ...
+  \end{minipage}
+\end{center}
+</pre></div>
+
+<p>The same technique will work inside a floating <code>table</code> environment
+(see <a href="table.html">table</a>).  To get the footnote at the bottom of the page use the
+<samp>tablefootnote</samp> package, as illustrated in this example.  If you
+put <code>\usepackage{tablefootnote}</code> in the preamble and use the code
+shown then the footnote appears at the bottom and is numbered in
+sequence with other footnotes.
+</p>
+<div class="example">
+<pre class="example">\begin{table}
+  \centering
+     \begin{tabular}{l|l}
+     \textsc{Date}  &amp;\textsc{Campaign} \\ \hline 
+     1862           &amp;Fort Donelson \\ 
+     1863           &amp;Vicksburg     \\  
+     1865           &amp;Army of Northern Virginia\footnote{Ending the war.}
+     \end{tabular}
+    \caption{Forces captured by US Grant}
+\end{table}
+</pre></div>
+
+
+</body></html>

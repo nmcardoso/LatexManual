@@ -1,0 +1,1 @@
+       Synopsis:   \vector(xslope,yslope){length}   The \vector command draws a line with an arrow of the specified length and slope.  The xslope and yslope values must lie between -4 and +4, inclusive.   

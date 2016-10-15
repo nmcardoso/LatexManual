@@ -1,0 +1,1 @@
+        Although not reference material, perhaps these document templates will be useful.  Additional template resources are listed at http://tug.org/interest.html#latextemplates.    beamer template:   book template:   tugboat template:     

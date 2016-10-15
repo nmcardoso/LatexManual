@@ -1,0 +1,40 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="list"></a>
+
+<a name="list-1"></a>
+<h3 class="section"><code>list</code></h3>
+
+<a name="index-environment_002c-list"></a>
+<a name="index-list-environment"></a>
+<a name="index-lists-of-items_002c-generic"></a>
+
+<p>The <code>list</code> environment is a generic environment which is used for
+defining many of the more specific environments. It is seldom used in
+documents, but often in macros.
+</p>
+<div class="example">
+<pre class="example">\begin{list}{<var>labeling</var>}{<var>spacing</var>}
+\item <var>item1</var>
+\item <var>item2</var>
+...
+\end{list}
+</pre></div>
+
+<p>The mandatory <var>labeling</var> argument specifies how items should be
+labelled (unless the optional argument is supplied to <code>\item</code>).
+This argument is a piece of text that is inserted in a box to form the
+label.  It can and usually does contain other LaTeX commands.
+</p>
+<p>The mandatory <var>spacing</var> argument contains commands to change the
+spacing parameters for the list.  This argument will most often be
+empty, i.e., <code>{}</code>, which leaves the default spacing.
+</p>
+<p>The width used for typesetting the list items is specified by
+<code>\linewidth</code> (see <a href="Page-layout-parameters.html">Page layout parameters</a>).
+</p>
+<table border="0" cellspacing="0" class="menu">
+<tbody><tr><td align="left" valign="top">&#8226; <a accesskey="1" href="g_t_005citem.html">\item</a>:</td><td>  </td><td align="left" valign="top">An entry in a list.
+</td></tr>
+</tbody></table>
+
+
+</body></html>

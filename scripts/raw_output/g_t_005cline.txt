@@ -1,0 +1,1 @@
+       Synopsis:   \line(xslope,yslope){length}   The \line command draws a line with the given length and slope xslope/yslope.    Standard LaTeX can only draw lines with slope = x/y, where x and y have integer values from -6 through6.  For lines of any slope, and plenty of other shapes, see pict2e and many other packages on CTAN.   

@@ -1,0 +1,1 @@
+       Synopsis:   \location{text}   The text appears centered at the bottom of the each page.  It only appears if the page style is firstpage.   

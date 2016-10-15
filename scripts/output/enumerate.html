@@ -1,0 +1,89 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="enumerate"></a>
+
+<a name="enumerate-1"></a>
+<h3 class="section"><code>enumerate</code></h3>
+
+<a name="index-environment_002c-enumerate"></a>
+<a name="index-enumerate-environment"></a>
+<a name="index-lists-of-items_002c-numbered"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{enumerate}
+\item [<var>first label</var>] text of first item
+\item [<var>second label</var>] text of second item
+...
+\end{enumerate}
+</pre></div>
+
+<p>Environment to produce a numbered list of items.  The format of the
+label numbering depends on whether this environment is nested within
+another; see below.
+</p>
+<a name="index-_005citem-1"></a>
+<p>The list consists of at least one item.  Having no items causes the
+LaTeX error &#8216;<samp>Something's wrong--perhaps a missing \item</samp>&#8217;.  Each
+item is produced with an <code>\item</code> command.
+</p>
+<p>This example lists the top two finishers in the 1908 Olympic marathon.
+</p>
+<div class="example">
+<pre class="example">\begin{enumerate}
+ \item Johnny Hayes (USA)
+ \item Charles Hefferon (RSA) 
+\end{enumerate}
+</pre></div>
+
+<p>Enumerations may be nested within a paragraph-making environment,
+including <code>itemize</code> (see <a href="itemize.html">itemize</a>), <code>description</code>
+(see <a href="description.html">description</a>) and <code>enumeration</code>, up to four levels deep.
+The format of the label produced depends on the place in the nesting.
+This gives LaTeX&#8217;s default for the format at each nesting level
+(where 1 is the outermost level):
+</p>
+<ol>
+<li> arabic number followed by a period: &#8216;<samp>1.</samp>&#8217;, &#8216;<samp>2.</samp>&#8217;, &#8230;
+</li><li> lower case letter inside parentheses: &#8216;<samp>(a)</samp>&#8217;, &#8216;<samp>(b)</samp>&#8217; &#8230;
+</li><li> lower case roman numeral followed by a period: &#8216;<samp>i.</samp>&#8217;, &#8216;<samp>ii.</samp>&#8217;, &#8230;
+</li><li> upper case letter followed by a period: &#8216;<samp>A.</samp>&#8217;, &#8216;<samp>B.</samp>&#8217;, &#8230;
+</li></ol>
+
+<a name="index-_005cenumi"></a>
+<a name="index-_005cenumii"></a>
+<a name="index-_005cenumiii"></a>
+<a name="index-_005cenumiv"></a>
+<p>The <code>enumerate</code> environment uses the counters <code>\enumi</code> through
+<code>\enumiv</code> counters (see <a href="Counters.html">Counters</a>).  If you use the optional
+argument to <code>\item</code> then the counter is not incremented for that
+item (see <a href="g_t_005citem.html">\item</a>).
+</p>
+<a name="index-_005clabelenumi"></a>
+<a name="index-_005clabelenumii"></a>
+<a name="index-_005clabelenumiii"></a>
+<a name="index-_005clabelenumiv"></a>
+<p>To change the format of the label use <code>\renewcommand</code>
+(see <a href="g_t_005cnewcommand-_0026-_005crenewcommand.html">\newcommand &amp; \renewcommand</a>) on the commands <code>\labelenumi</code>
+through <code>\labelenumiv</code>. For instance, this first level list will be
+labelled with uppercase letters, in boldface, and without a trailing
+period:
+</p>
+<a name="index-_005cAlph-example"></a>
+<div class="example">
+<pre class="example">\renewcommand{\labelenumi}{\textbf{\Alph{enumi}}}
+\begin{enumerate}
+  \item eI
+  \item bi:
+  \item si:
+\end{enumerate}
+</pre></div>
+
+<p>For a list of counter-labelling commands like <code>\Alph</code> see
+<a href="g_t_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html">\alph \Alph \arabic \roman \Roman \fnsymbol</a>.
+</p>
+<p>For more on customizing the layout see <a href="list.html">list</a>.  Also, the package
+<samp>enumitem</samp> is useful for this.
+</p>
+
+
+</body></html>

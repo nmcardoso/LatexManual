@@ -1,0 +1,153 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="tabbing"></a>
+
+<a name="tabbing-1"></a>
+<h3 class="section"><code>tabbing</code></h3>
+
+<a name="index-environment_002c-tabbing"></a>
+<a name="index-tabbing-environment"></a>
+<a name="index-tab-stops_002c-using"></a>
+<a name="index-lining-text-up-using-tab-stops"></a>
+<a name="index-alignment-via-tabbing"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{tabbing}
+<var>row1col1</var> \= <var>row1col2</var> \= <var>row1col3</var> \= <var>row1col4</var> \\
+<var>row2col1</var> \&gt;                \&gt; <var>row2col3</var> \\
+...
+\end{tabbing}
+</pre></div>
+
+<p>The <code>tabbing</code> environment provides a way to align text in
+columns.  It works by setting tab stops and tabbing to them much as
+was done on an ordinary typewriter.  It is best suited for cases where
+the width of each column is constant and known in advance.
+</p>
+<p>This environment can be broken across pages, unlike the <code>tabular</code>
+environment.
+</p>
+<p>The following commands can be used inside a <code>tabbing</code> environment:
+</p>
+<dl compact="compact">
+<dt><code>\\ <span class="roman">(tabbing)</span></code>
+<a name="index-_005c_005c-_0028tabbing_0029"></a>
+</dt>
+<dd><p>End a line.
+</p>
+</dd>
+<dt><code>\= <span class="roman">(tabbing)</span></code>
+<a name="index-_005c_003d-_0028tabbing_0029"></a>
+</dt>
+<dd><p>Sets a tab stop at the current position.
+</p>
+</dd>
+<dt><code>\&gt; <span class="roman">(tabbing)</span></code>
+<a name="index-_005c_003e-_0028tabbing_0029"></a>
+</dt>
+<dd><a name="index-_005c_003e"></a>
+<p>Advances to the next tab stop.
+</p>
+</dd>
+<dt><code>\&lt;</code>
+<a name="index-_005c_003c"></a>
+</dt>
+<dd><p>Put following text to the left of the local margin (without changing
+the margin).  Can only be used at the start of the line.
+</p>
+</dd>
+<dt><code>\+</code>
+<a name="index-_005c_002b"></a>
+</dt>
+<dd><p>Moves the left margin of the next and all the
+following commands one tab stop to the right, beginning tabbed line if
+necessary.
+</p>
+</dd>
+<dt><code>\-</code>
+<a name="index-_005c_002d"></a>
+</dt>
+<dd><p>Moves the left margin of the next and all the
+following commands one tab stop to the left, beginning tabbed line if
+necessary.
+</p>
+</dd>
+<dt><code>\' <span class="roman">(tabbing)</span></code>
+<a name="index-_005c_0027-_0028tabbing_0029"></a>
+</dt>
+<dd><p>Moves everything that you have typed so far in the
+current column, i.e., everything from the most recent <code>\&gt;</code>,
+<code>\&lt;</code>, <code>\'</code>, <code>\\</code>, or <code>\kill</code> command, to the right
+of the previous column, flush against the current column&#8217;s tab stop.
+</p>
+</dd>
+<dt><code>\` <span class="roman">(tabbing)</span></code>
+<a name="index-_005c_0060-_0028tabbing_0029"></a>
+</dt>
+<dd><p>Allows you to put text flush right against any tab stop, including tab
+stop 0.  However, it can&#8217;t move text to the right of the last column
+because there&#8217;s no tab stop there.  The <code>\`</code> command moves all the
+text that follows it, up to the <code>\\</code> or <code>\end{tabbing}</code>
+command that ends the line, to the right margin of the tabbing
+environment.  There must be no <code>\&gt;</code> or <code>\'</code> command between
+the <code>\`</code> and the command that ends the line.
+</p>
+</dd>
+<dt><code>\a <span class="roman">(tabbing)</span></code>
+<a name="index-_005ca-_0028tabbing_0029"></a>
+</dt>
+<dd><a name="index-_005ca_0027-_0028acute-accent-in-tabbing_0029"></a>
+<a name="index-_005ca_0060-_0028grave-accent-in-tabbing_0029"></a>
+<a name="index-_005ca_003d-_0028macron-accent-in-tabbing_0029"></a>
+<p>In a <code>tabbing</code> environment, the commands <code>\=</code>, <code>\'</code> and
+<code>\`</code> do not produce accents as usual (see <a href="Accents.html">Accents</a>).  Instead,
+the commands <code>\a=</code>, <code>\a'</code> and <code>\a`</code> are used.
+</p>
+</dd>
+<dt><code>\kill</code>
+<a name="index-_005ckill"></a>
+</dt>
+<dd><p>Sets tab stops without producing text.  Works just like <code>\\</code>
+except that it throws away the current line instead of producing
+output for it.  The effect of any <code>\=</code>, <code>\+</code> or <code>\-</code>
+commands in that line remain in effect.
+</p>
+</dd>
+<dt><code>\poptabs</code>
+<a name="index-_005cpoptabs"></a>
+</dt>
+<dd><a name="index-_005cpoptabs-1"></a>
+<p>Restores the tab stop positions saved by the last <code>\pushtabs</code>.
+</p>
+</dd>
+<dt><code>\pushtabs</code>
+<a name="index-_005cpushtabs"></a>
+</dt>
+<dd><p>Saves all current tab stop positions. Useful for temporarily changing
+tab stop positions in the middle of a <code>tabbing</code> environment.
+</p>
+</dd>
+<dt><code>\tabbingsep</code>
+<a name="index-_005ctabbingsep"></a>
+</dt>
+<dd><p>Distance to left of tab stop moved by <code>\'</code>.
+</p>
+</dd>
+</dl>
+
+<p>This example typesets a Pascal function in a traditional format:
+</p>
+<div class="example">
+<pre class="example">\begin{tabbing}
+function \= fact(n : integer) : integer;\\
+         \&gt; begin \= \+ \\
+               \&gt; if \= n $&gt;$ 1 then \+ \\
+                        fact := n * fact(n-1) \- \\
+                  else \+ \\
+                        fact := 1; \-\- \\
+            end;\\
+\end{tabbing}
+</pre></div>
+
+
+</body></html>

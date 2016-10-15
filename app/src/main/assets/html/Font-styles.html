@@ -1,0 +1,255 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Font-styles"></a>
+
+<a name="Font-styles-1"></a>
+<h3 class="section">Font styles</h3>
+
+<a name="index-font-styles"></a>
+<a name="index-type-styles"></a>
+<a name="index-styles-of-text"></a>
+
+<p>The following type style commands are supported by LaTeX.
+</p>
+<p>This first group of commands is typically used with an argument, as in
+<code>\textit{<var>text</var>}</code>.  In the table below, the corresponding
+command in parenthesis is the &#8220;declaration form&#8221;, which takes no
+arguments, as in <code>{\itshape <var>text</var>}</code>.  The scope of the
+declaration form lasts until the next type style command or the end of
+the current group.
+</p>
+<p>These commands, in both the argument form and the declaration form,
+are cumulative; e.g., you can say either <code>\sffamily\bfseries</code> or
+<code>\bfseries\sffamily</code> to get bold sans serif.
+</p>
+<p>You can alternatively use an environment form of the declarations; for
+instance, <code>\begin{ttfamily}...\end{ttfamily}</code>.
+</p>
+<a name="index-_005cnocorrlist"></a>
+<a name="index-_005cnocorr"></a>
+<p>These font-switching commands automatically insert italic corrections
+if needed.  (See <a href="g_t_005c_002f.html">\/</a>, for the details of italic corrections.)
+Specifically, they insert the italic correction unless the following
+character is in the list <code>\nocorrlist</code>, which by default consists
+of a period and a comma.  To suppress the automatic insertion of
+italic correction, use <code>\nocorr</code> at the start or end of the
+command argument, such as <code>\textit{\nocorr text}</code> or
+<code>\textsc{text \nocorr}</code>.
+</p>
+<dl compact="compact">
+<dt><code>\textrm (\rmfamily)</code></dt>
+<dd><a name="index-_005ctextrm"></a>
+<a name="index-_005crmfamily"></a>
+<p>Roman.
+</p>
+</dd>
+<dt><code>\textit (\itshape)</code></dt>
+<dd><a name="index-_005ctextit"></a>
+<a name="index-_005citshape"></a>
+<p>Italics.
+</p>
+</dd>
+<dt><code>\textmd (\mdseries)</code></dt>
+<dd><a name="index-_005ctextmd"></a>
+<a name="index-_005cmdseries"></a>
+<p>Medium weight (default).
+</p>
+</dd>
+<dt><code>\textbf (\bfseries)</code></dt>
+<dd><a name="index-_005ctextbf"></a>
+<a name="index-_005cbfseries"></a>
+<p>Boldface.
+</p>
+</dd>
+<dt><code>\textup (\upshape)</code></dt>
+<dd><a name="index-_005ctextup"></a>
+<a name="index-_005cupshape"></a>
+<p>Upright (default).
+</p>
+</dd>
+<dt><code>\textsl (\slshape)</code></dt>
+<dd><a name="index-_005ctextsl"></a>
+<a name="index-_005cslshape"></a>
+<p>Slanted.
+</p>
+</dd>
+<dt><code>\textsf (\sffamily)</code></dt>
+<dd><a name="index-_005ctextsf"></a>
+<a name="index-_005csffamily"></a>
+<p>Sans serif.
+</p>
+</dd>
+<dt><code>\textsc (\scshape)</code></dt>
+<dd><a name="index-_005ctextsc"></a>
+<a name="index-_005cscshape"></a>
+<p>Small caps.
+</p>
+</dd>
+<dt><code>\texttt (\ttfamily)</code></dt>
+<dd><a name="index-_005ctexttt"></a>
+<a name="index-_005cttfamily"></a>
+<p>Typewriter.
+</p>
+</dd>
+<dt><code>\textnormal (\normalfont)</code></dt>
+<dd><a name="index-_005ctextnormal"></a>
+<a name="index-_005cnormalfont"></a>
+<p>Main document font.
+</p>
+</dd>
+</dl>
+
+<a name="index-emphasis"></a>
+<a name="index-_005cemph"></a>
+<p>Although it also changes fonts, the <code>\emph{<var>text</var>}</code> command
+is semantic, for text to be emphasized, and should not be used as a
+substitute for <code>\textit</code>.  For example, <code>\emph{<var>start
+text</var> \emph{<var>middle text</var>} <var>end text</var>}</code> will result in the
+<var>start text</var> and <var>end text</var> in italics, but <var>middle text</var>
+will be in roman.
+</p>
+<p>LaTeX also provides the following commands, which unconditionally
+switch to the given style, that is, are <em>not</em> cumulative.  Also,
+they are used differently than the above commands:
+<code>{\<var>cmd</var>...}</code> instead of <code>\<var>cmd</var>{...}</code>.  These
+are two unrelated constructs.
+</p>
+<dl compact="compact">
+<dt><code>\bf</code>
+<a name="index-_005cbf"></a>
+</dt>
+<dd><a name="index-bold-font"></a>
+<p>Switch to bold face.
+</p>
+</dd>
+<dt><code>\cal</code>
+<a name="index-_005ccal"></a>
+</dt>
+<dd><a name="index-script-letters-for-math"></a>
+<a name="index-calligraphic-letters-for-math"></a>
+<p>Switch to calligraphic letters for math.
+</p>
+</dd>
+<dt><code>\it</code>
+<a name="index-_005cit"></a>
+</dt>
+<dd><a name="index-italic-font"></a>
+<p>Italics.
+</p>
+</dd>
+<dt><code>\rm</code>
+<a name="index-_005crm"></a>
+</dt>
+<dd><a name="index-roman-font"></a>
+<p>Roman.
+</p>
+</dd>
+<dt><code>\sc</code>
+<a name="index-_005csc"></a>
+</dt>
+<dd><a name="index-small-caps-font"></a>
+<p>Small caps.
+</p>
+</dd>
+<dt><code>\sf</code>
+<a name="index-_005csf"></a>
+</dt>
+<dd><a name="index-sans-serif-font"></a>
+<p>Sans serif.
+</p>
+</dd>
+<dt><code>\sl</code>
+<a name="index-_005csl"></a>
+</dt>
+<dd><a name="index-slanted-font"></a>
+<a name="index-oblique-font"></a>
+<p>Slanted (oblique).
+</p>
+</dd>
+<dt><code>\tt</code>
+<a name="index-_005ctt"></a>
+</dt>
+<dd><a name="index-typewriter-font"></a>
+<a name="index-monospace-font"></a>
+<a name="index-fixed_002dwidth-font"></a>
+<p>Typewriter (monospace, fixed-width).
+</p>
+</dd>
+</dl>
+
+<p>The <code>\em</code> command is the unconditional version of <code>\emph</code>.
+</p>
+<p>(Some people consider the unconditional font-switching commands, such
+as <code>\tt</code>, obsolete and that only the cumulative commands
+(<code>\texttt</code>) should be used.  Others think that both sets of
+commands have their place and sometimes an unconditional font switch
+is precisely what you want; for one example,
+see <a href="description.html"><code>description</code></a>.)
+</p>
+<p>The following commands are for use in math mode.  They are not
+cumulative, so <code>\mathbf{\mathit{<var>symbol</var>}}</code> does not
+create a boldface and italic <var>symbol</var>; instead, it will just be in
+italics.  This is because typically math symbols need consistent
+typographic treatment, regardless of the surrounding environment.
+</p>
+<dl compact="compact">
+<dt><code>\mathrm</code></dt>
+<dd><a name="index-_005cmathrm"></a>
+<p>Roman, for use in math mode.
+</p>
+</dd>
+<dt><code>\mathbf</code></dt>
+<dd><a name="index-_005cmathbf"></a>
+<p>Boldface, for use in math mode.
+</p>
+</dd>
+<dt><code>\mathsf</code></dt>
+<dd><a name="index-_005cmathsf"></a>
+<p>Sans serif, for use in math mode.
+</p>
+</dd>
+<dt><code>\mathtt</code></dt>
+<dd><a name="index-_005cmathtt"></a>
+<p>Typewriter, for use in math mode.
+</p>
+</dd>
+<dt><code>\mathit</code></dt>
+<dt><code>(\mit)</code></dt>
+<dd><p>Italics, for use in math mode.
+</p>
+</dd>
+<dt><code>\mathnormal</code></dt>
+<dd><a name="index-_005cmathnormal"></a>
+<p>For use in math mode, e.g., inside another type style declaration.
+</p>
+</dd>
+<dt><code>\mathcal</code></dt>
+<dd><a name="index-_005cmathcal"></a>
+<p>Calligraphic letters, for use in math mode.
+</p>
+</dd>
+</dl>
+
+<a name="index-_005cmathversion"></a>
+<a name="index-math_002c-bold"></a>
+<a name="index-bold-math"></a>
+<p>In addition, the command <code>\mathversion{bold}</code> can be used for
+switching to bold letters and symbols in
+formulas. <code>\mathversion{normal}</code> restores the default.
+</p>
+<a name="index-_005coldstylenums"></a>
+<a name="index-numerals_002c-old_002dstyle"></a>
+<a name="index-old_002dstyle-numerals"></a>
+<a name="index-lining-numerals"></a>
+<a name="index-textcomp-package"></a>
+<p>Finally, the command <code>\oldstylenums{<var>numerals</var>}</code> will typeset
+so-called &#8220;old-style&#8221; numerals, which have differing heights and
+depths (and sometimes widths) from the standard &#8220;lining&#8221; numerals,
+which all have the same height as upper-case letters.  LaTeX&#8217;s
+default fonts support this, and will respect <code>\textbf</code> (but not
+other styles; there are no italic old-style numerals in Computer
+Modern).  Many other fonts have old-style numerals also; sometimes the
+<code>textcomp</code> package must be loaded, and sometimes package options
+are provided to make them the default.  FAQ entry:
+<a href="http://www.tex.ac.uk/cgi-bin/texfaq2html?label=osf">http://www.tex.ac.uk/cgi-bin/texfaq2html?label=osf</a>.
+</p>
+
+</body></html>

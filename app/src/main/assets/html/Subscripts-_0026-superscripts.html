@@ -1,0 +1,49 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Subscripts-_0026-superscripts"></a>
+
+<a name="Subscripts-_0026-superscripts-1"></a>
+<h3 class="section">Subscripts &amp; superscripts</h3>
+
+<a name="index-superscript"></a>
+<a name="index-subscript"></a>
+<a name="index-exponent"></a>
+<a name="index-_005f"></a>
+<a name="index-_005e"></a>
+
+<p>In math mode, use the caret character <code>^</code> to make the
+<var>exp</var> appear as a superscript: <code>^{<var>exp</var>}</code>.
+Similarly, in math mode, underscore <code>_{<var>exp</var>}</code> makes a
+subscript out of <var>exp</var>.
+</p>
+<p>In this example the <code>0</code> and <code>1</code> appear as subscripts while the
+<code>2</code> is a superscript.
+</p>
+<div class="example">
+<pre class="example">\( (x_0+x_1)^2 \)
+</pre></div>
+
+<p>To have more than one character in <var>exp</var> use curly braces as in
+<code>e^{-2x}</code>.
+</p>
+<p>LaTeX handles superscripts on superscripts, and all of that stuff, in
+the natural way, so expressions such as <code>e^{x^2}</code> and
+<code>x_{a_0}</code> will look right.  It also does the right thing when
+something has both a subscript and a superscript.  In this example the
+<code>0</code> appears at the bottom of the integral sign while the <code>10</code>
+appears at the top.
+</p> 
+<div class="example">
+<pre class="example">\int_0^{10} x^2 \,dx
+</pre></div>
+
+<p>You can put a superscript or subscript before a symbol with a construct
+such as <code>{}_t K^2</code> in math mode (the initial <code>{}</code> prevents
+the prefixed subscript from being attached to any prior symbols in the
+expression).
+</p>
+<p>Outside of math mode, a construct like <code>A
+test$_\textnormal{subscript}$</code> will produce a subscript typeset in
+text mode, not math mode.  Note that there are packages specialized for
+writing Chemical formulas such as <samp>mhchem</samp>.
+</p>
+
+</body></html>

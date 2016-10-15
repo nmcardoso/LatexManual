@@ -1,0 +1,1 @@
+        Synopsis:   \setlength{\len}{amount}   The \setlength sets the value of length command  \len to the value argument which can be expressed in any units that LaTeX understands, i.e., inches (in), millimeters (mm), points (pt), big points (bp), etc.   

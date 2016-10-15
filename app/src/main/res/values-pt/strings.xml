@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manual Latex</string>
+    <string name="fav_added">Documentação adicionada aos favoritos</string>
+    <string name="fav_removed">Documentação removida dos favoritos</string>
+    <string name="search_hint">Pesquisar</string>
+    <string name="search_title">Pesquisar</string>
+    <string name="favorites">Favoritos</string>
+    <string name="home">Início</string>
+    <string name="recently_viewed">Visto Recentemente</string>
+    <string name="view_all">Ver tudo</string>
+    <string name="recent_favorites">Favoritos Recentes</string>
+    <string name="history">Histórico</string>
+    <string name="i_of_n">%1$d de %2$d</string>
+</resources>

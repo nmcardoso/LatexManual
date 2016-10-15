@@ -1,0 +1,1 @@
+        Synopsis:   \addtolength{\len}{amount}    The \addtolength command increments a length command \len by the amount specified in the amount argument, which may be negative.   

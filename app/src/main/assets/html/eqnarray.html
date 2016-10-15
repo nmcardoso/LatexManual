@@ -1,0 +1,78 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="eqnarray"></a>
+
+<a name="eqnarray-1"></a>
+<h3 class="section"><code>eqnarray</code></h3>
+
+<a name="index-environment_002c-eqnarray"></a>
+<a name="index-eqnarray-environment"></a>
+<a name="index-equations_002c-aligning"></a>
+<a name="index-aligning-equations"></a>
+
+<a name="index-align-environment_002c-from-amsmath"></a>
+<a name="index-amsmath-package_002c-replacing-eqnarray"></a>
+<a name="index-Madsen_002c-Lars"></a>
+<p>First, a caveat: the <code>eqnarray</code> environment is depreciated.  It has
+infelicities that cannot be overcome, including spacing that is
+inconsistent with other mathematics elements (see the article &#8220;Avoid
+eqnarray!&#8221; by Lars Madsen
+<a href="http://tug.org/TUGboat/tb33-1/tb103madsen.pdf">http://tug.org/TUGboat/tb33-1/tb103madsen.pdf</a>).  New documents
+should include the <samp>amsmath</samp> package and use the displayed
+mathematics environments provided there, such as the <code>align</code>
+environment.
+</p>
+<p>Nevertheless, for completeness and for a reference when working with old
+documents, a synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{eqnarray} 
+  <var>first formula left</var>  &amp;<var>first formula middle</var>  &amp;<var>first formula right</var> \\
+  ...
+\end{eqnarray}
+</pre></div>
+
+<p>or 
+</p>
+<div class="example">
+<pre class="example">\begin{eqnarray*} 
+  <var>first formula left</var>  &amp;<var>first formula middle</var>  &amp;<var>first formula right</var> \\
+  ...
+\end{eqnarray*}
+</pre></div>
+
+<a name="index-_005c_005c-_0028for-eqnarray_0029"></a>
+<p>Display a sequence of equations or inequalities.  The left and right
+sides are typeset in display mode, while the middle is typeset in text
+mode.
+</p>
+<p>It is similar to a three-column <code>array</code> environment, with items
+within a row separated by an ampersand (<code>&amp;</code>), and with rows
+separated by double backslash  <code>\\</code>).
+<a name="index-_005c_005c_002a-_0028for-eqnarray_0029"></a>
+The starred form of line break (<code>\\*</code>) can also be used to separate
+equations, and will disallow a page break there (see <a href="g_t_005c_005c.html">\\</a>).
+</p>
+<a name="index-_005cnonumber"></a>
+<a name="index-equation-numbers_002c-omitting"></a>
+<p>The unstarred form <code>eqnarray</code> places an equation number on every
+line (using the <code>equation</code> counter), unless that line contains a
+<code>\nonumber</code> command.  The starred form <code>eqnarray*</code> omits
+equation numbering, while otherwise being the same.
+</p>
+<a name="index-_005clefteqn"></a>
+<p>The command <code>\lefteqn</code> is used for splitting long formulas across
+lines. It typesets its argument in display style flush left in a box of
+zero width.
+</p>
+<p>This example shows three lines.  The first two lines make an inequality,
+while the third line has not entry on the left side.
+</p>
+<div class="example">
+<pre class="example">\begin{eqnarray*}
+  \lefteqn{x_1+x_2+\cdots+x_n}     \\
+    &amp;\leq &amp;y_1+y_2+\cdots+y_n      \\
+    &amp;=    &amp;z+y_3+\cdots+y_n
+\end{eqnarray*}
+</pre></div>
+
+
+</body></html>

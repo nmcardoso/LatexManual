@@ -1,0 +1,1 @@
+       The \linethickness{dim} command declares the thickness of horizontal and vertical lines in a picture environment to be dim, which must be a positive length.  \linethickness does not affect the thickness of slanted lines, circles, or the quarter circles drawn by \oval.   

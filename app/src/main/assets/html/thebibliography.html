@@ -1,0 +1,49 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="thebibliography"></a>
+
+<a name="thebibliography-1"></a>
+<h3 class="section"><code>thebibliography</code></h3>
+
+<a name="index-environment_002c-thebibliography"></a>
+<a name="index-thebibliography-environment"></a>
+<a name="index-bibliography_002c-creating-_0028manually_0029"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\begin{thebibliography}{<var>widest-label</var>}
+\bibitem[<var>label</var>]{<var>cite_key}</var>
+...
+\end{thebibliography}
+</pre></div>
+
+<p>The <code>thebibliography</code> environment produces a bibliography or
+reference list.
+</p>
+<p>In the <code>article</code> class, this reference list is labelled
+&#8220;References&#8221;; in the <code>report</code> class, it is labelled
+&#8220;Bibliography&#8221;.  You can change the label (in the standard classes)
+by redefining the command <code>\refname</code>.  For instance, this
+eliminates it entirely:
+</p>
+<div class="example">
+<pre class="example">\renewcommand{\refname}{}
+</pre></div>
+
+<p>The mandatory <var>widest-label</var> argument is text that, when typeset,
+is as wide as the widest item label produced by the <code>\bibitem</code>
+commands.  It is typically given as <code>9</code> for bibliographies with
+less than 10 references, <code>99</code> for ones with less than 100, etc.
+</p>
+<table border="0" cellspacing="0" class="menu">
+<tbody><tr><td align="left" valign="top">&#8226; <a accesskey="1" href="g_t_005cbibitem.html">\bibitem</a>:</td><td>  </td><td align="left" valign="top">Specify a bibliography item.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="2" href="g_t_005ccite.html">\cite</a>:</td><td>  </td><td align="left" valign="top">Refer to a bibliography item.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="3" href="g_t_005cnocite.html">\nocite</a>:</td><td>  </td><td align="left" valign="top">Include an item in the bibliography.
+</td></tr>
+<tr><td align="left" valign="top">&#8226; <a accesskey="4" href="Using-BibTeX.html">Using BibTeX</a>:</td><td>  </td><td align="left" valign="top">Automatic generation of bibliographies.
+</td></tr>
+</tbody></table>
+
+
+</body></html>

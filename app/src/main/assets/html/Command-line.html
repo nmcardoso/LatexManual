@@ -1,0 +1,35 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Command-line"></a>
+
+<a name="Command-line-1"></a>
+<h2 class="chapter">Command line</h2>
+
+<a name="index-command-line"></a>
+
+<a name="index-_002etex_002c-default-extension"></a>
+<p>The input file specification indicates the file to be formatted;
+TeX uses <samp>.tex</samp> as a default file extension.  If you omit the
+input file entirely, TeX accepts input from the terminal.  You can
+also specify arbitrary LaTeX input by starting with a backslash.
+For example, this processes <samp>foo.tex</samp> without pausing after every
+error:
+</p>
+<div class="example">
+<pre class="example">latex '\nonstopmode\input foo.tex'
+</pre></div>
+
+<a name="index-_002d_002dhelp-command_002dline-option"></a>
+<p>With many, but not all, implementations, command-line options can also
+be specified in the usual Unix way, starting with &#8216;<samp>-</samp>&#8217; or
+&#8216;<samp>--</samp>&#8217;.  For a list of those options, try &#8216;<samp>latex --help</samp>&#8217;.
+</p>
+<a name="index-_002a-prompt"></a>
+<a name="index-prompt_002c-_002a"></a>
+<a name="index-_005cstop"></a>
+<p>If LaTeX stops in the middle of the document and gives you a
+&#8216;<samp>*</samp>&#8217; prompt, it is waiting for input.  You can type <code>\stop</code>
+(and return) and it will prematurely end the document.
+</p>
+<p>See <a href="TeX-engines.html">TeX engines</a>, for other system commands invoking LaTeX.
+</p>
+
+</body></html>

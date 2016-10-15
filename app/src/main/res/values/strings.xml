@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Latex Manual</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search</string>
+    <string name="fav_removed">Documentation removed from favorites</string>
+    <string name="fav_added">Documentation added in favorites</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favorites">Favorites</string>
+    <string name="home">Home</string>
+    <string name="recently_viewed">Recently Viewed</string>
+    <string name="view_all">View all</string>
+    <string name="recent_favorites">Recent Favorites</string>
+    <string name="history">History</string>
+    <string name="i_of_n">%1$d of %2$d</string>
+</resources>

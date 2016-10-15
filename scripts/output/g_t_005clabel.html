@@ -1,0 +1,70 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005clabel"></a>
+
+<a name="g_t_005clabel-1"></a>
+<h3 class="section"><code>\label</code></h3>
+
+<a name="index-_005clabel"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\label{<var>key</var>}
+</pre></div>
+
+<p>Assign a number to <var>key</var>.  In ordinary text
+<code>\label{<var>key</var>}</code> assigns to <var>key</var> the number of the
+current sectional unit. Inside an environment with numbering, such as a
+<code>table</code> or <code>theorem</code> environment, <code>\label{<var>key</var>}</code>
+assigns to <var>key</var> the number of that environment.  Retrieve the
+assigned number with the <code>\ref{<var>key</var>}</code> command
+(see <a href="g_t_005cref.html">\ref</a>).
+</p>
+<p>A key name can consist of any sequence of letters, digits, or common
+punctuation characters.  Upper and lowercase letters are
+distinguished, as usual.
+</p>
+<p>A common convention is to use labels consisting of a prefix and a suffix
+separated by a colon or period.  This helps to avoid accidentally
+creating two labels with the same name, and makes your source more
+readable.  Some commonly-used prefixes:
+</p>
+<dl compact="compact">
+<dt><code>ch</code></dt>
+<dd><p>for chapters
+</p></dd>
+<dt><code>sec</code></dt>
+<dd><p>for lower-level sectioning commands
+</p></dd>
+<dt><code>fig</code></dt>
+<dd><p>for figures
+</p></dd>
+<dt><code>tab</code></dt>
+<dd><p>for tables
+</p></dd>
+<dt><code>eq</code></dt>
+<dd><p>for equations
+</p></dd>
+</dl>
+
+<p>Thus, <code>\label{fig:Euler}</code> is a label for a figure with a portrait
+of the great man.
+</p>
+<p>In this example below the key <code>sec:test</code> will get the number of the
+current section and the key <code>fig:test</code> will get the number of the
+figure.  (Incidentally, put labels after captions in figures and
+tables.)
+</p>
+<div class="example">
+<pre class="example">\section{section name}
+\label{sec:test}
+This is Section~\ref{sec:test}.
+\begin{figure}
+  ...
+  \caption{caption text}
+  \label{fig:test}
+\end{figure}
+See Figure~\ref{fig:test}.
+</pre></div>
+
+
+</body></html>

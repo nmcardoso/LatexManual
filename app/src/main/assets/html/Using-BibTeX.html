@@ -1,0 +1,57 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Using-BibTeX"></a>
+
+<a name="Using-BibTeX-1"></a>
+<h4 class="subsection">Using BibTeX</h4>
+
+<a name="index-using-BibTeX"></a>
+<a name="index-bibTeX_002c-using"></a>
+<a name="index-bibliography_002c-creating-_0028automatically_0029"></a>
+<a name="index-_005cbibliographystyle"></a>
+<a name="index-_005cbibliography"></a>
+
+<p>If you use the BibTeX program by Oren Patashnik (highly
+recommended if you need a bibliography of more than a couple of
+titles) to maintain your bibliography, you don&#8217;t use the
+<code>thebibliography</code> environment (see <a href="thebibliography.html">thebibliography</a>). Instead,
+you include the lines
+</p>
+<div class="example">
+<pre class="example">\bibliographystyle{<var>bibstyle</var>}
+\bibliography{<var>bibfile1</var>,<var>bibfile2</var>}
+</pre></div>
+
+<p>The <code>\bibliographystyle</code> command does not produce any output of
+its own.  Rather, it defines the style in which the bibliography will
+be produced: <var>bibstyle</var> refers to a file
+<var>bibstyle</var><samp>.bst</samp>, which defines how your citations will look.
+The standard <var>bibstyle</var> names distributed with BibTeX are:
+</p>
+<dl compact="compact">
+<dt><code>alpha</code></dt>
+<dd><p>Sorted alphabetically. Labels are formed from name of author and year of
+publication.
+</p></dd>
+<dt><code>plain</code></dt>
+<dd><p>Sorted alphabetically. Labels are numeric.
+</p></dd>
+<dt><code>unsrt</code></dt>
+<dd><p>Like <code>plain</code>, but entries are in order of citation.
+</p></dd>
+<dt><code>abbrv</code></dt>
+<dd><p>Like <code>plain</code>, but more compact labels.
+</p></dd>
+</dl>
+
+<p>In addition, numerous other BibTeX style files exist tailored to
+the demands of various publications.  See
+<a href="http://mirror.ctan.org/biblio/bibtex/contrib">http://mirror.ctan.org/biblio/bibtex/contrib</a>.
+</p>
+<p>The <code>\bibliography</code> command is what actually produces the
+bibliography.  The argument to <code>\bibliography</code> refers to files
+named <samp><var>bibfile1</var>.bib</samp>, <samp><var>bibfile2</var>.bib</samp>, &#8230;,
+which should contain your database in
+BibTeX format.  Only the entries referred to via <code>\cite</code> and
+<code>\nocite</code> will be listed in the bibliography.
+</p>
+
+</body></html>

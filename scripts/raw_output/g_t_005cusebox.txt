@@ -1,0 +1,1 @@
+       Synopsis:   \usebox{\boxcmd}   \usebox produces the box most recently saved in the bin \boxcmd by a \savebox command (see \savebox).   

@@ -1,0 +1,139 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cnewenvironment-_0026-_005crenewenvironment"></a>
+
+<a name="g_t_005cnewenvironment-_0026-_005crenewenvironment-1"></a>
+<h3 class="section"><code>\newenvironment</code> &amp; <code>\renewenvironment</code></h3>
+
+<a name="index-_005cnewenvironment"></a>
+<a name="index-_005crenewenvironment"></a>
+<a name="index-environments_002c-defining"></a>
+<a name="index-defining-new-environments"></a>
+<a name="index-redefining-environments"></a>
+
+<p>These commands define or redefine an environment <var>env</var>, that is,
+<code>\begin{<var>env</var>} <var>body</var> \end{<var>env</var>}</code>.  Synopses:
+</p>
+<div class="example">
+<pre class="example">   \newenvironment{<var>env</var>}[<var>nargs</var>][<var>optargdefault</var>]{<var>begdefn</var>}{<var>enddefn</var>}
+  \newenvironment*{<var>env</var>}[<var>nargs</var>][<var>optargdefault</var>]{<var>begdefn</var>}{<var>enddefn</var>}
+ \renewenvironment{<var>env</var>}[<var>nargs</var>][<var>optargdefault</var>]{<var>begdefn</var>}{<var>enddefn</var>}
+\renewenvironment*{<var>env</var>}[<var>nargs</var>][<var>optargdefault</var>]{<var>begdefn</var>}{<var>enddefn</var>}
+</pre></div>
+
+<a name="index-_002a_002dform-of-environment-commands"></a>
+<p>The starred form of these commands requires that the arguments not
+contain multiple paragraphs of text.  The body of these environments can
+still contain multiple paragraphs.
+</p>
+<dl compact="compact">
+<dt><var>env</var></dt>
+<dd><p>Required; the environment name.  It consists only of letters or the
+<code>*</code> character, and thus does not begin with backslash
+(<code>\</code>).  It must not begin with the string <code>end</code>.  For
+<code>\newenvironment</code>, the name <var>env</var> must not be the name of an
+already existing environment, and also the command <code>\<var>env</var></code>
+must be undefined.  For <code>\renewenvironment</code>, <var>env</var> must be the
+name of an existing environment.
+</p>
+</dd>
+<dt><var>nargs</var></dt>
+<dd><p>Optional; an integer from 0 to 9 denoting the number of arguments of
+that the environment will take.  When the environment is used these
+arguments appear after the <code>\begin</code>, as in
+<code>\begin{<var>env</var>}{<var>arg1</var>}&#8230;{<var>argn</var>}</code>.  If this
+argument is not present then the default is for the environment to have
+no arguments.  When redefining an environment, the new version can have
+a different number of arguments than the old version.
+</p>
+</dd>
+<dt><var>optargdefault</var></dt>
+<dd><p>Optional; if this argument is present then the first argument of the
+defined environment is optional, with default value <var>optargdefault</var>
+(which may be the empty string).  If this argument is not present then
+the environment does not take an optional argument.
+</p>
+<p>That is, when <code>[<var>optargdefault</var>]</code> is present in the environment
+definition, if <code>\begin{<var>env</var>}</code> is used with square brackets
+following, as in <code>\begin{<var>env</var>}[<var>myval</var>]</code>, then, within
+<var>begdefn</var>, the
+<a name="index-positional-parameter-1"></a>
+positional parameter <code>#1</code> expands to <var>myval</var>.  If
+<code>\begin{<var>env</var>}</code> is called without square brackets following,
+then, within within <var>begdefn</var>, the positional parameter <code>#1</code>
+expands to the default <var>optargdefault</var>.  In either case, any
+required arguments will be referred to starting with <code>#2</code>.
+</p>
+<p>Omitting <code>[<var>myval</var>]</code> in the call is different from having the
+square brackets with no contents, as in <code>[]</code>.  The former results
+in <code>#1</code> expanding to <var>optargdefault</var>; the latter results in
+<code>#1</code> expanding to the empty string.
+</p>
+</dd>
+<dt><var>begdefn</var></dt>
+<dd><p>Required; the text expanded at every occurrence of
+<code>\begin{<var>env</var>}</code>.  Within <var>begdef</var>, the <var>n</var>th
+positional parameter (i.e., <code>#<var>n</var></code>) is replaced by the text
+of the <var>n</var>th argument.
+</p>
+</dd>
+<dt><var>enddefn</var></dt>
+<dd><p>Required; the text expanded at every occurrence of
+<code>\end{<var>env</var>}</code>.  This may not contain any positional
+parameters, so <code>#<var>n</var></code> cannot be used here (but see the final
+example below).
+</p>
+</dd>
+</dl>
+
+<p>The environment <var>env</var> defines a group for expanding <var>begdefn</var>
+and <var>enddefn</var>.  Thus, in the first example below, the effect of
+the <code>\small</code> is limited to the quote and does not extend to
+material following the environment.
+</p>
+<p>This example gives an environment like LaTeX&#8217;s <code>quotation</code>
+except that it will be set in smaller type:
+</p>
+<div class="example">
+<pre class="example">\newenvironment{smallquote}{%
+  \small\begin{quotation}
+}{%
+  \end{quotation}
+}
+</pre></div>
+
+<p>This one shows the use of arguments; it gives a quotation environment
+that cites the author:
+</p>
+<div class="example">
+<pre class="example">\newenvironment{citequote}[1][Shakespeare]{%
+  \begin{quotation}
+  \noindent\textit{#1}: 
+}{%
+  \end{quotation}
+}
+</pre></div>
+
+<p>The author&#8217;s name is optional, and defaults to &#8216;<samp>Shakespeare</samp>&#8217;.
+In the document, use the environment like this:
+</p>
+<div class="example">
+<pre class="example">\begin{citequote}[Lincoln]
+  ...
+\end{citequote}
+</pre></div>
+
+<p>The final example shows how to save the value of an argument to use in 
+<var>enddefn</var>, in this case in a box (see <a href="g_t_005csbox.html">\sbox</a>):
+</p>
+<div class="example">
+<pre class="example">\newsavebox{\quoteauthor}
+\newenvironment{citequote}[1][Shakespeare]{%
+  \sbox\quoteauthor{#1}%
+  \begin{quotation} 
+}{%
+  \hspace{1em plus 1fill}---\usebox{\quoteauthor}
+  \end{quotation}
+}
+</pre></div>
+
+
+</body></html>

@@ -1,0 +1,1 @@
+           \begin{flushright} line1 \\ line2 \\ ... \end{flushright}    The flushright environment allows you to create a paragraph consisting of lines that are flush to the right-hand margin and ragged left.  Each line must be terminated with the control sequence \\.    \raggedleft:Declaration form of the flushright environment.     

@@ -1,0 +1,1 @@
+       Synopsis:   \ps{text}   Add a postscript.  This command is optional and usually is used after \closing.   \ps{P.S. After you have read this letter, burn it. Or eat it.}    

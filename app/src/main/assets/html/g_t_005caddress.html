@@ -1,0 +1,36 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005caddress"></a>
+
+<a name="g_t_005caddress-1"></a>
+<h3 class="section"><code>\address</code></h3>
+
+<a name="index-_005caddress"></a>
+
+<p>Synopsis: 
+</p>
+<div class="example">
+<pre class="example">\address{<var>senders address</var>}
+</pre></div>
+
+<p>Specifies the return address as it appears on the letter and on the
+envelope.  Separate multiple lines in <var>senders address</var> with a
+double backslash <code>\\</code>.
+</p>
+<p>Because it can apply to multiple letters this declaration is often put
+in the preamble.  However, it can go anywhere, including inside an
+individual <code>letter</code> environment.
+</p>
+<p>This command is optional: without the <code>\address</code> declaration the
+letter is formatted with some blank space on top, for copying onto
+pre-printed letterhead paper.  (See <a href="Overview.html">Overview</a>, for details on your
+local implementation.)  With the <code>\address</code> declaration, it is
+formatted as a personal letter.
+</p>
+<p>Here is an example.
+</p>
+<div class="example">
+<pre class="example">\address{Stephen Maturin \\
+         The Grapes of the Savoy}
+</pre></div>
+
+
+</body></html>

@@ -1,0 +1,56 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Modes"></a>
+
+<a name="Modes-1"></a>
+<h2 class="chapter">Modes</h2>
+
+<a name="index-modes"></a>
+<a name="index-paragraph-mode"></a>
+<a name="index-math-mode"></a>
+<a name="index-left_002dto_002dright-mode"></a>
+<a name="index-LR-mode"></a>
+
+<p>When LaTeX is processing your input text, it is always in one of three
+modes:
+</p>
+<ul>
+<li> Paragraph mode
+</li><li> Math mode
+</li><li> Left-to-right mode, called LR mode for short
+</li></ul>
+
+<p>Mode changes occur only when entering or leaving an environment, or when
+LaTeX is processing the argument of certain text-producing commands.
+</p>
+<p><em>Paragraph mode</em> is the most common; it&#8217;s the one LaTeX is in
+when processing ordinary text.  In this mode, LaTeX breaks the
+input text into lines and breaks the lines into pages.
+</p>
+<p>LaTeX is in <em>math mode</em> when it&#8217;s generating a mathematical
+formula, either displayed math or within a line.
+</p>
+<a name="index-_005cmbox_002c-and-LR-mode"></a>
+<p>In <em>LR mode</em>, as in paragraph mode, LaTeX considers the output
+that it produces to be a string of words with spaces between them.
+However, unlike paragraph mode, LaTeX keeps going from left to
+right; it never starts a new line in LR mode.  Even if you put a
+hundred words into an <code>\mbox</code>, LaTeX would keep typesetting
+them from left to right inside a single box (and then most likely
+complain because the resulting box was too wide to fit on the line).
+LaTeX is in LR mode when it starts making a box with an
+<code>\mbox</code> command.  You can get it to enter a different mode inside
+the box&#8212;for example, you can make it enter math mode to put a
+formula in the box.
+</p>
+<p>There are also several text-producing commands and environments for
+making a box that put LaTeX into paragraph mode.  The box made by
+one of these commands or environments will be called a <code>parbox</code>.
+When LaTeX is in paragraph mode while making a box, it is said to
+be in &#8220;inner paragraph mode&#8221; (no page breaks).  Its normal paragraph
+mode, which it starts out in, is called &#8220;outer paragraph mode&#8221;.
+</p>
+<table border="0" cellspacing="0" class="menu">
+<tbody><tr><td align="left" valign="top">&#8226; <a accesskey="1" href="g_t_005censuremath.html">\ensuremath</a>:</td><td>  </td><td align="left" valign="top">Ensure that math mode is active
+</td></tr>
+</tbody></table>
+
+</body></html>

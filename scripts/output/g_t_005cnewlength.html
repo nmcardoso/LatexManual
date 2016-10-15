@@ -1,0 +1,28 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cnewlength"></a>
+
+<a name="g_t_005cnewlength_003a-Allocating-a-length"></a>
+<h3 class="section"><code>\newlength</code>: Allocating a length</h3>
+
+<a name="index-_005cnewlength"></a>
+<a name="index-lengths_002c-allocating-new"></a>
+<a name="index-rubber-lengths_002c-defining-new"></a>
+<a name="index-skip-register_002c-plain-TeX"></a>
+<a name="index-glue-register_002c-plain-TeX"></a>
+
+<p>Allocate a new <em>length</em> register.  Synopsis:
+</p>
+<div class="example">
+<pre class="example">\newlength{\<var>arg</var>}
+</pre></div>
+
+<p>This command takes one required argument, which must begin with a
+backslash (&#8216;<samp>\</samp>&#8217;).  It creates a new length register named
+<code>\<var>arg</var></code>, which is a place to hold (rubber) lengths such as
+<code>1in plus.2in minus.1in</code> (what plain TeX calls a <code>skip</code>
+register).  The register gets an initial value of zero.  The control
+sequence <code>\<var>arg</var></code> must not already be defined.
+</p>
+<p>See <a href="Lengths.html">Lengths</a>, for more about lengths.
+</p>
+
+</body></html>

@@ -1,0 +1,36 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cvfill"></a>
+
+<a name="g_t_005cvfill-1"></a>
+<h3 class="section"><code>\vfill</code></h3>
+
+<a name="index-_005cvfill"></a>
+
+<a name="index-stretch_002c-infinite-vertical"></a>
+<a name="index-infinite-vertical-stretch"></a>
+
+<p>End the current paragraph and insert a vertical rubber length
+(see <a href="Lengths.html">Lengths</a>) that is infinite, so it can stretch or shrink as far
+as needed.
+</p>
+<p>It is often used in the same way as <code>\vspace{\fill}</code>, except that
+<code>\vfill</code> ends the current paragraph, whereas
+<code>\vspace{\fill}</code> adds the infinite vertical space below its line
+irrespective of the paragraph structure.  In both cases that space will
+disappear at a page boundary; to circumvent this see <a href="g_t_005cvspace.html">\vspace</a>.
+</p>
+<p>In this example the page is filled, so the top and bottom lines contain
+the text &#8216;<samp>Lost Dog!</samp>&#8217; and the third &#8216;<samp>Lost Dog!</samp>&#8217; is exactly
+halfway between them.
+</p> 
+<div class="example">
+<pre class="example">\begin{document}
+Lost Dog!
+\vfill
+Lost Dog!
+\vfill
+Lost Dog!
+\end{document}
+</pre></div>
+
+
+</body></html>

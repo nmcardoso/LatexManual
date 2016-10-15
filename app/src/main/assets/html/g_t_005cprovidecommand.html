@@ -1,0 +1,26 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cprovidecommand"></a>
+
+<a name="g_t_005cprovidecommand-1"></a>
+<h3 class="section"><code>\providecommand</code></h3>
+
+<a name="index-_005cprovidecommand"></a>
+<a name="index-commands_002c-defining-new-ones-1"></a>
+<a name="index-defining-a-new-command-1"></a>
+<a name="index-new-commands_002c-defining-1"></a>
+
+<p>Defines a command, as long as no command of this name already exists.
+Synopses:
+</p>
+<div class="example">
+<pre class="example">\providecommand{<var>cmd</var>}[<var>nargs</var>][<var>optargdefault</var>]{<var>defn</var>}
+\providecommand*{<var>cmd</var>}[<var>nargs</var>][<var>optargdefault</var>]{<var>defn</var>}
+</pre></div>
+
+<p>If no command of this name already exists then this has the same effect
+as <code>\newcommand</code> (see <a href="g_t_005cnewcommand-_0026-_005crenewcommand.html">\newcommand &amp; \renewcommand</a>).  If a
+command of this name already exists then this definition does nothing.
+This is particularly useful in a style file, or other file that may be
+loaded more than once.
+</p>
+
+</body></html>

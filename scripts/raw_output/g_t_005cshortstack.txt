@@ -1,0 +1,1 @@
+       Synopsis:   \shortstack[position]{...\\...\\...}   The \shortstack command produces a stack of objects.  The valid positions are:   r Move the objects to the right of the stack.  l Move the objects to the left of the stack  c Move the objects to the centre of the stack (default)     Objects are separated with \\.   

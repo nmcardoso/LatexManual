@@ -1,0 +1,1 @@
+        \width   \height   \depth   \totalheight   These length parameters can be used in the arguments of the box-making commands (see Boxes).  They specify the natural width, etc., of the text in the box. \totalheight equals \height + \depth. To make a box with the text stretched to double the natural size, e.g., say   \makebox[2\width]{Get a stretcher}    

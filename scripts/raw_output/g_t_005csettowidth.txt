@@ -1,0 +1,1 @@
+       Synopsis:   \settowidth{\len}{text}   The \settowidth command sets the value of the command \len to the width of the text argument.   

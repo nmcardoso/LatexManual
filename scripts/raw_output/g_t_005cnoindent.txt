@@ -1,0 +1,1 @@
+        When used at the beginning of the paragraph, this command suppresses any paragraph indentation, as in this example.   ... end of the prior paragraph.  \noindent This paragraph is not indented.   It has no effect when used in the middle of a paragraph.  To eliminate paragraph indentation in an entire document, put \setlength{\parindent}{0pt} in the preamble.   

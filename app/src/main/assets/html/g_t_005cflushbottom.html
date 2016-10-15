@@ -1,0 +1,27 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cflushbottom"></a>
+
+<a name="g_t_005cflushbottom-1"></a>
+<h3 class="section"><code>\flushbottom</code></h3>
+
+<a name="index-_005cflushbottom"></a>
+
+<p>Make all pages in the documents after this declaration have the same
+height, by stretching the vertical space where necessary to fill out the
+page.  This is most often used when making two-sided documents since the
+differences in facing pages can be glaring.
+</p>
+<p>If TeX cannot satisfactorily stretch the vertical space in a page
+then you get a message like &#8216;<samp>Underfull \vbox (badness 10000) has
+occurred while \output is active</samp>&#8217;.  If you get that, one option is to
+change to <code>\raggedbottom</code> (see <a href="g_t_005craggedbottom.html">\raggedbottom</a>).  Alternatively,
+you can adjust the <code>textheight</code> to make compatible pages, or you
+can add some vertical stretch glue between lines or between paragraphs,
+as in <code>\setlength{\parskip}{0ex plus0.1ex}</code>.  Your last option
+is to, in a final editing stage, adjust the height of individual pages
+(see <a href="g_t_005cenlargethispage.html">\enlargethispage</a>).
+</p>
+<p>The <code>\flushbottom</code> state is the default only if you select the
+<code>twoside</code> document class option (see <a href="Document-class-options.html">Document class options</a>).
+</p>
+
+</body></html>

@@ -1,0 +1,141 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cnewtheorem"></a>
+
+<a name="g_t_005cnewtheorem-1"></a>
+<h3 class="section"><code>\newtheorem</code></h3>
+
+<a name="index-_005cnewtheorem"></a>
+<a name="index-theorems_002c-defining"></a>
+<a name="index-defining-new-theorems"></a>
+
+<a name="index-theorem_002dlike-environment"></a>
+<a name="index-environment_002c-theorem_002dlike"></a>
+<p>Define a new theorem-like environment.  Synopses:
+</p>
+<div class="example">
+<pre class="example">\newtheorem{<var>name</var>}{<var>title</var>}
+\newtheorem{<var>name</var>}{<var>title</var>}[<var>numbered_within</var>]
+\newtheorem{<var>name</var>}[<var>numbered_like</var>]{<var>title</var>}
+</pre></div>
+
+<p>Using the first form, <code>\newtheorem{<var>name</var>}{<var>title</var>}</code>
+creates an environment that will be labelled with <var>title</var>.  See the
+first example below.
+</p>
+<p>The second form
+<code>\newtheorem{<var>name</var>}{<var>title</var>}[<var>numbered_within</var>]</code>
+creates an environment whose counter is subordinate to the existing
+counter <var>numbered_within</var> (its counter will be reset when
+<var>numbered_within</var> is reset).
+</p>
+
+<p>The third form
+<code>\newtheorem{<var>name</var>}[<var>numbered_like</var>]{<var>title</var>}</code>,
+with optional argument between the two required arguments, will create
+an environment whose counter will share the previously defined counter
+<var>numbered_like</var>.
+</p>
+<p>You can specify one of <var>numbered_within</var> and <var>numbered_like</var>,
+or neither, but not both.
+</p>
+<p>This command creates a counter named <var>name</var>.  In addition, unless
+the optional argument <var>numbered_like</var> is used, inside of the
+theorem-like environment the current <code>\ref</code> value will be that of
+<code>\the<var>numbered_within</var></code> (see <a href="g_t_005cref.html">\ref</a>).
+</p>
+<p>This declaration is global.  It is fragile (see <a href="g_t_005cprotect.html">\protect</a>).
+</p>
+<p>Arguments:
+</p>
+<dl compact="compact">
+<dt><var>name</var></dt>
+<dd><p>The name of the environment.  It must not begin with a backslash
+(&#8216;<samp>\</samp>&#8217;).  It must not be the name of an existing environment; indeed,
+the command name <code>\<var>name</var></code> must not already be defined as anything.
+</p>
+</dd>
+<dt><var>title</var></dt>
+<dd><p>The text printed at the beginning of the environment, before the
+number. For example, &#8216;<samp>Theorem</samp>&#8217;.
+</p>
+</dd>
+<dt><var>numbered_within</var></dt>
+<dd><p>Optional; the name of an already defined counter, usually a sectional
+unit such as <code>chapter</code> or <code>section</code>.  When the
+<var>numbered_within</var> counter is reset then the <var>name</var> environment&#8217;s
+counter will also be reset.
+</p>
+<p>If this optional argument is not used then the command
+<code>\the<var>name</var></code> is set to <code>\arabic{<var>name</var>}</code>.
+</p>
+</dd>
+<dt><var>numbered_like</var></dt>
+<dd><p>Optional; the name of an already defined theorem-like environment. The
+new environment will be numbered in sequence with <var>numbered_like</var>.
+</p>
+</dd>
+</dl>
+
+<p>Without any optional arguments the environments are numbered
+sequentially.  The example below has a declaration in the preamble that
+results in &#8216;<samp>Definition 1</samp>&#8217; and &#8216;<samp>Definition 2</samp>&#8217; in the
+output.
+</p>
+<div class="example">
+<pre class="example">\newtheorem{defn}{Definition}
+\begin{document}
+\section{...}
+\begin{defn}
+  First def 
+\end{defn}
+
+\section{...}
+\begin{defn}
+  Second def
+\end{defn}
+</pre></div>
+
+<p>Because the next example specifies the optional argument
+<var>numbered_within</var> to <code>\newtheorem</code> as <code>section</code>, the
+example, with the same document body, gives &#8216;<samp>Definition 1.1</samp>&#8217;
+and &#8216;<samp>Definition 2.1</samp>&#8217;.
+</p>
+<div class="example">
+<pre class="example">\newtheorem{defn}{Definition}[section]
+\begin{document}
+\section{...}
+\begin{defn}
+  First def 
+\end{defn}
+
+\section{...}
+\begin{defn}
+  Second def
+\end{defn}
+</pre></div>
+
+<p>In the next example there are two declarations in the preamble, the
+second of which calls for the new <code>thm</code> environment to use the same
+counter as <code>defn</code>.  It gives &#8216;<samp>Definition 1.1</samp>&#8217;, followed
+by &#8216;<samp>Theorem 2.1</samp>&#8217; and &#8216;<samp>Definition 2.2</samp>&#8217;.
+</p>
+<div class="example">
+<pre class="example">\newtheorem{defn}{Definition}[section]
+\newtheorem{thm}[defn]{Theorem}
+\begin{document}
+\section{...}
+\begin{defn}
+  First def 
+\end{defn}
+
+\section{...}
+\begin{thm}
+  First thm
+\end{thm}
+
+\begin{defn}
+  Second def
+\end{defn}
+</pre></div>
+
+
+</body></html>

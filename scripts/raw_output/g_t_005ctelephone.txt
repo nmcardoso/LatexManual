@@ -1,0 +1,1 @@
+       Synopsis:   \telephone{number}   The senders telephone number.  This is typically in the preamble, where it applies to all letters.  This only appears if the firstpage pagestyle is selected.  If so, it appears on the lower right of the page.   

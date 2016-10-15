@@ -1,0 +1,1 @@
+       Synopsis:   \savebox{\boxcmd}[width][pos]{text}   This command typeset text in a box just as with \makebox (see \makebox), except that instead of printing the resulting box, it saves it in the box labeled \boxcmd, which must have been declared with \newsavebox (see \newsavebox).   

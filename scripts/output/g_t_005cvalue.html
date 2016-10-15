@@ -1,0 +1,43 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="g_t_005cvalue"></a>
+
+<a name="g_t_005cvalue_007bcounter_007d"></a>
+<h3 class="section"><code>\value{<var>counter</var>}</code></h3>
+
+<a name="index-_005cvalue"></a>
+<a name="index-counters_002c-getting-value-of"></a>
+
+<p>Synopsis:
+</p>
+<div class="example">
+<pre class="example">\value{<var>counter</var>}
+</pre></div>
+
+<p>This command expands to the value of <var>counter</var>.  It is often used
+in <code>\setcounter</code> or <code>\addtocounter</code>, but <code>\value</code> can
+be used anywhere that LaTeX expects a number.  It must not be
+preceded by <code>\protect</code> (see <a href="g_t_005cprotect.html">\protect</a>).
+</p>
+<p>The <code>\value</code> command is not used for typesetting the value of the
+counter.  See <a href="g_t_005calph-_005cAlph-_005carabic-_005croman-_005cRoman-_005cfnsymbol.html">\alph \Alph \arabic \roman \Roman \fnsymbol</a>.
+</p>
+<p>This example outputs &#8216;<samp>Test counter is 6. Other counter
+is 5.</samp>&#8217;.
+</p>
+<div class="example">
+<pre class="example">\newcounter{test} \setcounter{test}{5}
+\newcounter{other} \setcounter{other}{\value{test}}
+\addtocounter{test}{1}
+
+Test counter is \arabic{test}.
+Other counter is \arabic{other}.
+</pre></div>
+
+<p>This example inserts <code>\hspace{4\parindent}</code>.
+</p>
+<div class="example">
+<pre class="example">\setcounter{myctr}{3} \addtocounter{myctr}{1}
+\hspace{\value{myctr}\parindent}
+</pre></div>
+
+
+</body></html>

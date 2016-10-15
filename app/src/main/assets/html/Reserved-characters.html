@@ -1,0 +1,53 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Reserved-characters"></a>
+
+<a name="Reserved-characters-1"></a>
+<h3 class="section">Reserved characters</h3>
+
+<a name="index-reserved-characters"></a>
+<a name="index-characters_002c-reserved"></a>
+<a name="index-special-characters"></a>
+<a name="index-characters_002c-special"></a>
+<p>LaTeX sets aside the following characters for special purposes (for
+example, the percent sign <code>%</code> is for comments) so they are
+called <em>reserved characters</em> or <em>special characters</em>.
+</p>
+<div class="example">
+<pre class="example"># $ % &amp; { } _ ~ ^ \ 
+</pre></div>
+
+<a name="index-_005c_0023"></a>
+<a name="index-_005c_0024"></a>
+<a name="index-_005c_0025"></a>
+<a name="index-_005c_0026"></a>
+<a name="index-_005c_005f"></a>
+<a name="index-_005c_007b"></a>
+<a name="index-_005c_007d"></a>
+<p>If you want a reserved character to be printed as itself, in the text
+body font, for all but the final three characters in that list simply
+put a backslash <code>\</code> in front of the character.  Thus,
+<code>\$1.23</code> will produce <code>$1.23</code> in your output.
+</p>
+<a name="index-_005c_007e"></a>
+<a name="index-_005c_005e"></a>
+<a name="index-_005ctextbackslash"></a>
+<p>As to the last three characters, to get a tilde in the text body font
+use <code>\~{}</code> (omitting the curly braces would result in the next
+character receiving a tilde accent).  Similarly, to get a get a text
+body font circumflex use <code>\^{}</code>.  A text body font backslash
+results from <code>\textbackslash{}</code>.
+</p>
+<p>To produce the reserved characters in a typewriter font use
+<code>\verb!!</code>, as below.
+</p>
+<div class="example">
+<pre class="example">\begin{center}
+  \# \$ \% \&amp; \{ \} \_ \~{} \^{} \textbackslash \\
+  \verb!# $ % &amp; { } _ ~ ^ \!
+\end{center}
+</pre></div>
+
+<p>In that example the double backslash <code>\\</code> is only there to
+split the lines.
+</p>
+
+</body></html>

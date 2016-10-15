@@ -1,0 +1,71 @@
+<html><head><meta content="text/html; charset=latin-1" httpequiv="Content-Type"/></head><body><a name="Spacing-in-math-mode"></a>
+
+<a name="Spacing-in-math-mode-1"></a>
+<h3 class="section">Spacing in math mode</h3>
+
+<a name="index-spacing-within-math-mode"></a>
+<a name="index-math-mode_002c-spacing"></a>
+
+<p>In a <code>math</code> environment, LaTeX ignores the spaces that you use
+in the source, and instead puts in the spacing according to the normal
+rules for mathematics texts.  
+</p>
+<p>Many math mode spacing definitions are expressed in terms of the math unit
+<em>mu</em> given by 1 em = 18 mu, where the em is taken from the current
+math symbols family (see <a href="Units-of-length.html">Units of length</a>).
+LaTeX provides the following commands for use in math mode:
+</p>
+<dl compact="compact">
+<dt><code>\;</code></dt>
+<dd><a name="index-_005c_003b"></a>
+<a name="index-_005cthickspace"></a>
+<p>Normally <code>5.0mu plus 5.0mu</code>.  The longer name is
+<code>\thickspace</code>.  Math mode only.
+</p>
+</dd>
+<dt><code>\:</code></dt>
+<dt><code>\&gt;</code></dt>
+<dd><a name="index-_005c_003a"></a>
+<a name="index-_005c_003e-1"></a>
+<a name="index-_005cmedspace"></a>
+<p>Normally <code>4.0mu plus 2.0mu minus 4.0mu</code>.  The longer name is
+<code>\medspace</code>.  Math mode only.
+</p>
+</dd>
+<dt><code>\,</code></dt>
+<dd><a name="index-_005c_002c"></a>
+<a name="index-_005cthinspace"></a>
+<p>Normally <code>3mu</code>.  The longer name is <code>\thinspace</code>.  This can
+be used in both math mode and text mode. See <a href="g_t_005cthinspace.html">\thinspace</a>.
+</p>
+</dd>
+<dt><code>\!</code></dt>
+<dd><a name="index-_005c_0021"></a>
+<p>A negative thin space. Normally <code>-3mu</code>.  Math mode only.
+</p>
+</dd>
+<dt><code>\quad</code></dt>
+<dd><a name="index-quad"></a>
+<a name="index-_005cquad"></a>
+<p>This is 18mu, that is, 1em. This is often used for space
+surrounding equations or expressions, for instance for the space between
+two equations inside a <code>displaymath</code> environment.  It is available
+in both text and math mode.
+</p>
+</dd>
+<dt><code>\qquad</code></dt>
+<dd><a name="index-_005cqquad"></a>
+<p>A length of 2 quads, that is, 36mu = 2em.  It is available in
+both text and math mode.
+</p></dd>
+</dl>
+
+<p>In this example a thinspace separates the function from the
+infinitesimal.
+</p>
+<div class="example">
+<pre class="example">\int_0^1 f(x)\,dx
+</pre></div>
+
+
+</body></html>
