@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -50,7 +51,12 @@ public class HistoricFragment extends Fragment {
         int historyCount = dbHelper.getHistoricCount();
         totalPages = (int) Math.ceil((float) historyCount / RESULTS_PER_PAGE);
 
-        if (historyCount > RESULTS_PER_PAGE) {
+        if (historyCount == 0) {
+            ScrollView svHistory = (ScrollView) view.findViewById(R.id.sv_history);
+            TextView txtEmpty = (TextView) view.findViewById(R.id.txt_empty);
+            svHistory.setVisibility(View.GONE);
+            txtEmpty.setVisibility(View.VISIBLE);
+        } else if (historyCount > RESULTS_PER_PAGE) {
             historyNav.setVisibility(View.VISIBLE);
             txtHistNav.setText(String.format(getResources().getString(R.string.i_of_n),
                     1, totalPages));
