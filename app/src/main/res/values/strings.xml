@@ -16,4 +16,6 @@
     <string name="recent_favorites">Recent Favorites</string>
     <string name="history">History</string>
     <string name="i_of_n">%1$d of %2$d</string>
+    <string name="empty_history">Empty History</string>
+    <string name="no_favorites">No Favorites</string>
 </resources>
