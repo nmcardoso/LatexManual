@@ -17,7 +17,6 @@ import java.util.Locale;
 
 
 public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHolder> {
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView leftText;
         public TextView rightText;
