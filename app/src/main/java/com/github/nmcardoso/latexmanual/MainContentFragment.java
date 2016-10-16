@@ -28,20 +28,20 @@ public class MainContentFragment extends Fragment {
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
 
         RecyclerView mostViewedRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_most_viewed);
-        List<Historic> mostViewedList = dbHelper.getMostViewed(5);
-        MostViewedAdapter mostViewedAdapter = new MostViewedAdapter(getActivity(), mostViewedList);
-        mostViewedRecyclerView.setAdapter(mostViewedAdapter);
+        List<Historic> mvList = dbHelper.getMostViewed(5);
+        CardListAdapter mvAdapter = new CardListAdapter(getActivity(), mvList, CardListAdapter.MOST_VIEWED);
+        mostViewedRecyclerView.setAdapter(mvAdapter);
         mostViewedRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         RecyclerView histRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recent_historic);
         List<Historic> histList = dbHelper.getHistoric(5);
-        HistoricAdapter histAdapter = new HistoricAdapter(getActivity(), histList);
+        CardListAdapter histAdapter = new CardListAdapter(getActivity(), histList, CardListAdapter.HISTORIC);
         histRecyclerView.setAdapter(histAdapter);
         histRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         RecyclerView favRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_recent_faves);
         List<Favorite> favList = dbHelper.getFavorites(5);
-        FavoriteAdapter favAdapter = new FavoriteAdapter(getActivity(), favList);
+        CardListAdapter favAdapter = new CardListAdapter(getActivity(), favList, CardListAdapter.FAVORITE);
         favRecyclerView.setAdapter(favAdapter);
         favRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
