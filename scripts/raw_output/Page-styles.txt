@@ -1,1 +1,0 @@
-        The \documentclass command determines the size and position of the pages head and foot.  The page style determines what goes in them.    \maketitle:Generate a title page.   \pagenumbering:Set the style used for page numbers.   \pagestyle:Change the headings/footings style.   \thispagestyle:Change the headings/footings style for this page.     

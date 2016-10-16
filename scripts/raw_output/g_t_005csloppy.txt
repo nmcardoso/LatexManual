@@ -1,1 +1,0 @@
-       The declaration \sloppy makes TeX less fussy about line breaking. This will avoid overfull boxes, at the cost of loose interword spacing.  Lasts until a \fussy command is issued (see \fussy).   

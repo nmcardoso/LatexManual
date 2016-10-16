@@ -1,1 +1,0 @@
-       Synopsis:   \circle[*]{diameter}   The \circle command produces a circle with a diameter as close to the specified one as possible.  The *-form of the command draws a solid circle.  Circles up to 40pt can be drawn.   

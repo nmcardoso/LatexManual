@@ -1,1 +1,0 @@
-          Synopsis:   \begin{equation}   math text \end{equation}   Make a displaymath environment (see displaymath) with an equation number in the right margin.  The equation number is generated using the equation counter.  Note that the amsmath package has extensive displayed equation facilities.  Those facilities are the best approach for such output in new documents.   

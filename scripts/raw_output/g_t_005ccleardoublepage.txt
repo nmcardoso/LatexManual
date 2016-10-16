@@ -1,1 +1,0 @@
-        The \cleardoublepage command ends the current page and causes all the pending floating figures and tables that have so far appeared in the input to be printed.  In a two-sided printing style, it also makes the next page a right-hand (odd-numbered) page, producing a blank page if necessary.   

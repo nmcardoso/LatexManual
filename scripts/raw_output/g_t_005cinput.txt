@@ -1,1 +1,0 @@
-       Synopsis:   \input{file}   The \input command causes the specified file to be read and processed, as if its contents had been inserted in the current file at that point.  If file does not end in .tex (e.g., foo or foo.bar), it is first tried with that extension (foo.tex or foo.bar.tex).  If that is not found, the original file is tried (foo or foo.bar).   

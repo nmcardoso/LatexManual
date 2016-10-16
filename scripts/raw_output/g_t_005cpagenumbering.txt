@@ -1,1 +1,0 @@
-        Synopsis:   \pagenumbering{style}   Specifies the style of page numbers, according to style; also resets the page number to 1.  The style argument is one of the following:   arabic arabic numerals   roman lowercase Roman numerals   Roman uppercase Roman numerals   alph lowercase letters   Alph uppercase letters     

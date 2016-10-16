@@ -1,1 +1,0 @@
-       The \addtocounter command globally increments counter by the amount specified by the value argument, which may be negative.  In this example the section value appears as VII.   \setcounter{section}{5} \addtocounter{section}{2} Here it is in Roman: \Roman{section}.    

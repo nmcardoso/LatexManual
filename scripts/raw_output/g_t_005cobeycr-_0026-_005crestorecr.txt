@@ -1,1 +1,0 @@
-         The \obeycr command makes a return in the input file (^^M, internally) the same as \\ (followed by \relax).  So each new line in the input will also be a new line in the output.  \restorecr restores normal line-breaking behavior.   

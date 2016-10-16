@@ -1,1 +1,0 @@
-       Commands for controlling the general page layout.    \onecolumn:Use one-column layout.   \twocolumn:Use two-column layout.   \flushbottom:Make all text pages the same height.   \raggedbottom:Allow text pages of differing height.   Page layout parameters:\headheight \footskip.   Floats:Figures, tables, etc.     

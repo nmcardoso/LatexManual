@@ -1,1 +1,0 @@
-        The document environment encloses the entire body of a document. It is required in every LaTeX document.  See Starting and ending.    \AtBeginDocument:Hook for commands at the start of the document.   \AtEndDocument:Hook for commands at the end of the document.     

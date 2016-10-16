@@ -1,1 +1,0 @@
-       Synopsis:   \discretionary{pre-break-text}{post-break-text}{no-break-text}    

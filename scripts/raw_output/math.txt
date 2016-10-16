@@ -1,1 +1,0 @@
-         Synopsis:   \begin{math} math \end{math}   The math environment inserts the given math within the running text.  \(...\) and $...$ are synonyms. See Math formulas.   

@@ -1,1 +1,0 @@
-        Synopsis:   \opening{text}   This command is required.  It starts a letter, following the \begin{letter}{...}. The mandatory argument text is the text that starts your letter.  For instance:   \opening{Dear John:}    

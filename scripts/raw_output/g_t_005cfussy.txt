@@ -1,1 +1,0 @@
-       The declaration \fussy (which is the default) makes TeX picky about line breaking.  This usually avoids too much space between words, at the cost of an occasional overfull box.  This command cancels the effect of a previous \sloppy command (see \sloppy).   

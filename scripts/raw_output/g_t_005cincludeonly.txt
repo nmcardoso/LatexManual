@@ -1,1 +1,0 @@
-       Synopsis:   \includeonly{file1,file2,...}   The \includeonly command controls which files will be read by subsequent \include commands.  The list of filenames is comma-separated. Each element file1, file2,  must exactly match a filename specified in a \include command for the selection to be effective.  This command can only appear in the preamble.   

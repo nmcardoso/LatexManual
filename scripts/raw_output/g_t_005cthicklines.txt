@@ -1,1 +1,0 @@
-       The \thicklines command is an alternate line thickness for horizontal and vertical lines in a picture environment; cf.\linethickness and \thinlines.   

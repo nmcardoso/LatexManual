@@ -1,1 +1,0 @@
-         Synopsis:   \closing{text}   Usually at the end of a letter, above the handwritten signature, there is a \closing (although this command is optional).  For example,   \closing{Regards,}    

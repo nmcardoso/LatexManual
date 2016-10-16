@@ -1,1 +1,0 @@
-          \typein:Read text from the terminal.   \typeout:Write text to the terminal.     

@@ -1,1 +1,0 @@
-        Synopsis:   \cc{first name \\       ... }   Produce a list of names to which copies of the letter were sent.  This command is optional.  If it appears then typically it comes after \closing.  Separate multiple lines with a double backslash\\.   \cc{President \\     Vice President}    

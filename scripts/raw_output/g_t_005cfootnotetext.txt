@@ -1,1 +1,0 @@
-       Synopsis, one of:   \footnotetext{text} \footnotetext[number]{text}   Place text at the bottom of the page as a footnote.  This command can come anywhere after the \footnotemark command.  The optional argument number changes the displayed footnote number.  The \footnotetext command must appear in outer paragraph mode.   

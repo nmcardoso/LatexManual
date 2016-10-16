@@ -1,1 +1,0 @@
-         The \newpage command ends the current page, but does not clear floats (see \clearpage).   

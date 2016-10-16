@@ -1,1 +1,0 @@
-       The \thinlines command is the default line thickness for horizontal and vertical lines in a picture environment; cf.\linethickness and \thicklines.   

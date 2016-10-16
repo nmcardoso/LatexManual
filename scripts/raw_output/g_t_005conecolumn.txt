@@ -1,1 +1,0 @@
-        Start a new page and produce single-column output.  If the document is given the class option onecolumn then this is the default behavior (see Document class options).  This command is fragile (see \protect).   

@@ -1,1 +1,0 @@
-         \indent produces a horizontal space whose width equals to the \parindent length, the normal paragraph indentation.  It is used to add paragraph indentation where it would otherwise be suppressed.  The default value for \parindent is 1em in two-column mode, otherwise 15pt for 10pt documents, 17pt for 11pt, and 1.5em for 12pt.   

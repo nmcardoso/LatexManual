@@ -1,1 +1,0 @@
-         The \clearpage command ends the current page and causes all the pending floating figures and tables that have so far appeared in the input to be printed.   

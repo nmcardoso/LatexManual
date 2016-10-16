@@ -1,1 +1,0 @@
-       Synopsis:   \begin{lrbox}{\cmd}    text  \end{lrbox}   This is the environment form of \sbox.  The text inside the environment is saved in the box \cmd, which must have been declared with \newsavebox.   

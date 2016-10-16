@@ -1,1 +1,0 @@
-       Synopsis:   \name{name}   Senders name, used for printing on the envelope together with the return address.   

@@ -1,1 +1,0 @@
-       Synopsis:   \framebox(width,height)[pos]{...}   The \framebox command is like \makebox (see previous section), except that it puts a frame around the outside of the box that it creates.    The \framebox command produces a rule of thickness \fboxrule, and leaves a space \fboxsep between the rule and the contents of the box.   

@@ -1,1 +1,0 @@
-        Synopsis:   \encl{first enclosed object \\         ... }   Produce a list of things included with the letter. This command is optional; when it is used, it typically is put after \closing. Separate multiple lines with a double backslash\\.   \encl{License \\        Passport }    

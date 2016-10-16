@@ -1,1 +1,0 @@
-       Synopsis:   \sbox{\boxcmd}{text}   \sbox types text in a box just as with \mbox (see \mbox) except that instead of the resulting box being included in the normal output, it is saved in the box labeled \boxcmd.  \boxcmd must have been previously declared with \newsavebox (see \newsavebox).   

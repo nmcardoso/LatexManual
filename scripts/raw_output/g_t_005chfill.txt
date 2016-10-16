@@ -1,1 +1,0 @@
-         Produce a rubber length which has no natural space but can stretch horizontally as far as needed (see Lengths).   The command \hfill is equivalent to \hspace{\fill}.  For space that does not disappear at line breaks use \hspace*{\fill} instead (see \hspace).   

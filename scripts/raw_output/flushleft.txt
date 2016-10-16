@@ -1,1 +1,0 @@
-           \begin{flushleft} line1 \\ line2 \\ ... \end{flushleft}    The flushleft environment allows you to create a paragraph consisting of lines that are flush to the left-hand margin and ragged right. Each line must be terminated with the string \\.    \raggedright:Declaration form of the flushleft environment.     
