@@ -256,7 +256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Favorite fav;
         SQLiteDatabase db = getReadableDatabase();
 
-        final String query = "SELECT * "
+        final String query = "SELECT f.*, d.* "
                 + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
                 + " INNER JOIN " + TABLE_FAVORITES + " AS f "
                 + " ON d." + DOCUMENTATIONS_ID + " = f." + FAVORITES_DOC_ID
