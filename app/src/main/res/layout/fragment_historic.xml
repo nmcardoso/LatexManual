@@ -26,7 +26,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_historic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true" />
 
             <LinearLayout
                 android:id="@+id/history_nav"
@@ -52,8 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="1 of 1" />
+                    android:layout_marginRight="8dp" />
 
                 <ImageButton
                     android:id="@+id/ib_hist_next"
@@ -65,5 +66,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </FrameLayout>

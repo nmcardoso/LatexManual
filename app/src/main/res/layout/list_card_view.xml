@@ -25,5 +25,4 @@
         android:layout_height="wrap_content"
         android:paddingLeft="12dp"
         android:paddingStart="12dp"/>
-
 </LinearLayout>
