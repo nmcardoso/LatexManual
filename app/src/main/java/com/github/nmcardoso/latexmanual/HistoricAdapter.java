@@ -2,6 +2,7 @@ package com.github.nmcardoso.latexmanual;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View historicView = inflater.inflate(R.layout.list_2_columns, parent, false);
+        View historicView = inflater.inflate(R.layout.list_history, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(historicView);
         return viewHolder;
@@ -54,7 +55,7 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(HistoricAdapter.ViewHolder holder, int position) {
-        Historic historic = historicList.get(position);
+        final Historic historic = historicList.get(position);
 
         TextView leftText = holder.leftText;
         leftText.setText(historic.getDocumentation().getTitle());
@@ -71,6 +72,16 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
             e.printStackTrace();
         }
         rightText.setText(dateStr);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DocViewerActivity.class);
+                intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
+                        historic.getDocumentation().getFileName());
+                context.startActivity(intent);
+            }
+        });
     }
 
 
