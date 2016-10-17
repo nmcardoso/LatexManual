@@ -199,6 +199,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public int getDocumentationCount() {
+        int count = -1;
+        final String query = "SELECT COUNT(*) AS count "
+                + " FROM " + TABLE_DOCUMENTATIONS;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(cursor.getColumnIndex("count"));
+            }
+
+            cursor.close();
+        }
+
+        return count;
+    }
+
+
     public boolean isFavorite(String fileName) {
         SQLiteDatabase db = getReadableDatabase();
         boolean isFavorite;
@@ -384,6 +404,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = -1;
         final String query = "SELECT COUNT(*) AS count "
                 + " FROM " + TABLE_HISTORIC;
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(cursor.getColumnIndex("count"));
+            }
+
+            cursor.close();
+        }
+
+        return count;
+    }
+
+
+    public int getUniqueHistoryCount() {
+        int count = -1;
+        final String query = "SELECT COUNT(*) AS count "
+                + " FROM " + TABLE_DOCUMENTATIONS + " d "
+                + " INNER JOIN " + TABLE_HISTORIC + " h "
+                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORIC_DOC_ID
+                + " GROUP BY h." + HISTORIC_DOC_ID;
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
