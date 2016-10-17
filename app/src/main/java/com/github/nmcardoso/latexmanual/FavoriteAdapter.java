@@ -2,13 +2,19 @@ package com.github.nmcardoso.latexmanual;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,13 +26,13 @@ import java.util.Locale;
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView leftText;
-        public TextView rightText;
+        public Button btnRemove;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             leftText = (TextView) itemView.findViewById(R.id.txt_left);
-            rightText = (TextView) itemView.findViewById(R.id.txt_right);
+            btnRemove = (Button) itemView.findViewById(R.id.btn_remove);
         }
     }
 
@@ -46,7 +52,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View favoriteView = inflater.inflate(R.layout.list_2_columns, parent, false);
+        View favoriteView = inflater.inflate(R.layout.list_favorites, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(favoriteView);
         return viewHolder;
@@ -60,23 +66,40 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         TextView leftText = holder.leftText;
         leftText.setText(favorite.getDocumentation().getTitle());
 
-        TextView rightText = holder.rightText;
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DatabaseHelper.DATE_FORMAT, Locale.getDefault());
-        String dateStr = "";
+        Button btnRemove = holder.btnRemove;
+        btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == DialogInterface.BUTTON_POSITIVE) {
+                            DatabaseHelper dbHelper = new DatabaseHelper(context);
+                            dbHelper.deleteFavorite(favorite.getDocumentation().getId());
+                            Toast.makeText(context, context.getResources().getString(R.string.fav_removed),
+                                    Toast.LENGTH_SHORT).show();
+                            dialogInterface.dismiss();
+                        } else {
+                            dialogInterface.dismiss();
+                        }
+                    }
+                };
 
-        try {
-            Date date = dateFormat.parse(favorite.getCreatedAt());
-            long time = date.getTime();
-            dateStr = (String) DateUtils.getRelativeTimeSpanString(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        rightText.setText(dateStr);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(context.getString(R.string.confirm_deletion))
+                        .setMessage(Html.fromHtml(String.format(context.getString(
+                                R.string.remove_doc_from_favorites),
+                                favorite.getDocumentation().getTitle())))
+                        .setPositiveButton(context.getString(R.string.yes), dialogClickListener)
+                        .setNegativeButton(context.getString(R.string.no), dialogClickListener)
+                        .show();
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(context, DocViewerActivity.class);
+                Intent intent = new Intent(context, DocViewerActivity.class);
                 intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
                         favorite.getDocumentation().getFileName());
                 context.startActivity(intent);
