@@ -4,58 +4,92 @@ import java.util.List;
 
 public class Card {
     private String title;
-    private List<Object> contentList = null;
-    private String contentString = null;
+    private List<?> contentList;
+    private String contentText;
     private int contentType;
+    private int flag;
+    private int headerBackground;
+    private int headerIcon;
 
-    public static final int STRING = 0;
+    public static final int TEXT = 0;
     public static final int LIST = 1;
 
-    public Card(int contentType) {
-        this.contentType = contentType;
-    }
-
-    public Card(String title, List<Object> contentList) {
-        this.title = title;
-        this.contentList = contentList;
-        this.contentType = LIST;
-    }
-
-    public Card(String title, String contentString) {
-        this.title = title;
-        this.contentString = contentString;
-        this.contentType = STRING;
+    public Card(CardBuilder builder) {
+        this.title = builder.title;
+        this.contentList = builder.contentList;
+        this.contentText = builder.contentText;
+        this.contentType = builder.contentType;
+        this.flag = builder.flag;
+        this.headerBackground = builder.headerBackground;
+        this.headerIcon = builder.headerIcon;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public List<Object> getContentList() {
+    public List<?> getContentList() {
         return contentList;
     }
 
-    public void setContentList(List<Object> contentList) {
-        this.contentList = contentList;
-    }
-
-    public String getContentString() {
-        return contentString;
-    }
-
-    public void setContentString(String contentString) {
-        this.contentString = contentString;
+    public String getContentText() {
+        return contentText;
     }
 
     public int getContentType() {
         return contentType;
     }
 
-    public void setContentType(int contentType) {
-        this.contentType = contentType;
+    public int getFlag() {
+        return flag;
+    }
+
+    public int getHeaderBackground() {
+        return headerBackground;
+    }
+
+    public int getHeaderIcon() {
+        return headerIcon;
+    }
+
+    public static class CardBuilder {
+        private String title;
+        private List<?> contentList = null;
+        private String contentText = null;
+        private int contentType;
+        private int flag;
+        private int headerBackground;
+        private int headerIcon;
+
+        public CardBuilder(String title, String contentText) {
+            this.title = title;
+            this.contentText = contentText;
+            this.contentType = Card.TEXT;
+        }
+
+        public CardBuilder(String title, List<?> contentList) {
+            this.title = title;
+            this.contentList = contentList;
+            this.contentType = Card.LIST;
+        }
+
+        public CardBuilder flag(int flag) {
+            this.flag = flag;
+            return this;
+        }
+
+        public CardBuilder headerBackground(int resId) {
+            this.headerBackground = resId;
+            return this;
+        }
+
+        public CardBuilder headerIcon(int resId) {
+            this.headerIcon = resId;
+            return this;
+        }
+
+        public Card build() {
+            return new Card(this);
+        }
     }
 }
