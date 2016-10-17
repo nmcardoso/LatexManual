@@ -2,6 +2,7 @@ package com.github.nmcardoso.latexmanual;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -48,7 +49,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View view = inflater.inflate(R.layout.list_2_columns, parent, false);
+        View view = inflater.inflate(R.layout.list_card_view, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -76,8 +77,6 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
 
             txtLeft.setText(historic.getDocumentation().getTitle());
             txtRight.setText(dateStr);
-
-
         } else if (flag == FAVORITE) {
             Favorite favorite = (Favorite) itemObject;
 
