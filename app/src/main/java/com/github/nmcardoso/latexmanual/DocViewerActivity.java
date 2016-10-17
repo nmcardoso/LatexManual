@@ -113,9 +113,9 @@ public class DocViewerActivity extends AppCompatActivity {
         isFavorite = dbHelper.isFavorite(docId);
 
         if (isFavorite) {
-            favButton.setIcon(android.R.drawable.btn_star_big_on);
+            favButton.setIcon(getResources().getDrawable(R.drawable.ic_star));
         } else {
-            favButton.setIcon(android.R.drawable.btn_star_big_off);
+            favButton.setIcon(getResources().getDrawable(R.drawable.ic_star_outline));
         }
     }
 }

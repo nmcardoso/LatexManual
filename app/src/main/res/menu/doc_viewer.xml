@@ -3,6 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_favorite"
         android:title="Favorite"
-        android:icon="@android:drawable/btn_star_big_off"
+        android:icon="@drawable/ic_star_outline"
         app:showAsAction="ifRoom" />
 </menu>
