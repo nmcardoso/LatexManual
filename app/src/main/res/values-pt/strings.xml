@@ -15,4 +15,8 @@
     <string name="empty_history">Nunhum Histórico</string>
     <string name="hello_blank_fragment"></string>
     <string name="no_favorites">Nenhum Favorito</string>
+    <string name="confirm_deletion">Confirmar deleção</string>
+    <string name="remove_doc_from_favorites"><![CDATA[Remover documentação <i><b>%1$s</b></i> dos favoritos?]]></string>
+    <string name="no">NÃO</string>
+    <string name="yes">SIM</string>
 </resources>
