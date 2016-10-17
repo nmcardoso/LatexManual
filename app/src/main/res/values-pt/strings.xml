@@ -19,4 +19,7 @@
     <string name="remove_doc_from_favorites"><![CDATA[Remover documentação <i><b>%1$s</b></i> dos favoritos?]]></string>
     <string name="no">NÃO</string>
     <string name="yes">SIM</string>
+    <string name="most_viewed">Mais vistos</string>
+    <string name="statistics">Estatísticas</string>
+    <string name="stats_content"><![CDATA[Total de documentações: %1$d \n\nDocumentações vistas: %2$d \n\nDocumentações únicas vistas: %3$d \n\nDocumentações favoritas: %4$d]]></string>
 </resources>

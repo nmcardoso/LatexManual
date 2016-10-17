@@ -22,4 +22,7 @@
     <string name="remove_doc_from_favorites"><![CDATA[Remove documentation <i><b>%1$s</b></i> from favorites?]]></string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="most_viewed">Most Viewed</string>
+    <string name="statistics">Statistics</string>
+    <string name="stats_content"><![CDATA[Total documentations: %1$d \n\nDocumentation views: %2$d \n\nUnique documentations views: %3$d \n\nFavorite documentations: %4$d]]></string>
 </resources>
