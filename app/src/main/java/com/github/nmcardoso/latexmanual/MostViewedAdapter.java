@@ -40,7 +40,7 @@ public class MostViewedAdapter extends RecyclerView.Adapter<MostViewedAdapter.Vi
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View historicView = inflater.inflate(R.layout.list_2_columns, parent, false);
+        View historicView = inflater.inflate(R.layout.list_cardview, parent, false);
 
         MostViewedAdapter.ViewHolder viewHolder = new MostViewedAdapter.ViewHolder(historicView);
         return viewHolder;
