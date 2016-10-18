@@ -4,7 +4,6 @@ public class History {
     private Documentation documentation;
     private int id;
     private String createdAt;
-    private int viewCount;
 
     public History() {
     }
@@ -36,13 +35,5 @@ public class History {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public int getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
     }
 }
