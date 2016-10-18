@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + DOCUMENTATIONS_TITLE + " TEXT NOT NULL, "
             + DOCUMENTATIONS_DATA + " TEXT NOT NULL" + ")";
 
-    // Create table HISTORIC statement
+    // Create table HISTORY statement
     private static final String CREATE_HISTORY = "CREATE TABLE "
             + TABLE_HISTORY + " ("
             + HISTORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "

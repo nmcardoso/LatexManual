@@ -35,7 +35,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
 
     public static final int MOST_VIEWED = 0;
     public static final int FAVORITE = 1;
-    public static final int HISTORIC = 2;
+    public static final int HISTORY = 2;
     public static final int STATISTICS = 3;
 
     public CardListAdapter(Context context, List<?> data, int flag) {
@@ -58,7 +58,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
             case CardListAdapter.FAVORITE:
                 configureFavoriteView(holder, position);
                 break;
-            case CardListAdapter.HISTORIC:
+            case CardListAdapter.HISTORY:
                 configureHistoryView(holder, position);
                 break;
             case CardListAdapter.MOST_VIEWED:

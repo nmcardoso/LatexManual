@@ -38,7 +38,7 @@ public class MainContentFragment extends Fragment {
         );
         cardsList.add(
                 new Card.CardBuilder(getString(R.string.history), dbHelper.getHistory(5))
-                .flag(CardListAdapter.HISTORIC)
+                .flag(CardListAdapter.HISTORY)
                 .headerBackground(R.color.purple1)
                 .headerIcon(R.drawable.ic_menu_history)
                 .build()
