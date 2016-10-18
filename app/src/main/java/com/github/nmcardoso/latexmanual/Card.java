@@ -3,13 +3,14 @@ package com.github.nmcardoso.latexmanual;
 import java.util.List;
 
 public class Card {
-    private String title;
-    private List<?> contentList;
-    private String contentText;
-    private int contentType;
-    private int flag;
-    private int headerBackground;
-    private int headerIcon;
+    private final String title;
+    private final List<?> contentList;
+    private final String contentText;
+    private final int contentType;
+    private final int flag;
+    private final int headerBackground;
+    private final int headerIcon;
+    private final boolean viewMore;
 
     public static final int TEXT = 0;
     public static final int LIST = 1;
@@ -22,6 +23,7 @@ public class Card {
         this.flag = builder.flag;
         this.headerBackground = builder.headerBackground;
         this.headerIcon = builder.headerIcon;
+        this.viewMore = builder.viewMore;
     }
 
     public String getTitle() {
@@ -52,14 +54,19 @@ public class Card {
         return headerIcon;
     }
 
+    public boolean hasViewMoreButton() {
+        return viewMore;
+    }
+
     public static class CardBuilder {
         private String title;
         private List<?> contentList = null;
         private String contentText = null;
         private int contentType;
         private int flag;
-        private int headerBackground;
-        private int headerIcon;
+        private int headerBackground = 0;
+        private int headerIcon = 0;
+        private boolean viewMore = false;
 
         public CardBuilder(String title, String contentText) {
             this.title = title;
@@ -85,6 +92,11 @@ public class Card {
 
         public CardBuilder headerIcon(int resId) {
             this.headerIcon = resId;
+            return this;
+        }
+
+        public CardBuilder viewMore(boolean viewMore) {
+            this.viewMore = viewMore;
             return this;
         }
 

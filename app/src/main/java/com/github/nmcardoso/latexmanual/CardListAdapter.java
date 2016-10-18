@@ -85,37 +85,37 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
     }
 
     private void configureMostViewedView(ViewHolder holder, int position) {
-        final Historic historic = (Historic) data.get(position);
+        final History history = (History) data.get(position);
 
-        holder.txtLeft.setText(historic.getDocumentation().getTitle());
-        holder.txtRight.setText(String.valueOf(historic.getViewCount()));
+        holder.txtLeft.setText(history.getDocumentation().getTitle());
+        holder.txtRight.setText(String.valueOf(history.getViewCount()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DocViewerActivity.class);
                 intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
-                        historic.getDocumentation().getFileName());
+                        history.getDocumentation().getFileName());
                 context.startActivity(intent);
             }
         });
     }
 
     private void configureHistoryView(ViewHolder holder, int position) {
-        final Historic historic = (Historic) data.get(position);
+        final History history = (History) data.get(position);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 DatabaseHelper.DATE_FORMAT, Locale.getDefault());
         String dateStr = "";
         try {
-            Date date = dateFormat.parse(historic.getCreatedAt());
+            Date date = dateFormat.parse(history.getCreatedAt());
             long time = date.getTime();
             dateStr = (String) DateUtils.getRelativeTimeSpanString(time);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        holder.txtLeft.setText(historic.getDocumentation().getTitle());
+        holder.txtLeft.setText(history.getDocumentation().getTitle());
         holder.txtRight.setText(dateStr);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +123,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
             public void onClick(View view) {
                 Intent intent = new Intent(context, DocViewerActivity.class);
                 intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
-                        historic.getDocumentation().getFileName());
+                        history.getDocumentation().getFileName());
                 context.startActivity(intent);
             }
         });

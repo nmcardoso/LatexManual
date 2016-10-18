@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class MainContentFragment extends Fragment {
                 .build()
         );
         cardsList.add(
-                new Card.CardBuilder(getString(R.string.history), dbHelper.getHistoric(5))
+                new Card.CardBuilder(getString(R.string.history), dbHelper.getHistory(5))
                 .flag(CardListAdapter.HISTORIC)
                 .headerBackground(R.color.purple1)
                 .headerIcon(R.drawable.ic_menu_history)
@@ -50,11 +50,16 @@ public class MainContentFragment extends Fragment {
                 .headerIcon(R.drawable.ic_star)
                 .build()
         );
+        List<Pair<String, Integer>> stats = new ArrayList<>();
+        stats.add(new Pair<String, Integer>("Doc Count", dbHelper.getDocumentationCount()));
+        stats.add(new Pair<String, Integer>("Hist Count", dbHelper.getHistoryCount()));
+        stats.add(new Pair<String, Integer>("Unique Hist Count", dbHelper.getUniqueHistoryCount()));
+        stats.add(new Pair<String, Integer>("Fav Count", dbHelper.getFavoritesCount()));
         cardsList.add(
                 new Card.CardBuilder(getString(R.string.statistics),
                         String.format(getString(R.string.stats_content),
                                 dbHelper.getDocumentationCount(),
-                                dbHelper.getHistoricCount(),
+                                dbHelper.getHistoryCount(),
                                 dbHelper.getUniqueHistoryCount(),
                                 dbHelper.getFavoritesCount()))
                 .headerBackground(R.color.cardview_dark_background)

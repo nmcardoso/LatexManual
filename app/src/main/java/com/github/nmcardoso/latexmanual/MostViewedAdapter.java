@@ -25,12 +25,12 @@ public class MostViewedAdapter extends RecyclerView.Adapter<MostViewedAdapter.Vi
     }
 
 
-    private List<Historic> historicList;
+    private List<History> historyList;
     private Context context;
 
 
-    public MostViewedAdapter(Context context, List<Historic> historicList) {
-        this.historicList = historicList;
+    public MostViewedAdapter(Context context, List<History> historyList) {
+        this.historyList = historyList;
         this.context = context;
     }
 
@@ -49,18 +49,18 @@ public class MostViewedAdapter extends RecyclerView.Adapter<MostViewedAdapter.Vi
 
     @Override
     public void onBindViewHolder(MostViewedAdapter.ViewHolder holder, int position) {
-        Historic historic = historicList.get(position);
+        History history = historyList.get(position);
 
         TextView leftText = holder.leftText;
-        leftText.setText(historic.getDocumentation().getTitle());
+        leftText.setText(history.getDocumentation().getTitle());
 
         TextView rightText = holder.rightText;
-        rightText.setText(String.valueOf(historic.getViewCount()));
+        rightText.setText(String.valueOf(history.getViewCount()));
     }
 
 
     @Override
     public int getItemCount() {
-        return historicList.size();
+        return historyList.size();
     }
 }

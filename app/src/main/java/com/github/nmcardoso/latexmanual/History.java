@@ -1,12 +1,12 @@
 package com.github.nmcardoso.latexmanual;
 
-public class Historic {
+public class History {
     private Documentation documentation;
     private int id;
     private String createdAt;
     private int viewCount;
 
-    public Historic() {
+    public History() {
     }
 
     @Override

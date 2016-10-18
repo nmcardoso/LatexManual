@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Table names
     private static final String TABLE_DOCUMENTATIONS = "documentations";
-    private static final String TABLE_HISTORIC = "historic";
+    private static final String TABLE_HISTORY = "history";
     private static final String TABLE_FAVORITES = "favorites";
 
     // Documentations columns
@@ -36,10 +36,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DOCUMENTATIONS_TITLE = "title";
     public static final String DOCUMENTATIONS_DATA = "data";
 
-    // Historic columns
-    private static final String HISTORIC_ID = "_id";
-    private static final String HISTORIC_CREATED_AT = "created_at";
-    private static final String HISTORIC_DOC_ID = "documentations_id";
+    // History columns
+    private static final String HISTORY_ID = "_id";
+    private static final String HISTORY_CREATED_AT = "created_at";
+    private static final String HISTORY_DOC_ID = "documentations_id";
 
     // Favorites columns
     private static final String FAVORITES_ID = "_id";
@@ -55,11 +55,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + DOCUMENTATIONS_DATA + " TEXT NOT NULL" + ")";
 
     // Create table HISTORIC statement
-    private static final String CREATE_HISTORIC = "CREATE TABLE "
-            + TABLE_HISTORIC + " ("
-            + HISTORIC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + HISTORIC_CREATED_AT + " TEXT, "
-            + HISTORIC_DOC_ID + " INTEGER NOT NULL" + ")";
+    private static final String CREATE_HISTORY = "CREATE TABLE "
+            + TABLE_HISTORY + " ("
+            + HISTORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + HISTORY_CREATED_AT + " TEXT, "
+            + HISTORY_DOC_ID + " INTEGER NOT NULL" + ")";
 
     // Create table FAVORITES statement
     private static final String CREATE_FAVORITES = "CREATE TABLE "
@@ -83,9 +83,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCUMENTATIONS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_FAVORITES);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORIC);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORY);
         sqLiteDatabase.execSQL(CREATE_DOCUMENTATIONS);
-        sqLiteDatabase.execSQL(CREATE_HISTORIC);
+        sqLiteDatabase.execSQL(CREATE_HISTORY);
         sqLiteDatabase.execSQL(CREATE_FAVORITES);
         insertDocumentations(sqLiteDatabase);
     }
@@ -346,15 +346,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public List<Historic> getHistoric(int limit, int offset) {
-        ArrayList<Historic> histList = new ArrayList<>();
+    public List<History> getHistory(int limit, int offset) {
+        ArrayList<History> histList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         final String query = "SELECT h.*, d.* "
                 + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
-                + " INNER JOIN " + TABLE_HISTORIC + " AS h "
-                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORIC_DOC_ID
-                + " ORDER BY h." + HISTORIC_ID + " DESC "
+                + " INNER JOIN " + TABLE_HISTORY + " AS h "
+                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
+                + " ORDER BY h." + HISTORY_ID + " DESC "
                 + " LIMIT ? "
                 + " OFFSET ? ";
 
@@ -363,14 +363,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null && !cursor.isClosed() && cursor.moveToFirst()) {
             do {
                 Documentation doc = new Documentation();
-                doc.setId(cursor.getInt(cursor.getColumnIndex(HISTORIC_DOC_ID)));
+                doc.setId(cursor.getInt(cursor.getColumnIndex(HISTORY_DOC_ID)));
                 doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
                 doc.setTitle(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)));
                 doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
 
-                Historic hist = new Historic();
-                hist.setId(cursor.getInt(cursor.getColumnIndex(HISTORIC_ID)));
-                hist.setCreatedAt(cursor.getString(cursor.getColumnIndex(HISTORIC_CREATED_AT)));
+                History hist = new History();
+                hist.setId(cursor.getInt(cursor.getColumnIndex(HISTORY_ID)));
+                hist.setCreatedAt(cursor.getString(cursor.getColumnIndex(HISTORY_CREATED_AT)));
                 hist.setDocumentation(doc);
 
                 histList.add(hist);
@@ -383,27 +383,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public List<Historic> getHistoric(int limit) {
-        return getHistoric(limit, 0);
+    public List<History> getHistory(int limit) {
+        return getHistory(limit, 0);
     }
 
 
-    public void insertHistoric(int docId) {
+    public void insertHistory(int docId) {
         ContentValues values = new ContentValues();
-        values.put(HISTORIC_DOC_ID, docId);
+        values.put(HISTORY_DOC_ID, docId);
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
         String currentDate = sdf.format(new Date());
-        values.put(HISTORIC_CREATED_AT, currentDate);
+        values.put(HISTORY_CREATED_AT, currentDate);
 
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_HISTORIC, null, values);
+        db.insert(TABLE_HISTORY, null, values);
     }
 
 
-    public int getHistoricCount() {
+    public int getHistoryCount() {
         int count = -1;
         final String query = "SELECT COUNT(*) AS count "
-                + " FROM " + TABLE_HISTORIC;
+                + " FROM " + TABLE_HISTORY;
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -424,9 +424,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = -1;
         final String query = "SELECT COUNT(*) AS count "
                 + " FROM " + TABLE_DOCUMENTATIONS + " d "
-                + " INNER JOIN " + TABLE_HISTORIC + " h "
-                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORIC_DOC_ID
-                + " GROUP BY h." + HISTORIC_DOC_ID;
+                + " INNER JOIN " + TABLE_HISTORY + " h "
+                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
+                + " GROUP BY h." + HISTORY_DOC_ID;
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -443,20 +443,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void clearHistoric() {
+    public void clearHistory() {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_HISTORIC, null, null);
+        db.delete(TABLE_HISTORY, null, null);
     }
 
 
-    public List<Historic> getMostViewed(int limit) {
-        List<Historic> ret = new ArrayList<>();
+    public List<History> getMostViewed(int limit) {
+        List<History> ret = new ArrayList<>();
 
-        final String query = "SELECT d.*, COUNT(h." + HISTORIC_DOC_ID + ") AS count "
+        final String query = "SELECT d.*, COUNT(h." + HISTORY_DOC_ID + ") AS count "
                 + " FROM " + TABLE_DOCUMENTATIONS + " d "
-                + " INNER JOIN " + TABLE_HISTORIC + " h "
-                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORIC_DOC_ID
-                + " GROUP BY h." + HISTORIC_DOC_ID
+                + " INNER JOIN " + TABLE_HISTORY + " h "
+                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
+                + " GROUP BY h." + HISTORY_DOC_ID
                 + " ORDER BY count DESC "
                 + " LIMIT ? ";
 
@@ -472,7 +472,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
                     doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
 
-                    Historic hist = new Historic();
+                    History hist = new History();
                     hist.setDocumentation(doc);
                     hist.setViewCount(cursor.getInt(cursor.getColumnIndex("count")));
 
@@ -492,9 +492,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         final String query = "SELECT * "
                 + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
-                + " INNER JOIN " + TABLE_HISTORIC + " AS h "
-                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORIC_DOC_ID
-                + " ORDER BY " + " h." + HISTORIC_ID + " DESC "
+                + " INNER JOIN " + TABLE_HISTORY + " AS h "
+                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
+                + " ORDER BY " + " h." + HISTORY_ID + " DESC "
                 + " LIMIT 5";
 
         Cursor cursor = db.rawQuery(query, null);

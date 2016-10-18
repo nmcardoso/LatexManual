@@ -33,13 +33,13 @@ public class HistoricFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_historic, container, false);
+        View view = inflater.inflate(R.layout.fragment_history, container, false);
 
         dbHelper = new DatabaseHelper(getActivity());
 
-        RecyclerView rvHistoric = (RecyclerView) view.findViewById(R.id.rv_historic);
-        List<Historic> historicList = dbHelper.getHistoric(RESULTS_PER_PAGE);
-        historicAdapter = new HistoricAdapter(getActivity(), historicList);
+        RecyclerView rvHistoric = (RecyclerView) view.findViewById(R.id.rv_history);
+        List<History> historyList = dbHelper.getHistory(RESULTS_PER_PAGE);
+        historicAdapter = new HistoricAdapter(getActivity(), historyList);
         rvHistoric.setAdapter(historicAdapter);
         rvHistoric.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -48,7 +48,7 @@ public class HistoricFragment extends Fragment {
         ImageButton ibPrev = (ImageButton) view.findViewById(R.id.ib_hist_prev);
         ImageButton ibNext = (ImageButton) view.findViewById(R.id.ib_hist_next);
 
-        int historyCount = dbHelper.getHistoricCount();
+        int historyCount = dbHelper.getHistoryCount();
         totalPages = (int) Math.ceil((float) historyCount / RESULTS_PER_PAGE);
 
         if (historyCount == 0) {
@@ -66,9 +66,9 @@ public class HistoricFragment extends Fragment {
                 public void onClick(View view) {
                     if (currentPage > 1) {
                         currentPage--;
-                        List<Historic> historicList = dbHelper.getHistoric(RESULTS_PER_PAGE,
+                        List<History> historyList = dbHelper.getHistory(RESULTS_PER_PAGE,
                                 (currentPage - 1) * RESULTS_PER_PAGE);
-                        historicAdapter.swap(historicList);
+                        historicAdapter.swap(historyList);
                         txtHistNav.setText(String.format(getResources().getString(R.string.i_of_n),
                                 currentPage, totalPages));
                     }
@@ -79,9 +79,9 @@ public class HistoricFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if (currentPage < totalPages) {
-                        List<Historic> historicList = dbHelper.getHistoric(RESULTS_PER_PAGE,
+                        List<History> historyList = dbHelper.getHistory(RESULTS_PER_PAGE,
                                 currentPage * RESULTS_PER_PAGE);
-                        historicAdapter.swap(historicList);
+                        historicAdapter.swap(historyList);
                         currentPage++;
                         txtHistNav.setText(String.format(getResources().getString(R.string.i_of_n),
                                 currentPage, totalPages));

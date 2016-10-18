@@ -31,12 +31,12 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
     }
 
 
-    private List<Historic> historicList;
+    private List<History> historyList;
     private Context context;
 
 
-    public HistoricAdapter(Context context, List<Historic> historicList) {
-        this.historicList = historicList;
+    public HistoricAdapter(Context context, List<History> historyList) {
+        this.historyList = historyList;
         this.context = context;
     }
 
@@ -55,17 +55,17 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(HistoricAdapter.ViewHolder holder, int position) {
-        final Historic historic = historicList.get(position);
+        final History history = historyList.get(position);
 
         TextView leftText = holder.leftText;
-        leftText.setText(historic.getDocumentation().getTitle());
+        leftText.setText(history.getDocumentation().getTitle());
 
         TextView rightText = holder.rightText;
         SimpleDateFormat dateFormat = new SimpleDateFormat(DatabaseHelper.DATE_FORMAT, Locale.getDefault());
         String dateStr = "";
 
         try {
-            Date date = dateFormat.parse(historic.getCreatedAt());
+            Date date = dateFormat.parse(history.getCreatedAt());
             long time = date.getTime();
             dateStr = (String) DateUtils.getRelativeTimeSpanString(time);
         } catch (ParseException e) {
@@ -78,7 +78,7 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
             public void onClick(View view) {
                 Intent intent = new Intent(context, DocViewerActivity.class);
                 intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
-                        historic.getDocumentation().getFileName());
+                        history.getDocumentation().getFileName());
                 context.startActivity(intent);
             }
         });
@@ -87,13 +87,13 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return historicList.size();
+        return historyList.size();
     }
 
 
-    public void swap(List<Historic> newData) {
-        historicList.clear();
-        historicList.addAll(newData);
+    public void swap(List<History> newData) {
+        historyList.clear();
+        historyList.addAll(newData);
         notifyDataSetChanged();
     }
 }
