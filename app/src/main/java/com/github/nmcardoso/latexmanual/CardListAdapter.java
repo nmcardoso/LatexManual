@@ -2,6 +2,7 @@ package com.github.nmcardoso.latexmanual;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -18,14 +19,13 @@ import java.util.Locale;
 
 public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView leftText;
-        public TextView rightText;
+        TextView txtLeft;
+        TextView txtRight;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            leftText = (TextView) itemView.findViewById(R.id.txt_left);
-            rightText = (TextView) itemView.findViewById(R.id.txt_right);
+            txtLeft = (TextView) itemView.findViewById(R.id.txt_left);
+            txtRight = (TextView) itemView.findViewById(R.id.txt_right);
         }
     }
 
@@ -36,6 +36,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
     public static final int MOST_VIEWED = 0;
     public static final int FAVORITE = 1;
     public static final int HISTORIC = 2;
+    public static final int STATISTICS = 3;
 
     public CardListAdapter(Context context, List<?> data, int flag) {
         this.context = context;
@@ -47,61 +48,112 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
         View view = inflater.inflate(R.layout.list_cardview, parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Object itemObject = data.get(position);
-        TextView txtLeft = holder.leftText;
-        TextView txtRight = holder.rightText;
-
-        if (flag == HISTORIC) {
-            Historic historic = (Historic) itemObject;
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat(
-                    DatabaseHelper.DATE_FORMAT, Locale.getDefault());
-            String dateStr = "";
-            try {
-                Date date = dateFormat.parse(historic.getCreatedAt());
-                long time = date.getTime();
-                dateStr = (String) DateUtils.getRelativeTimeSpanString(time);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            txtLeft.setText(historic.getDocumentation().getTitle());
-            txtRight.setText(dateStr);
-        } else if (flag == FAVORITE) {
-            Favorite favorite = (Favorite) itemObject;
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat(
-                    DatabaseHelper.DATE_FORMAT, Locale.getDefault());
-            String dateStr = "";
-            try {
-                Date date = dateFormat.parse(favorite.getCreatedAt());
-                long time = date.getTime();
-                dateStr = (String) DateUtils.getRelativeTimeSpanString(time);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            txtLeft.setText(favorite.getDocumentation().getTitle());
-            txtRight.setText(dateStr);
-        } else if (flag == MOST_VIEWED) {
-            Historic historic = (Historic) itemObject;
-
-            txtLeft.setText(historic.getDocumentation().getTitle());
-            txtRight.setText(String.valueOf(historic.getViewCount()));
+        switch (holder.getItemViewType()) {
+            case CardListAdapter.FAVORITE:
+                configureFavoriteView(holder, position);
+                break;
+            case CardListAdapter.HISTORIC:
+                configureHistoryView(holder, position);
+                break;
+            case CardListAdapter.MOST_VIEWED:
+                configureMostViewedView(holder, position);
+                break;
+            case CardListAdapter.STATISTICS:
+                configureStatisticsView(holder, position);
+                break;
         }
     }
 
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return flag;
+    }
+
+    private void configureStatisticsView(ViewHolder holder, int position) {
+
+    }
+
+    private void configureMostViewedView(ViewHolder holder, int position) {
+        final Historic historic = (Historic) data.get(position);
+
+        holder.txtLeft.setText(historic.getDocumentation().getTitle());
+        holder.txtRight.setText(String.valueOf(historic.getViewCount()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DocViewerActivity.class);
+                intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
+                        historic.getDocumentation().getFileName());
+                context.startActivity(intent);
+            }
+        });
+    }
+
+    private void configureHistoryView(ViewHolder holder, int position) {
+        final Historic historic = (Historic) data.get(position);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                DatabaseHelper.DATE_FORMAT, Locale.getDefault());
+        String dateStr = "";
+        try {
+            Date date = dateFormat.parse(historic.getCreatedAt());
+            long time = date.getTime();
+            dateStr = (String) DateUtils.getRelativeTimeSpanString(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        holder.txtLeft.setText(historic.getDocumentation().getTitle());
+        holder.txtRight.setText(dateStr);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DocViewerActivity.class);
+                intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
+                        historic.getDocumentation().getFileName());
+                context.startActivity(intent);
+            }
+        });
+    }
+
+    private void configureFavoriteView(ViewHolder holder, int position) {
+        final Favorite favorite = (Favorite) data.get(position);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                DatabaseHelper.DATE_FORMAT, Locale.getDefault());
+        String dateStr = "";
+        try {
+            Date date = dateFormat.parse(favorite.getCreatedAt());
+            long time = date.getTime();
+            dateStr = (String) DateUtils.getRelativeTimeSpanString(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        holder.txtLeft.setText(favorite.getDocumentation().getTitle());
+        holder.txtRight.setText(dateStr);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DocViewerActivity.class);
+                intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
+                        favorite.getDocumentation().getFileName());
+                context.startActivity(intent);
+            }
+        });
     }
 }
