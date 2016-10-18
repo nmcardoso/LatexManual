@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,17 +32,17 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
 
     private Context context;
     private List<?> data;
-    private int flag;
+    private int itemType;
 
     public static final int MOST_VIEWED = 0;
     public static final int FAVORITE = 1;
     public static final int HISTORY = 2;
     public static final int STATISTICS = 3;
 
-    public CardListAdapter(Context context, List<?> data, int flag) {
+    public CardListAdapter(Context context, List<?> data, int itemType) {
         this.context = context;
         this.data = data;
-        this.flag = flag;
+        this.itemType = itemType;
     }
 
     @Override
@@ -77,11 +78,14 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        return flag;
+        return itemType;
     }
 
     private void configureStatisticsView(ViewHolder holder, int position) {
+        final Pair<String, Integer> stat = (Pair<String, Integer>) data.get(position);
 
+        holder.txtLeft.setText(stat.first);
+        holder.txtRight.setText(String.valueOf(stat.second));
     }
 
     private void configureMostViewedView(ViewHolder holder, int position) {

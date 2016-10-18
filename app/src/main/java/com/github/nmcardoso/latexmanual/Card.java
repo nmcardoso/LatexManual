@@ -7,7 +7,7 @@ public class Card {
     private final List<?> contentList;
     private final String contentText;
     private final int contentType;
-    private final int flag;
+    private final int listItemType;
     private final int headerBackground;
     private final int headerIcon;
     private final boolean viewMore;
@@ -20,7 +20,7 @@ public class Card {
         this.contentList = builder.contentList;
         this.contentText = builder.contentText;
         this.contentType = builder.contentType;
-        this.flag = builder.flag;
+        this.listItemType = builder.listItemType;
         this.headerBackground = builder.headerBackground;
         this.headerIcon = builder.headerIcon;
         this.viewMore = builder.viewMore;
@@ -42,8 +42,8 @@ public class Card {
         return contentType;
     }
 
-    public int getFlag() {
-        return flag;
+    public int getListItemType() {
+        return listItemType;
     }
 
     public int getHeaderBackground() {
@@ -63,7 +63,7 @@ public class Card {
         private List<?> contentList = null;
         private String contentText = null;
         private int contentType;
-        private int flag;
+        private int listItemType;
         private int headerBackground = 0;
         private int headerIcon = 0;
         private boolean viewMore = false;
@@ -80,8 +80,8 @@ public class Card {
             this.contentType = Card.LIST;
         }
 
-        public CardBuilder flag(int flag) {
-            this.flag = flag;
+        public CardBuilder listItemType(int listItemType) {
+            this.listItemType = listItemType;
             return this;
         }
 

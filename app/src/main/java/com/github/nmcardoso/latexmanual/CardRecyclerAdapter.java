@@ -108,7 +108,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         viewHolder.txtTitle.setCompoundDrawablesWithIntrinsicBounds(card.getHeaderIcon(), 0, 0, 0);
         viewHolder.txtTitle.setBackgroundResource(card.getHeaderBackground());
         CardListAdapter listAdapter = new CardListAdapter(context,
-                card.getContentList(), card.getFlag());
+                card.getContentList(), card.getListItemType());
         viewHolder.rvList.setAdapter(listAdapter);
         viewHolder.rvList.setLayoutManager(new LinearLayoutManager(context));
     }
