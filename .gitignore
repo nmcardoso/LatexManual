@@ -13,3 +13,4 @@
 /scripts/*.html
 /scripts/*.txt
 /app/src/main/assets/*.html
+/app/src/main/res/raw/*.sql
