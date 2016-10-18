@@ -111,6 +111,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
                 card.getContentList(), card.getListItemType());
         viewHolder.rvList.setAdapter(listAdapter);
         viewHolder.rvList.setLayoutManager(new LinearLayoutManager(context));
+        viewHolder.txtViewMore.setVisibility(card.hasViewMoreButton() ? View.VISIBLE : View.GONE);
     }
 
 

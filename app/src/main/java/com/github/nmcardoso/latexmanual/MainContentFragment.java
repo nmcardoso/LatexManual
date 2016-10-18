@@ -1,6 +1,6 @@
 package com.github.nmcardoso.latexmanual;
 
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +13,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MainContentFragment extends Fragment {
-
 
     public MainContentFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,38 +25,50 @@ public class MainContentFragment extends Fragment {
 
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
 
+        List<Pair<Documentation, Integer>> mostViewedList = dbHelper.getMostViewed(5);
+        List<History> historyList = dbHelper.getHistory(5);
+        List<Favorite> favoriteList = dbHelper.getFavorites(5);
+        List<Pair<String, Integer>> statsList = new ArrayList<>();
+        statsList.add(new Pair<String, Integer>(
+                getString(R.string.docs_in_database), dbHelper.getDocumentationCount()));
+        statsList.add(new Pair<String, Integer>(
+                getString(R.string.doc_views), dbHelper.getHistoryCount()));
+        statsList.add(new Pair<String, Integer>(
+                getString(R.string.unique_doc_views), dbHelper.getUniqueHistoryCount()));
+        statsList.add(new Pair<String, Integer>(
+                getString(R.string.favorites), dbHelper.getFavoritesCount()));
+
         List<Card> cardsList = new ArrayList<>();
         cardsList.add(
-                new Card.CardBuilder(getString(R.string.most_viewed), dbHelper.getMostViewed(5))
+                new Card.CardBuilder(getString(R.string.most_viewed), mostViewedList)
                         .listItemType(CardListAdapter.MOST_VIEWED)
                         .headerBackground(R.color.orange1)
                         .headerIcon(R.drawable.ic_plus)
+                        .viewMore(mostViewedList.size() == 5)
                         .build()
         );
         cardsList.add(
-                new Card.CardBuilder(getString(R.string.history), dbHelper.getHistory(5))
-                        .listItemType(CardListAdapter.HISTORY)
-                        .headerBackground(R.color.purple1)
-                        .headerIcon(R.drawable.ic_menu_history)
-                        .build()
-        );
-        cardsList.add(
-                new Card.CardBuilder(getString(R.string.favorites), dbHelper.getFavorites(5))
+                new Card.CardBuilder(getString(R.string.favorites), favoriteList)
                         .listItemType(CardListAdapter.FAVORITE)
                         .headerBackground(R.color.blue1)
                         .headerIcon(R.drawable.ic_star)
+                        .viewMore(favoriteList.size() == 5)
                         .build()
         );
-        List<Pair<String, Integer>> stats = new ArrayList<>();
-        stats.add(new Pair<String, Integer>("Doc Count", dbHelper.getDocumentationCount()));
-        stats.add(new Pair<String, Integer>("Hist Count", dbHelper.getHistoryCount()));
-        stats.add(new Pair<String, Integer>("Unique Hist Count", dbHelper.getUniqueHistoryCount()));
-        stats.add(new Pair<String, Integer>("Fav Count", dbHelper.getFavoritesCount()));
         cardsList.add(
-                new Card.CardBuilder(getString(R.string.statistics), stats)
+                new Card.CardBuilder(getString(R.string.recently_viewed), historyList)
+                        .listItemType(CardListAdapter.HISTORY)
+                        .headerBackground(R.color.purple1)
+                        .headerIcon(R.drawable.ic_menu_history)
+                        .viewMore(historyList.size() == 5)
+                        .build()
+        );
+        cardsList.add(
+                new Card.CardBuilder(getString(R.string.statistics), statsList)
                         .listItemType(CardListAdapter.STATISTICS)
                         .headerBackground(R.color.cardview_dark_background)
                         .headerIcon(R.drawable.ic_trending_up)
+                        .viewMore(false)
                         .build()
         );
 

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -449,8 +450,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public List<History> getMostViewed(int limit) {
-        List<History> ret = new ArrayList<>();
+    public List<Pair<Documentation, Integer>> getMostViewed(int limit) {
+        List<Pair<Documentation, Integer>> mvList = new ArrayList<>();
 
         final String query = "SELECT d.*, COUNT(h." + HISTORY_DOC_ID + ") AS count "
                 + " FROM " + TABLE_DOCUMENTATIONS + " d "
@@ -472,18 +473,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
                     doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
 
-                    History hist = new History();
-                    hist.setDocumentation(doc);
-                    hist.setViewCount(cursor.getInt(cursor.getColumnIndex("count")));
-
-                    ret.add(hist);
+                    Integer count = cursor.getInt(cursor.getColumnIndex("count"));
+                    mvList.add(new Pair<Documentation, Integer>(doc, count));
                 } while (cursor.moveToNext());
             }
 
             cursor.close();
         }
 
-        return ret;
+        return mvList;
     }
 
 

@@ -89,17 +89,17 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
     }
 
     private void configureMostViewedView(ViewHolder holder, int position) {
-        final History history = (History) data.get(position);
+        final Pair<Documentation, Integer> mvPair = (Pair<Documentation, Integer>) data.get(position);
 
-        holder.txtLeft.setText(history.getDocumentation().getTitle());
-        holder.txtRight.setText(String.valueOf(history.getViewCount()));
+        holder.txtLeft.setText(mvPair.first.getTitle());
+        holder.txtRight.setText(String.valueOf(mvPair.second));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DocViewerActivity.class);
                 intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
-                        history.getDocumentation().getFileName());
+                        mvPair.first.getFileName());
                 context.startActivity(intent);
             }
         });
