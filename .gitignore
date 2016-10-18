@@ -7,4 +7,9 @@
 /build
 /captures
 .externalNativeBuild
+
+# Non-hardcoded files
 /scripts/output
+/scripts/*.html
+/scripts/*.txt
+/app/src/main/assets/*.html
