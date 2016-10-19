@@ -1,6 +1,5 @@
 package com.github.nmcardoso.latexmanual;
 
-
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,14 +15,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    private Fragment currentFragment;
     private AutoCompleteFragment autoCompleteFragment;
-
+    private List<Fragment> navigationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +44,11 @@ public class MainActivity extends AppCompatActivity
         MainContentFragment mainFragment = new MainContentFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.frame_container, mainFragment).commit();
-        currentFragment = mainFragment;
+
+        navigationList = new ArrayList<>();
+        navigationList.add(mainFragment);
         autoCompleteFragment = new AutoCompleteFragment();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -56,10 +56,18 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (navigationList.size() > 1) {
+                Fragment f = navigationList.get(navigationList.size() - 2);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_container, f)
+                        .commit();
+                navigationList.remove(navigationList.size() - 1);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,8 +110,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -114,22 +120,21 @@ public class MainActivity extends AppCompatActivity
                     .beginTransaction()
                     .replace(R.id.frame_container, mainFragment)
                     .commit();
-            currentFragment = mainFragment;
+            navigationList.add(mainFragment);
         } else if (id == R.id.nav_favorites) {
             FavoriteFragment favoriteFragment = new FavoriteFragment();
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.frame_container, favoriteFragment)
                     .commit();
-            currentFragment = favoriteFragment;
-
+            navigationList.add(favoriteFragment);
         } else if (id == R.id.nav_historic) {
             HistoricFragment historicFragment = new HistoricFragment();
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.frame_container, historicFragment)
                     .commit();
-            currentFragment = historicFragment;
+            navigationList.add(historicFragment);
         } else if (id == R.id.nav_help) {
 
         }
@@ -139,7 +144,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
     private void expandAutoComplete() {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -147,12 +151,10 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-
     private void collapseAutoComplete() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frame_container, currentFragment)
+                .replace(R.id.frame_container, navigationList.get(navigationList.size() - 1))
                 .commit();
     }
-
 }
