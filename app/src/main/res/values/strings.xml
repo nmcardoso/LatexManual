@@ -26,4 +26,5 @@
     <string name="docs_in_database">Documentations in database</string>
     <string name="doc_views">Documentation views</string>
     <string name="unique_doc_views">Unique documentations views</string>
+    <string name="add_to_favorites">Add to favorites</string>
 </resources>

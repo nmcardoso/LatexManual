@@ -23,4 +23,5 @@
     <string name="docs_in_database">Documentações no banco de dados</string>
     <string name="doc_views">Documentações vistas</string>
     <string name="unique_doc_views">Visualizações únicas</string>
+    <string name="add_to_favorites">Adicionar aos favoritos</string>
 </resources>

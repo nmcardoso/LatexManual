@@ -93,6 +93,9 @@ public class DocViewerActivity extends AppCompatActivity {
                 }
                 updateFavButton();
                 break;
+            case R.id.action_home:
+                super.onBackPressed();
+                break;
             default:
                 break;
         }
