@@ -35,7 +35,7 @@ public class DocViewerActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        wvDocumentation = (WebView) findViewById(R.id.wvDocumentation);
+        wvDocumentation = (WebView) findViewById(R.id.wv_documentation);
         WebSettings wvSettings = wvDocumentation.getSettings();
         wvSettings.setDefaultTextEncodingName("latin-1");
         wvDocumentation.loadUrl("file:///android_asset/" + fileName);
