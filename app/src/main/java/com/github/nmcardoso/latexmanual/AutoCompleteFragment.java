@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class AutoCompleteFragment extends Fragment {
-
     SimpleCursorAdapter adapter;
     DatabaseHelper dbHelper;
     Cursor cursor;

@@ -17,7 +17,6 @@ import java.util.List;
 
 
 public class HistoricFragment extends Fragment {
-
     private static final int RESULTS_PER_PAGE = 20;
     private int currentPage = 1;
     private int totalPages;
@@ -25,10 +24,8 @@ public class HistoricFragment extends Fragment {
     private HistoricAdapter historicAdapter;
     private TextView txtHistNav;
 
-
     public HistoricFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

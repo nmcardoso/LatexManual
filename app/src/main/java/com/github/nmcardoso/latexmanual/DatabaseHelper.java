@@ -73,12 +73,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
 
-
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -91,11 +89,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertDocumentations(sqLiteDatabase);
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
-
 
     private void insertDocumentations(SQLiteDatabase db) {
         try {
@@ -118,7 +114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
     }
-
 
     public Cursor search(String query) {
         SQLiteDatabase db = getReadableDatabase();
@@ -146,7 +141,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-
     public int getDocumentationId(String fileName) {
         SQLiteDatabase db = getReadableDatabase();
         int id = -1;
@@ -166,7 +160,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return id;
     }
-
 
     public Documentation getDocumentationById(int id) {
         Documentation ret = null;
@@ -199,7 +192,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ret;
     }
 
-
     public int getDocumentationCount() {
         int count = -1;
         final String query = "SELECT COUNT(*) AS count "
@@ -219,7 +211,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-
     public boolean isFavorite(String fileName) {
         SQLiteDatabase db = getReadableDatabase();
         boolean isFavorite;
@@ -238,7 +229,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return isFavorite;
     }
-
 
     public boolean isFavorite(int docId) {
         SQLiteDatabase db = getReadableDatabase();
@@ -269,7 +259,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //db.close();
     }
-
 
     public List<Favorite> getFavorites(int limit, int offset) {
         ArrayList<Favorite> favList = new ArrayList<>();
@@ -312,11 +301,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return favList;
     }
 
-
     public List<Favorite> getFavorites(int limit) {
         return getFavorites(limit, 0);
     }
-
 
     public int getFavoritesCount() {
         int count = -1;
@@ -337,7 +324,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-
     public void deleteFavorite(int docId) {
         SQLiteDatabase db = getReadableDatabase();
         db.delete(TABLE_FAVORITES, FAVORITES_DOC_ID + " = ?",
@@ -345,7 +331,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //db.close();
     }
-
 
     public List<History> getHistory(int limit, int offset) {
         ArrayList<History> histList = new ArrayList<>();
@@ -383,11 +368,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return histList;
     }
 
-
     public List<History> getHistory(int limit) {
         return getHistory(limit, 0);
     }
-
 
     public void insertHistory(int docId) {
         ContentValues values = new ContentValues();
@@ -399,7 +382,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_HISTORY, null, values);
     }
-
 
     public int getHistoryCount() {
         int count = -1;
@@ -419,7 +401,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return count;
     }
-
 
     public int getUniqueHistoryCount() {
         int count = -1;
@@ -443,12 +424,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-
     public void clearHistory() {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_HISTORY, null, null);
     }
-
 
     public List<Pair<Documentation, Integer>> getMostViewed(int limit) {
         List<Pair<Documentation, Integer>> mvList = new ArrayList<>();
@@ -483,7 +462,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return mvList;
     }
-
 
     public String test2() {
         SQLiteDatabase db = getReadableDatabase();

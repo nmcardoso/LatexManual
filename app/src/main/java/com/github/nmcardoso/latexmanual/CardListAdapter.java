@@ -1,6 +1,5 @@
 package com.github.nmcardoso.latexmanual;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 
 public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {

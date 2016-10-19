@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainContentFragment extends Fragment {
-
     public MainContentFragment() {
     }
 
@@ -78,5 +77,4 @@ public class MainContentFragment extends Fragment {
 
         return rootView;
     }
-
 }

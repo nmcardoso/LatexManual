@@ -1,6 +1,5 @@
 package com.github.nmcardoso.latexmanual;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
 public class FavoriteFragment extends Fragment {
-
     private static final int RESULTS_PER_PAGE = 20;
     private int currentPage = 1;
     private int totalPages;
@@ -26,10 +23,8 @@ public class FavoriteFragment extends Fragment {
     private TextView txtFavNav;
     private List<Favorite> favoritesList;
 
-
     public FavoriteFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

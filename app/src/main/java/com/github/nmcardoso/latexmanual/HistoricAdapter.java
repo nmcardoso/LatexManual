@@ -30,16 +30,13 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
         }
     }
 
-
     private List<History> historyList;
     private Context context;
-
 
     public HistoricAdapter(Context context, List<History> historyList) {
         this.historyList = historyList;
         this.context = context;
     }
-
 
     @Override
     public HistoricAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -51,7 +48,6 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
         ViewHolder viewHolder = new ViewHolder(historicView);
         return viewHolder;
     }
-
 
     @Override
     public void onBindViewHolder(HistoricAdapter.ViewHolder holder, int position) {
@@ -84,12 +80,10 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
         });
     }
 
-
     @Override
     public int getItemCount() {
         return historyList.size();
     }
-
 
     public void swap(List<History> newData) {
         historyList.clear();

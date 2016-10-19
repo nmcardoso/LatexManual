@@ -1,6 +1,5 @@
 package com.github.nmcardoso.latexmanual;
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView leftText;
@@ -30,16 +28,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         }
     }
 
-
     private List<Favorite> favList;
     private Context context;
-
 
     public FavoriteAdapter(Context context, List<Favorite> favList) {
         this.favList = favList;
         this.context = context;
     }
-
 
     @Override
     public FavoriteAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -51,7 +46,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         ViewHolder viewHolder = new ViewHolder(favoriteView);
         return viewHolder;
     }
-
 
     @Override
     public void onBindViewHolder(FavoriteAdapter.ViewHolder holder, int position) {
@@ -101,12 +95,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         });
     }
 
-
     @Override
     public int getItemCount() {
         return favList.size();
     }
-
 
     public void swap(List<Favorite> favList) {
         this.favList.clear();

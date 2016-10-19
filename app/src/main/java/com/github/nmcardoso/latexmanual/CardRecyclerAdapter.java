@@ -17,7 +17,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
     }
 
-
     public class ListViewHolder extends ViewHolder {
         TextView txtTitle;
         TextView txtViewMore;
@@ -31,7 +30,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
     }
 
-
     public class TextViewHolder extends ViewHolder {
         TextView txtTitle;
         TextView txtContent;
@@ -43,16 +41,13 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
     }
 
-
     private Context context;
     private List<Card> cardsList;
-
 
     public CardRecyclerAdapter(Context context, List<Card> cardsList) {
         this.context = context;
         this.cardsList = cardsList;
     }
-
 
     @Override
     public CardRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,7 +68,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         return viewHolder;
     }
 
-
     @Override
     public void onBindViewHolder(CardRecyclerAdapter.ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
@@ -88,18 +82,15 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         }
     }
 
-
     @Override
     public int getItemCount() {
         return cardsList.size();
     }
 
-
     @Override
     public int getItemViewType(int position) {
         return cardsList.get(position).getContentType();
     }
-
 
     private void configureListView(ListViewHolder viewHolder, int position) {
         Card card = cardsList.get(position);
@@ -113,8 +104,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         viewHolder.rvList.setLayoutManager(new LinearLayoutManager(context));
         viewHolder.txtViewMore.setVisibility(card.hasViewMoreButton() ? View.VISIBLE : View.GONE);
     }
-
-
+    
     private void configureTextView(TextViewHolder viewHolder, int position) {
         Card card = cardsList.get(position);
 
