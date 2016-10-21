@@ -1,5 +1,6 @@
 package com.github.nmcardoso.latexmanual;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+                   MainContentFragment.CallbackInterface {
 
     private AutoCompleteFragment autoCompleteFragment;
     private List<Fragment> navigationList;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        verifyFirstRun();
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -144,6 +149,15 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void swapFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
     private void expandAutoComplete() {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -156,5 +170,10 @@ public class MainActivity extends AppCompatActivity
                 .beginTransaction()
                 .replace(R.id.frame_container, navigationList.get(navigationList.size() - 1))
                 .commit();
+    }
+
+    private void verifyFirstRun() {
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.PREF_DEFAULT), MODE_PRIVATE);
+        boolean firstRun = prefs.getBoolean(getString(R.string.KEY_FIRST_RUN), true);
     }
 }

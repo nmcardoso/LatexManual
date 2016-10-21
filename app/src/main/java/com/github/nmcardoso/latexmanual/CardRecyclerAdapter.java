@@ -33,11 +33,13 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
     public class TextViewHolder extends ViewHolder {
         TextView txtTitle;
         TextView txtContent;
+        TextView txtViewMore;
 
         public TextViewHolder(View itemView) {
             super(itemView);
             txtTitle = (TextView) itemView.findViewById(R.id.txt_title);
             txtContent = (TextView) itemView.findViewById(R.id.txt_content);
+            txtViewMore = (TextView) itemView.findViewById(R.id.txt_view_more);
         }
     }
 
@@ -103,6 +105,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         viewHolder.rvList.setAdapter(listAdapter);
         viewHolder.rvList.setLayoutManager(new LinearLayoutManager(context));
         viewHolder.txtViewMore.setVisibility(card.hasViewMoreButton() ? View.VISIBLE : View.GONE);
+        viewHolder.txtViewMore.setOnClickListener(card.getClickListener());
     }
     
     private void configureTextView(TextViewHolder viewHolder, int position) {
@@ -112,5 +115,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         viewHolder.txtTitle.setCompoundDrawablesWithIntrinsicBounds(card.getHeaderIcon(), 0, 0, 0);
         viewHolder.txtTitle.setBackgroundResource(card.getHeaderBackground());
         viewHolder.txtContent.setText(card.getContentText());
+        viewHolder.txtViewMore.setVisibility(card.hasViewMoreButton() ? View.VISIBLE : View.GONE);
+        viewHolder.txtViewMore.setOnClickListener(card.getClickListener());
     }
 }

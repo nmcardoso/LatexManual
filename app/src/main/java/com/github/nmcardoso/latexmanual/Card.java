@@ -1,16 +1,19 @@
 package com.github.nmcardoso.latexmanual;
 
+import android.view.View;
+
 import java.util.List;
 
 public class Card {
     private final String title;
     private final List<?> contentList;
-    private final String contentText;
+    private final CharSequence contentText;
     private final int contentType;
     private final int listItemType;
     private final int headerBackground;
     private final int headerIcon;
     private final boolean viewMore;
+    private final View.OnClickListener clickListener;
 
     public static final int TEXT = 0;
     public static final int LIST = 1;
@@ -24,6 +27,11 @@ public class Card {
         this.headerBackground = builder.headerBackground;
         this.headerIcon = builder.headerIcon;
         this.viewMore = builder.viewMore;
+        this.clickListener = builder.clickListener;
+    }
+
+    public View.OnClickListener getClickListener() {
+        return clickListener;
     }
 
     public String getTitle() {
@@ -34,7 +42,7 @@ public class Card {
         return contentList;
     }
 
-    public String getContentText() {
+    public CharSequence getContentText() {
         return contentText;
     }
 
@@ -61,14 +69,15 @@ public class Card {
     public static class CardBuilder {
         private String title;
         private List<?> contentList = null;
-        private String contentText = null;
+        private CharSequence contentText = null;
         private int contentType;
         private int listItemType;
         private int headerBackground = 0;
         private int headerIcon = 0;
         private boolean viewMore = false;
+        private View.OnClickListener clickListener = null;
 
-        public CardBuilder(String title, String contentText) {
+        public CardBuilder(String title, CharSequence contentText) {
             this.title = title;
             this.contentText = contentText;
             this.contentType = Card.TEXT;
@@ -97,6 +106,11 @@ public class Card {
 
         public CardBuilder viewMore(boolean viewMore) {
             this.viewMore = viewMore;
+            return this;
+        }
+
+        public CardBuilder clickListener(View.OnClickListener clickListener) {
+            this.clickListener = clickListener;
             return this;
         }
 

@@ -1,5 +1,7 @@
 package com.github.nmcardoso.latexmanual;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +18,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainContentFragment extends Fragment {
-    public MainContentFragment() {
+    CallbackInterface mCallback;
+
+    public interface CallbackInterface {
+        public void swapFragment(Fragment fragment);
+    }
+
+    public MainContentFragment() {}
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mCallback = (CallbackInterface) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement CallbackInterface");
+        }
     }
 
     @Override
@@ -42,7 +61,7 @@ public class MainContentFragment extends Fragment {
                         .listItemType(CardListAdapter.MOST_VIEWED)
                         .headerBackground(R.color.orange1)
                         .headerIcon(R.drawable.ic_plus)
-                        .viewMore(mostViewedList.size() == 5)
+                        .viewMore(false)
                         .build()
         );
 
@@ -56,6 +75,12 @@ public class MainContentFragment extends Fragment {
                         .headerBackground(R.color.purple1)
                         .headerIcon(R.drawable.ic_menu_history)
                         .viewMore(historyList.size() == 5)
+                        .clickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mCallback.swapFragment(new HistoricFragment());
+                            }
+                        })
                         .build()
         );
 
@@ -70,6 +95,12 @@ public class MainContentFragment extends Fragment {
                             .headerBackground(R.color.blue1)
                             .headerIcon(R.drawable.ic_star)
                             .viewMore(favoriteList.size() == 5)
+                            .clickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mCallback.swapFragment(new FavoriteFragment());
+                                }
+                            })
                             .build()
             );
         }
@@ -98,19 +129,30 @@ public class MainContentFragment extends Fragment {
         /*
          * Random doc Card
          */
-        Documentation randomDoc = dbHelper.getRandomDocumentation();
+        final Documentation randomDoc = dbHelper.getRandomDocumentation();
+
         String docData = randomDoc.getData().trim();
         String docStr = randomDoc.getTitle() + "\n"
                 + docData.substring(0, docData.length() > 150 ? 150 : docData.length()) + "...";
-        SpannableString span = new SpannableString(docStr);
-        span.setSpan(new StyleSpan(android.graphics.Typeface.BOLD_ITALIC),
+        SpannableString spanStr = new SpannableString(docStr);
+        spanStr.setSpan(new StyleSpan(android.graphics.Typeface.BOLD_ITALIC),
                 0, randomDoc.getTitle().length(), 0);
-        span.setSpan(new RelativeSizeSpan(1.3f), 0, randomDoc.getTitle().length(), 0);
+        spanStr.setSpan(new RelativeSizeSpan(1.3f), 0, randomDoc.getTitle().length(), 0);
+
         cardsList.add(
-                new Card.CardBuilder("Random Doc", span)
+                new Card.CardBuilder("Random Doc", spanStr)
                         .headerBackground(R.color.orange1)
                         .headerIcon(R.drawable.ic_home)
                         .viewMore(true)
+                        .clickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), DocViewerActivity.class);
+                                intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
+                                        randomDoc.getFileName());
+                                startActivity(intent);
+                            }
+                        })
                         .build()
         );
 
