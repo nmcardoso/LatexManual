@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Database version
@@ -124,7 +125,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 DOCUMENTATIONS_DATA
         };
 
-        // db.query(tabela, campos, where, whereArgs, groupBy, having, orderBy);
         Cursor cursor = db.query(
                 TABLE_DOCUMENTATIONS, columns,
                 DOCUMENTATIONS_TITLE + " LIKE ? OR " + DOCUMENTATIONS_DATA + " LIKE ?",
@@ -161,9 +161,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public Documentation getDocumentationById(int id) {
+    public Documentation getDocumentation(int id) {
         Documentation ret = null;
-
         SQLiteDatabase db = getReadableDatabase();
 
         final String[] columns = {
@@ -173,23 +172,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 DOCUMENTATIONS_DATA
         };
 
-
         Cursor cursor = db.query(TABLE_DOCUMENTATIONS,
                 columns,
                 DOCUMENTATIONS_ID + " = ?",
                 new String[] {String.valueOf(id)},
                 null, null, null);
 
-        if (cursor != null && cursor.moveToNext()) {
+        if (cursor != null && !cursor.isClosed() && cursor.moveToNext()) {
             ret = new Documentation(
                     cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)),
                     cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)),
                     cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)),
                     cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA))
             );
+
+            cursor.close();
         }
 
         return ret;
+    }
+
+    public boolean existsDocumentation(int id) {
+        return getDocumentation(id) != null;
     }
 
     public int getDocumentationCount() {
@@ -209,6 +213,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return count;
+    }
+
+    public Documentation getRandomDocumentation() {
+        SQLiteDatabase db = getReadableDatabase();
+        List<Integer> mostViewedIdList = new ArrayList<>();
+
+        final String mostViewedIdQuery = "SELECT "
+                + " d." + DOCUMENTATIONS_ID + ", COUNT(h." + HISTORY_DOC_ID + ") AS count "
+                + " FROM " + TABLE_DOCUMENTATIONS + " d "
+                + " INNER JOIN " + TABLE_HISTORY + " h "
+                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
+                + " GROUP BY h." + HISTORY_DOC_ID
+                + " ORDER BY count DESC "
+                + " LIMIT 30 ";
+
+        Cursor cursor = db.rawQuery(mostViewedIdQuery, null);
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+                    mostViewedIdList.add(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)));
+                } while (cursor.moveToNext());
+            }
+        }
+
+        Random random = new Random();
+        int randomId;
+        int max = getDocumentationCount() - 1;
+        int min = 1;
+        int attempts = 0;
+        final int MAX_ATTEMPTS = 30;
+
+        randomId = random.nextInt(max) + min;
+        while (mostViewedIdList.contains(randomId) && attempts < MAX_ATTEMPTS) {
+            randomId = random.nextInt(max) + min;
+            attempts++;
+        }
+
+        return getDocumentation(randomId);
     }
 
     public boolean isFavorite(String fileName) {
@@ -306,7 +349,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getFavoritesCount() {
-        int count = -1;
+        int count = 0;
         final String query = "SELECT COUNT(*) AS count "
                 + " FROM " + TABLE_FAVORITES;
 
@@ -384,7 +427,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getHistoryCount() {
-        int count = -1;
+        int count = 0;
         final String query = "SELECT COUNT(*) AS count "
                 + " FROM " + TABLE_HISTORY;
 
@@ -403,7 +446,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getUniqueHistoryCount() {
-        int count = -1;
+        int count = 0;
         final String query = "SELECT COUNT(*) AS count "
                 + " FROM " + TABLE_DOCUMENTATIONS + " d "
                 + " INNER JOIN " + TABLE_HISTORY + " h "
