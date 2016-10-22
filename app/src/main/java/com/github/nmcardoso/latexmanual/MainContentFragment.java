@@ -56,33 +56,37 @@ public class MainContentFragment extends Fragment {
          * Most Viewed Card
          */
         List<Pair<Documentation, Integer>> mostViewedList = dbHelper.getMostViewed(5);
-        cardsList.add(
-                new Card.CardBuilder(getString(R.string.most_viewed), mostViewedList)
-                        .listItemType(CardListAdapter.MOST_VIEWED)
-                        .headerBackground(R.color.orange1)
-                        .headerIcon(R.drawable.ic_plus)
-                        .viewMore(false)
-                        .build()
-        );
+        if (!mostViewedList.isEmpty()) {
+            cardsList.add(
+                    new Card.CardBuilder(getString(R.string.most_viewed), mostViewedList)
+                            .listItemType(CardListAdapter.MOST_VIEWED)
+                            .headerBackground(R.color.orange1)
+                            .headerIcon(R.drawable.ic_plus)
+                            .viewMore(false)
+                            .build()
+            );
+        }
 
         /*
          * History Card
          */
         List<History> historyList = dbHelper.getHistory(5);
-        cardsList.add(
-                new Card.CardBuilder(getString(R.string.recently_viewed), historyList)
-                        .listItemType(CardListAdapter.HISTORY)
-                        .headerBackground(R.color.purple1)
-                        .headerIcon(R.drawable.ic_menu_history)
-                        .viewMore(historyList.size() == 5)
-                        .clickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                mCallback.swapFragment(new HistoricFragment());
-                            }
-                        })
-                        .build()
-        );
+        if (!historyList.isEmpty()) {
+            cardsList.add(
+                    new Card.CardBuilder(getString(R.string.recently_viewed), historyList)
+                            .listItemType(CardListAdapter.HISTORY)
+                            .headerBackground(R.color.purple1)
+                            .headerIcon(R.drawable.ic_menu_history)
+                            .viewMore(historyList.size() == 5)
+                            .clickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mCallback.swapFragment(new HistoryFragment());
+                                }
+                            })
+                            .build()
+            );
+        }
 
         /*
          * Favorite Card
