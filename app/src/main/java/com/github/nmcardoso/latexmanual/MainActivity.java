@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity
         fragmentManager.beginTransaction().add(R.id.frame_container, mainFragment).commit();
 
         autoCompleteFragment = new AutoCompleteFragment();
+
+        getSupportFragmentManager().addOnBackStackChangedListener(
+                new FragmentManager.OnBackStackChangedListener() {
+                    @Override
+                    public void onBackStackChanged() {
+                        changeNavSelectedItem();
+                    }
+                }
+        );
     }
 
     @Override
@@ -118,15 +127,20 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frame_container, favoriteFragment)
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_historic) {
-            HistoricFragment historicFragment = new HistoricFragment();
+        } else if (id == R.id.nav_history) {
+            HistoryFragment historyFragment = new HistoryFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.frame_container, historicFragment)
+                    .replace(R.id.frame_container, historyFragment)
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_help) {
-
+        } else if (id == R.id.nav_config) {
+            ConfigFragment configFragment = new ConfigFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_container, configFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -141,6 +155,21 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.frame_container, fragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    private void changeNavSelectedItem() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Fragment currFrag = getSupportFragmentManager().findFragmentById(R.id.frame_container);
+
+        if (currFrag != null && navigationView != null) {
+            if (currFrag instanceof MainContentFragment) {
+                navigationView.setCheckedItem(R.id.nav_home);
+            } else if (currFrag instanceof FavoriteFragment) {
+                navigationView.setCheckedItem(R.id.nav_favorites);
+            } else if (currFrag instanceof HistoryFragment) {
+                navigationView.setCheckedItem(R.id.nav_history);
+            }
+        }
     }
 
     private void expandAutoComplete() {

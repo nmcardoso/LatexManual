@@ -16,15 +16,15 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class HistoricFragment extends Fragment {
+public class HistoryFragment extends Fragment {
     private static final int RESULTS_PER_PAGE = 20;
     private int currentPage = 1;
     private int totalPages;
     private DatabaseHelper dbHelper;
-    private HistoricAdapter historicAdapter;
+    private HistoryAdapter historyAdapter;
     private TextView txtHistNav;
 
-    public HistoricFragment() {
+    public HistoryFragment() {
     }
 
     @Override
@@ -36,8 +36,8 @@ public class HistoricFragment extends Fragment {
 
         RecyclerView rvHistoric = (RecyclerView) view.findViewById(R.id.rv_history);
         List<History> historyList = dbHelper.getHistory(RESULTS_PER_PAGE);
-        historicAdapter = new HistoricAdapter(getActivity(), historyList);
-        rvHistoric.setAdapter(historicAdapter);
+        historyAdapter = new HistoryAdapter(getActivity(), historyList);
+        rvHistoric.setAdapter(historyAdapter);
         rvHistoric.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         LinearLayout historyNav = (LinearLayout) view.findViewById(R.id.history_nav);
@@ -65,7 +65,7 @@ public class HistoricFragment extends Fragment {
                         currentPage--;
                         List<History> historyList = dbHelper.getHistory(RESULTS_PER_PAGE,
                                 (currentPage - 1) * RESULTS_PER_PAGE);
-                        historicAdapter.swap(historyList);
+                        historyAdapter.swap(historyList);
                         txtHistNav.setText(String.format(getResources().getString(R.string.i_of_n),
                                 currentPage, totalPages));
                     }
@@ -78,7 +78,7 @@ public class HistoricFragment extends Fragment {
                     if (currentPage < totalPages) {
                         List<History> historyList = dbHelper.getHistory(RESULTS_PER_PAGE,
                                 currentPage * RESULTS_PER_PAGE);
-                        historicAdapter.swap(historyList);
+                        historyAdapter.swap(historyList);
                         currentPage++;
                         txtHistNav.setText(String.format(getResources().getString(R.string.i_of_n),
                                 currentPage, totalPages));

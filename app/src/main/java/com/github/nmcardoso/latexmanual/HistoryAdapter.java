@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHolder> {
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView leftText;
         public TextView rightText;
@@ -33,13 +33,13 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
     private List<History> historyList;
     private Context context;
 
-    public HistoricAdapter(Context context, List<History> historyList) {
+    public HistoryAdapter(Context context, List<History> historyList) {
         this.historyList = historyList;
         this.context = context;
     }
 
     @Override
-    public HistoricAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -50,7 +50,7 @@ public class HistoricAdapter extends RecyclerView.Adapter<HistoricAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(HistoricAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(HistoryAdapter.ViewHolder holder, int position) {
         final History history = historyList.get(position);
 
         TextView leftText = holder.leftText;
