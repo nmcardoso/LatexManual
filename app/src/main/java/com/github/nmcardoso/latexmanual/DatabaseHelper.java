@@ -375,6 +375,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //db.close();
     }
 
+    public int deleteAllFavorites() {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.delete(TABLE_FAVORITES, "1", null);
+    }
+
     public List<History> getHistory(int limit, int offset) {
         ArrayList<History> histList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -467,9 +472,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void clearHistory() {
+    public int deleteAllHistory() {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_HISTORY, null, null);
+        return db.delete(TABLE_HISTORY, "1", null);
     }
 
     public List<Pair<Documentation, Integer>> getMostViewed(int limit) {
