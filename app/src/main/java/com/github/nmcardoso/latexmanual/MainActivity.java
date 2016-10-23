@@ -1,5 +1,6 @@
 package com.github.nmcardoso.latexmanual;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -134,13 +135,9 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frame_container, historyFragment)
                     .addToBackStack(null)
                     .commit();
-        } else if (id == R.id.nav_config) {
-            ConfigFragment configFragment = new ConfigFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frame_container, configFragment)
-                    .addToBackStack(null)
-                    .commit();
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
