@@ -28,7 +28,7 @@
         android:layout_height="24dp"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:background="@drawable/btn_remove"
+        android:background="@drawable/btn_close"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:focusable="false" />
