@@ -24,4 +24,17 @@
     <string name="doc_views">Documentações vistas</string>
     <string name="unique_doc_views">Visualizações únicas</string>
     <string name="add_to_favorites">Adicionar aos favoritos</string>
+    <string name="clear">Limpar</string>
+    <string name="clear_navigation_history_permanently">Limpar histórico de navegação permanentemente</string>
+    <string name="delete_saved_favorites_permanently">Apagar os favoritos salvos permanentemente</string>
+    <string name="title_activity_settings">Configurações</string>
+    <string name="settings">Configurações</string>
+    <string name="this_action_cant_be_undone_q">Esta ação não poder ser desfeita. Deseja continuar?</string>
+    <string name="continue_q">Continuar?</string>
+    <plurals name="n_favorites_deleted">
+        <item quantity="one">%1$d favorito removido</item>
+        <item quantity="other">%1$d favoritos removidos</item>
+    </plurals>
+    <string name="no_fav_to_be_deleted">Nenhum favorito a ser deletado</string>
+    <string name="history_cleaned">Histórico limpo</string>
 </resources>
