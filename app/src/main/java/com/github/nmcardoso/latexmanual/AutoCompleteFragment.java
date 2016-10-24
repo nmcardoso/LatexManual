@@ -1,20 +1,19 @@
 package com.github.nmcardoso.latexmanual;
 
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+
+import java.util.List;
 
 public class AutoCompleteFragment extends Fragment {
-    SimpleCursorAdapter adapter;
+    AutoCompleteAdapter adapter;
     DatabaseHelper dbHelper;
-    Cursor cursor;
+    List<Documentation> docList;
 
     public AutoCompleteFragment() {
     }
@@ -28,41 +27,21 @@ public class AutoCompleteFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_auto_complete, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.listViewAutoComplete);
 
+        RecyclerView rvAutoComplete = (RecyclerView) view.findViewById(R.id.rv_auto_complete);
         dbHelper = new DatabaseHelper(getActivity());
-        cursor = dbHelper.search("");
-        adapter = new SimpleCursorAdapter(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                cursor,
-                new String[] {"title"},
-                new int[] {android.R.id.text1},
-                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
-        );
-
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                cursor.moveToPosition(i);
-                Intent intent = new Intent(getActivity(), DocViewerActivity.class);
-                String fileNameColumn = DatabaseHelper.DOCUMENTATIONS_FILE_NAME;
-                intent.putExtra(fileNameColumn,
-                        cursor.getString(cursor.getColumnIndex(fileNameColumn)));
-                startActivity(intent);
-            }
-        });
+        docList = dbHelper.search("", 15);
+        adapter = new AutoCompleteAdapter(getActivity(), docList, "");
+        rvAutoComplete.setAdapter(adapter);
+        rvAutoComplete.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
     }
 
     public void updateListView(String query) {
-        if (cursor != null && adapter != null) {
-            cursor = dbHelper.search(query);
-            adapter.changeCursor(cursor);
-            adapter.notifyDataSetChanged();
+        if (docList != null && adapter != null) {
+            docList = dbHelper.search(query, 15);
+            adapter.swap(docList, query);
         }
     }
 }

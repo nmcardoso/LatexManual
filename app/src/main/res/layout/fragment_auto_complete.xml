@@ -3,9 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.github.nmcardoso.latexmanual.AutoCompleteFragment">
-
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_auto_complete"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listViewAutoComplete" />
+        android:clickable="true"
+        android:focusable="true" />
 </FrameLayout>
