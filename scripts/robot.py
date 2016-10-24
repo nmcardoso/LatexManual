@@ -14,17 +14,16 @@ class TextProcessor:
     def __init__(self, url):
         self.SOURCE_FILE = 'source.html'
         self.OUTPUT_DIR = 'output/'
-        self.RAW_OUTPUT_DIR = 'raw_output/'
-        self.DATABASE_NAME = 'data.db'
+        self.HTML_OUTPUT_DIR = 'output/html/'
+        self.RAW_OUTPUT_DIR = 'output/raw/'
+        self.DATABASE_NAME = 'output/data.db'
         self.FILE_LOADED = False
 
         self.GREEN_TXT = '\033[1;32m'
         self.NORMAL_TXT = '\033[0m'
         self.RED_TEXT = '\033[1;31m'
 
-        protocols = ['http', 'https']
-
-        if not any(p in url for p in protocols):
+        if not any(p in url for p in ['http', 'https']):
             url = 'http://' + url
 
         try:
@@ -36,13 +35,21 @@ class TextProcessor:
             print(self.RED_TEXT + 'Error: ' + self.NORMAL_TXT + "Can't load the url")
 
         self.verify_dirs()
+        self.clear_dirs()
         self.create_database()
 
     def verify_dirs(self):
-        dirs = [self.OUTPUT_DIR, self.RAW_OUTPUT_DIR]
+        dirs = [self.OUTPUT_DIR, self.HTML_OUTPUT_DIR, self.RAW_OUTPUT_DIR]
         for dir in dirs:
             if not os.path.exists(dir):
                 os.makedirs(dir)
+
+    def clear_dirs(self):
+        dirs = [self.HTML_OUTPUT_DIR, self.RAW_OUTPUT_DIR]
+        for d in dirs:
+            filelist = [f for f in os.listdir(d)]
+            for f in filelist:
+                os.remove(d + f)
 
     def processor(self):
         if not self.FILE_LOADED:
@@ -60,7 +67,7 @@ class TextProcessor:
                         if counter > 0:
                             section_name = str(temp[0]).split('"')[1]
                             file_name = section_name + '.html'
-                            path = self.OUTPUT_DIR + file_name
+                            path = self.HTML_OUTPUT_DIR + file_name
 
                             # Stopping point
                             if section_name == 'Concept-Index':
@@ -90,9 +97,13 @@ class TextProcessor:
             soup = BeautifulSoup(f, 'html5lib')
 
             # Creating a charset meta in all files
-            meta_tag = soup.new_tag('meta', content='text/html; charset=latin-1', httpequiv='Content-Type')
+            meta_tag = soup.new_tag('meta', content='text/html; charset=latin-1', http_equiv='Content-Type')
             if soup.html.head:
                 soup.html.head.insert(1, meta_tag)
+
+            # Inserting css style
+            css_tag = soup.new_tag('link', rel='stylesheet', href='style.css', type='text/css')
+            soup.head.insert(0, css_tag)
 
             # Replacing <a href="file_name.html#section_name"> to <a href="section_name.html">
             for link_tag in soup.find_all(href=re.compile('#')):
@@ -122,7 +133,8 @@ class TextProcessor:
 
             # Removing nav bar
             div_tag = soup.find('div', class_='header')
-            div_tag.extract()
+            if div_tag:
+                div_tag.extract()
 
             # Exporting changes
             html = soup.contents
@@ -176,7 +188,7 @@ class TextProcessor:
         conn.close()
 
     def data_persist(self, file_name):
-        file_path = self.OUTPUT_DIR + file_name
+        file_path = self.HTML_OUTPUT_DIR + file_name
         raw_data_path = self.RAW_OUTPUT_DIR + file_name.split('.')[0] + '.txt'
         values = [file_name]
 
