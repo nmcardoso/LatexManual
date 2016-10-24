@@ -119,12 +119,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Documentation> search(String query, int limit) {
         List<Documentation> docList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        String[] columns = {
-                DOCUMENTATIONS_ID,
-                DOCUMENTATIONS_TITLE,
-                DOCUMENTATIONS_FILE_NAME,
-                DOCUMENTATIONS_DATA
-        };
 
         final String sqlQuery = "SELECT d.*, 1 AS priority "
                 + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
