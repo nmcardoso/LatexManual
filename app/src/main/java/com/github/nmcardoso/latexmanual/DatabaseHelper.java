@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -116,7 +117,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor search(String query) {
+    public List<Documentation> search(String query, int limit) {
+        List<Documentation> titleMatchList = new ArrayList<>();
+        List<Documentation> dataMatchList = new ArrayList<>();
+        List<Documentation> mergedList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         String[] columns = {
                 DOCUMENTATIONS_ID,
@@ -127,18 +131,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(
                 TABLE_DOCUMENTATIONS, columns,
-                DOCUMENTATIONS_TITLE + " LIKE ? OR " + DOCUMENTATIONS_DATA + " LIKE ?",
-                new String[] { "%" + query + "%", "%" + query + "%" },
-                null, null, null, "15"
+                DOCUMENTATIONS_TITLE + " LIKE ?",
+                new String[] { "%" + query.replace(" ", "% %") + "%"},
+                null, null, null, String.valueOf(limit)
         );
 
-        if (cursor != null) {
-            cursor.moveToFirst();
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Documentation doc = new Documentation();
+                    doc.setId(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)));
+                    doc.setTitle(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)));
+                    doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
+                    doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
+                    titleMatchList.add(doc);
+                } while (cursor.moveToNext());
+            }
         }
 
-        db.close();
+        if (titleMatchList.size() == limit) {
+            return titleMatchList;
+        }
 
-        return cursor;
+        cursor = db.query(
+                TABLE_DOCUMENTATIONS, columns,
+                DOCUMENTATIONS_DATA + " LIKE ?",
+                new String[] { "%" + query.replace(" ", "% %") + "%"},
+                null, null, null, String.valueOf(limit)
+        );
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Documentation doc = new Documentation();
+                    doc.setId(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)));
+                    doc.setTitle(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)));
+                    doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
+                    doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
+                    dataMatchList.add(doc);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        for (Iterator<Documentation> iterator = dataMatchList.iterator(); iterator.hasNext();) {
+            Documentation doc = iterator.next();
+            for (Documentation titleMatch : titleMatchList) {
+                if (titleMatch.getId() == doc.getId()) {
+                    iterator.remove();
+                    break;
+                }
+            }
+        }
+
+        mergedList.addAll(titleMatchList);
+        int itemsToAdd = limit - titleMatchList.size() - 1;
+
+        for (int i = 0; i < itemsToAdd && i < dataMatchList.size(); i++) {
+            mergedList.add(dataMatchList.get(i));
+        }
+
+        return mergedList;
     }
 
     public int getDocumentationId(String fileName) {
