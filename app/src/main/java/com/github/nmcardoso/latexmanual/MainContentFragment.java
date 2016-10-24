@@ -21,7 +21,7 @@ public class MainContentFragment extends Fragment {
     CallbackInterface mCallback;
 
     public interface CallbackInterface {
-        public void swapFragment(Fragment fragment);
+        void swapFragment(Fragment fragment);
     }
 
     public MainContentFragment() {}

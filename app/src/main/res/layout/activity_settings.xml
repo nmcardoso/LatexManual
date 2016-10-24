@@ -145,7 +145,5 @@
         android:layout_marginLeft="0dp"
         android:layout_height="1dp"
         android:background="#acacac" />
-
-
 </LinearLayout>
 

@@ -3,6 +3,7 @@ package com.github.nmcardoso.latexmanual;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,7 +15,6 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class DocViewerActivity extends AppCompatActivity {
-
     private boolean isFavorite;
     private int docId;
     private WebView wvDocumentation;
@@ -28,8 +28,11 @@ public class DocViewerActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.docViewerToolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         String fileName = getIntent().getStringExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME);
 
