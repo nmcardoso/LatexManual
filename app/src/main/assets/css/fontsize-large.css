@@ -1,0 +1,15 @@
+h1, h2, h3, h4, h5, h6 {
+    font-size: xx-large;
+}
+
+code, samp, var {
+    font-size: small;
+}
+
+pre {
+    font-size: medium;
+}
+
+p {
+    font-size: large;
+}

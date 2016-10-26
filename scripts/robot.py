@@ -97,13 +97,37 @@ class TextProcessor:
             soup = BeautifulSoup(f, 'html5lib')
 
             # Creating a charset meta in all files
-            meta_tag = soup.new_tag('meta', content='text/html; charset=latin-1', http_equiv='Content-Type')
-            if soup.html.head:
-                soup.html.head.insert(1, meta_tag)
+            meta_tag = soup.new_tag('meta')
+            meta_tag['content'] = 'text/html; charset=ISO-8859-1'
+            meta_tag['http-equiv'] = 'Content-Type'
+            soup.html.head.insert(0, meta_tag)
 
-            # Inserting css style
-            css_tag = soup.new_tag('link', rel='stylesheet', href='style.css', type='text/css')
-            soup.head.insert(0, css_tag)
+            # Inserting base style
+            base_css = soup.new_tag('link')
+            base_css['rel'] = 'stylesheet'
+            base_css['href'] = 'css/base.css'
+            base_css['type'] = 'text/css'
+            soup.head.insert(1, base_css)
+
+            # Inserting font-size style
+            font_size_style = soup.new_tag('link')
+            font_size_style['rel'] = 'stylesheet'
+            font_size_style['href'] = 'css/fontsize-default.css'
+            font_size_style['type'] = 'text/css'
+            font_size_style['id'] = 'fontsize'
+            soup.head.insert(2, font_size_style)
+
+            # Inserting js src
+            js_src = soup.new_tag('script')
+            js_src['type'] = 'text/javascript'
+            js_src['src'] = 'js/script.js'
+            soup.head.insert(3, js_src)
+
+            # Initializing js
+            js_init = soup.new_tag('script')
+            js_init['type'] = 'text/javascript'
+            js_init.string = 'configureStyleSheet();'
+            soup.head.insert(4, js_init)
 
             # Replacing <a href="file_name.html#section_name"> to <a href="section_name.html">
             for link_tag in soup.find_all(href=re.compile('#')):
