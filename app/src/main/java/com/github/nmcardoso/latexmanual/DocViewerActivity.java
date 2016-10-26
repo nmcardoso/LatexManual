@@ -1,6 +1,7 @@
 package com.github.nmcardoso.latexmanual;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -34,6 +35,11 @@ public class DocViewerActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.PREF_SETTINGS),
+                MODE_PRIVATE);
+        String fontSize = prefs.getString(getString(R.string.KEY_FONT_SIZE), "default");
+        String params = "?fontsize=" + fontSize;
+
         String fileName = getIntent().getStringExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME);
 
         dbHelper = new DatabaseHelper(this);
@@ -41,8 +47,8 @@ public class DocViewerActivity extends AppCompatActivity {
         wvDocumentation = (WebView) findViewById(R.id.wv_documentation);
         WebSettings wvSettings = wvDocumentation.getSettings();
         wvSettings.setDefaultTextEncodingName("latin-1");
-        wvDocumentation.loadUrl("file:///android_asset/" + fileName);
-
+        wvDocumentation.getSettings().setJavaScriptEnabled(true);
+        wvDocumentation.loadUrl("file:///android_asset/" + fileName + params);
         wvDocumentation.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
