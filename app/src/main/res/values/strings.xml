@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Latex Manual</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="search_title">Search</string>
     <string name="search_hint">Search</string>
     <string name="fav_removed">Documentation removed from favorites</string>
@@ -33,17 +31,20 @@
     <string name="clear">Clear</string>
     <string name="this_action_cant_be_undone_q">This action can not be undone. Do you wish to continue?</string>
     <string name="continue_q">Continue?</string>
+    <string name="no_fav_to_be_deleted">No favorite to be deleted</string>
+    <string name="history_cleaned">History cleaned</string>
+    <string name="font_size">Font size</string>
+    <string name="doc_reader">Documentation Reader</string>
+    <string name="random_doc">Random Documentation</string>
+
     <plurals name="n_favorites_deleted">
         <item quantity="one">%1$d favorite deleted</item>
         <item quantity="other">%1$d favorites deleted</item>
     </plurals>
-    <string name="no_fav_to_be_deleted">No favorite to be deleted</string>
-    <string name="history_cleaned">History cleaned</string>
+
     <string-array name="font_sizes">
         <item>Small</item>
         <item>Default</item>
         <item>Large</item>
     </string-array>
-    <string name="font_size">Font size</string>
-    <string name="doc_reader">Documentation Reader</string>
 </resources>

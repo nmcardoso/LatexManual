@@ -144,9 +144,9 @@ public class MainContentFragment extends Fragment {
         spanStr.setSpan(new RelativeSizeSpan(1.3f), 0, randomDoc.getTitle().length(), 0);
 
         cardsList.add(
-                new Card.CardBuilder("Random Doc", spanStr)
+                new Card.CardBuilder(getString(R.string.random_doc), spanStr)
                         .headerBackground(R.color.orange1)
-                        .headerIcon(R.drawable.ic_home)
+                        .headerIcon(R.drawable.ic_shuffle)
                         .viewMore(true)
                         .clickListener(new View.OnClickListener() {
                             @Override
