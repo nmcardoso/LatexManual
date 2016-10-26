@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.List;
@@ -85,7 +83,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
                 configureTextView(textViewHolder, position);
                 break;
         }
-        setAnimation(holder.itemView, position);
     }
 
     @Override
@@ -121,14 +118,5 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         viewHolder.txtContent.setText(card.getContentText());
         viewHolder.txtViewMore.setVisibility(card.hasViewMoreButton() ? View.VISIBLE : View.GONE);
         viewHolder.txtViewMore.setOnClickListener(card.getClickListener());
-    }
-
-    private void setAnimation(View viewToAnimate, int position) {
-        // If the bound view wasn't previously displayed on screen, it's animated
-        if (position > lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
-            viewToAnimate.startAnimation(animation);
-            lastPosition = position;
-        }
     }
 }
