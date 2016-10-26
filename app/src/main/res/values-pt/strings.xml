@@ -37,4 +37,11 @@
     </plurals>
     <string name="no_fav_to_be_deleted">Nenhum favorito a ser deletado</string>
     <string name="history_cleaned">Histórico limpo</string>
+    <string-array name="font_sizes">
+        <item>Pequena</item>
+        <item>Padrão</item>
+        <item>Grande</item>
+    </string-array>
+    <string name="font_size">Tamanho da fonte</string>
+    <string name="doc_reader">Leitor de Documentações</string>
 </resources>

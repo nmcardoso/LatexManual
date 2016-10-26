@@ -2,4 +2,7 @@
 <resources>
     <string name="PREF_DEFAULT">pref_default</string>
     <string name="KEY_FIRST_RUN">key_first_run</string>
+
+    <string name="PREF_SETTINGS">pref_settings</string>
+    <string name="KEY_FONT_SIZE">key_font_size</string>
 </resources>
