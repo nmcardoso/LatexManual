@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Database version
@@ -231,41 +230,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Documentation getRandomDocumentation() {
         SQLiteDatabase db = getReadableDatabase();
-        List<Integer> mostViewedIdList = new ArrayList<>();
+        Documentation doc = null;
 
-        final String mostViewedIdQuery = "SELECT "
-                + " d." + DOCUMENTATIONS_ID + ", COUNT(h." + HISTORY_DOC_ID + ") AS count "
-                + " FROM " + TABLE_DOCUMENTATIONS + " d "
-                + " INNER JOIN " + TABLE_HISTORY + " h "
-                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
-                + " GROUP BY h." + HISTORY_DOC_ID
-                + " ORDER BY count DESC "
-                + " LIMIT 30 ";
+        final String mostViewedIdQuery = "SELECT * "
+                + " FROM " + TABLE_DOCUMENTATIONS
+                + " ORDER BY RAND() LIMIT 1";
 
         Cursor cursor = db.rawQuery(mostViewedIdQuery, null);
 
         if (cursor != null && !cursor.isClosed()) {
             if (cursor.moveToFirst()) {
-                do {
-                    mostViewedIdList.add(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)));
-                } while (cursor.moveToNext());
+                doc = new Documentation();
+                doc.setId(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)));
+                doc.setTitle(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)));
+                doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
+                doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
             }
+
+            cursor.close();
         }
 
-        Random random = new Random();
-        int randomId;
-        int max = getDocumentationCount() - 1;
-        int min = 1;
-        int attempts = 0;
-        final int MAX_ATTEMPTS = 30;
-
-        randomId = random.nextInt(max) + min;
-        while (mostViewedIdList.contains(randomId) && attempts < MAX_ATTEMPTS) {
-            randomId = random.nextInt(max) + min;
-            attempts++;
-        }
-
-        return getDocumentation(randomId);
+        return doc;
     }
 
     public boolean isFavorite(String fileName) {
