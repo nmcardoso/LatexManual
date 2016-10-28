@@ -68,9 +68,9 @@ public class MainContentFragment extends Fragment {
         }
 
         /*
-         * History Card
+         * Recently Viewed Card
          */
-        List<History> historyList = dbHelper.getHistory(5);
+        List<History> historyList = dbHelper.getUniqueHistory(5);
         if (!historyList.isEmpty()) {
             cardsList.add(
                     new Card.CardBuilder(getString(R.string.recently_viewed), historyList)
