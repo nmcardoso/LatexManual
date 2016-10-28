@@ -130,7 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "     FROM " + TABLE_DOCUMENTATIONS
                 + "     WHERE " + DOCUMENTATIONS_TITLE + " LIKE ?)"
                 + " AND d." + DOCUMENTATIONS_DATA + " LIKE ?"
-                + " ORDER BY priority"
+                + " ORDER BY priority ASC"
                 + " LIMIT ?";
 
         query =  "%" + query.replace(" ", "%") + "%";
@@ -154,6 +154,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return docList;
     }
 
+    /**
+     * Return the primary key of documentation that file name match with the parameter.
+     * @param fileName The file name of documentation
+     * @return The id (primary key) of the documentation.
+     */
     public int getDocumentationId(String fileName) {
         SQLiteDatabase db = getReadableDatabase();
         int id = -1;
@@ -228,13 +233,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    /**
+     * Fetch a random documentation
+     * @return A {@link Documentation} object
+     */
     public Documentation getRandomDocumentation() {
         SQLiteDatabase db = getReadableDatabase();
         Documentation doc = null;
 
         final String mostViewedIdQuery = "SELECT * "
                 + " FROM " + TABLE_DOCUMENTATIONS
-                + " ORDER BY RAND() LIMIT 1";
+                + " ORDER BY RANDOM() LIMIT 1";
 
         Cursor cursor = db.rawQuery(mostViewedIdQuery, null);
 
@@ -302,6 +311,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //db.close();
     }
 
+    /**
+     * Get a 'page' of favorites sorted by date (desc).
+     * Use the limit and offset to paginate the results.
+     * The search will start in 'offset' point and will fetch the value of 'limit' results
+     * @param limit the max results per page
+     * @param offset point to start the page
+     * @return A {@link List} of {@link Favorite} or a empty {@link List} if no favorites found.
+     */
     public List<Favorite> getFavorites(int limit, int offset) {
         ArrayList<Favorite> favList = new ArrayList<>();
         Documentation doc;
@@ -343,6 +360,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return favList;
     }
 
+    /**
+     * This method calls {@link #getFavorites(int, int)} with offset equals to 0
+     * @param limit The max quantity of rows
+     * @return A {@link List} of {@link Favorite} or a empty {@link List} if no favorites found.
+     * @see #getFavorites(int, int)
+     */
     public List<Favorite> getFavorites(int limit) {
         return getFavorites(limit, 0);
     }
@@ -374,11 +397,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //db.close();
     }
 
+    /**
+     * Delete all registers of table favorites.
+     * @return The number of rows removed.
+     */
     public int deleteAllFavorites() {
         SQLiteDatabase db = getReadableDatabase();
         return db.delete(TABLE_FAVORITES, "1", null);
     }
 
+    /**
+     * Get a 'page' of history sorted by date (desc).
+     * Use the limit and offset to paginate the results.
+     * The search will start in 'offset' point and will fetch the value of 'limit' results
+     * @param limit the max results per page
+     * @param offset point to start the page
+     * @return A {@link List} of {@link History} or a empty {@link List} if no history found.
+     */
     public List<History> getHistory(int limit, int offset) {
         ArrayList<History> histList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -415,6 +450,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return histList;
     }
 
+    /**
+     * This method calls {@link #getHistory(int, int)} with offset equals to 0
+     * @param limit The max quantity of rows
+     * @return A {@link List} of {@link History} or a empty {@link List} if no history found.
+     * @see #getHistory(int, int)
+     */
     public List<History> getHistory(int limit) {
         return getHistory(limit, 0);
     }
@@ -449,12 +490,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    /**
+     * Return the amount of documentation first seen,
+     * excluding other views of the same documentation
+     * @return An integer representing the unique views
+     */
     public int getUniqueHistoryCount() {
         int count = 0;
         final String query = "SELECT COUNT(*) AS count "
-                + " FROM " + TABLE_DOCUMENTATIONS + " d "
-                + " INNER JOIN " + TABLE_HISTORY + " h "
-                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
+                + " FROM " + TABLE_HISTORY + " h "
                 + " GROUP BY h." + HISTORY_DOC_ID;
 
         SQLiteDatabase db = getReadableDatabase();
@@ -471,6 +515,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    /**
+     * Clear all registers of table history.
+     * @return The number of row deleted
+     */
     public int deleteAllHistory() {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete(TABLE_HISTORY, "1", null);
@@ -483,7 +531,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + " FROM " + TABLE_DOCUMENTATIONS + " d "
                 + " INNER JOIN " + TABLE_HISTORY + " h "
                 + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
-                + " GROUP BY h." + HISTORY_DOC_ID
+                + " GROUP BY d." + DOCUMENTATIONS_TITLE
                 + " ORDER BY count DESC "
                 + " LIMIT ? ";
 
@@ -510,25 +558,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return mvList;
     }
 
-    public String test2() {
+    public void test2() {
         SQLiteDatabase db = getReadableDatabase();
 
         final String query = "SELECT * "
-                + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
-                + " INNER JOIN " + TABLE_HISTORY + " AS h "
-                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
-                + " ORDER BY " + " h." + HISTORY_ID + " DESC "
-                + " LIMIT 5";
+                + " FROM " + TABLE_DOCUMENTATIONS
+                + " LIMIT 100";
 
         Cursor cursor = db.rawQuery(query, null);
 
-        String ret = "";
-        if (cursor != null) {
-            ret = String.valueOf(cursor.getCount());
+        if (cursor.moveToFirst()) {
+            do {
+                String log = DOCUMENTATIONS_ID + ": " +
+                        String.valueOf(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)))
+                        + "; " + DOCUMENTATIONS_FILE_NAME + ": "
+                        + cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME))
+                        + "; " + DOCUMENTATIONS_TITLE + ": "
+                        + cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE));
+                Log.d("DOC_DUMP", log);
+            } while (cursor.moveToNext());
         }
 
         cursor.close();
-
-        return ret;
     }
 }
