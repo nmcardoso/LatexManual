@@ -48,7 +48,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(FavoriteAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(FavoriteAdapter.ViewHolder holder, final int position) {
         final Favorite favorite = favList.get(position);
 
         TextView leftText = holder.leftText;
@@ -67,6 +67,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                             Toast.makeText(context, context.getResources().getString(R.string.fav_removed),
                                     Toast.LENGTH_SHORT).show();
                             dialogInterface.dismiss();
+                            removeAt(position);
                         } else {
                             dialogInterface.dismiss();
                         }
@@ -98,6 +99,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     @Override
     public int getItemCount() {
         return favList.size();
+    }
+
+    private void removeAt(int position) {
+        favList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, favList.size());
     }
 
     public void swap(List<Favorite> favList) {
