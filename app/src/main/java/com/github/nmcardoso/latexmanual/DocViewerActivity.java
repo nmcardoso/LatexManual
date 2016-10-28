@@ -38,7 +38,7 @@ public class DocViewerActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.PREF_SETTINGS),
                 MODE_PRIVATE);
         String fontSize = prefs.getString(getString(R.string.KEY_FONT_SIZE), "default");
-        String params = "?fontsize=" + fontSize;
+        final String params = "?fontsize=" + fontSize;
 
         String fileName = getIntent().getStringExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME);
 
@@ -54,10 +54,11 @@ public class DocViewerActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 String[] pathArray = view.getUrl().split("/");
                 String fileName = pathArray[pathArray.length - 1];
+                // removing params
+                fileName = fileName.contains("?") ? fileName.split("\\?")[0] : fileName;
+
                 docId = dbHelper.getDocumentationId(fileName);
-
                 updateFavButton();
-
                 dbHelper.insertHistory(docId);
             }
 
@@ -68,7 +69,8 @@ public class DocViewerActivity extends AppCompatActivity {
                             new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                     return true;
                 } else {
-                    return false;
+                    view.loadUrl(url + params);
+                    return true;
                 }
             }
         });
@@ -103,7 +105,10 @@ public class DocViewerActivity extends AppCompatActivity {
                 updateFavButton();
                 break;
             case R.id.action_home:
-                super.onBackPressed();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
                 break;
             default:
                 break;
