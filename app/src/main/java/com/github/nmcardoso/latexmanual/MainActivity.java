@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
                 new FragmentManager.OnBackStackChangedListener() {
                     @Override
                     public void onBackStackChanged() {
-                        changeNavSelectedItem();
+                        changeInterface();
                     }
                 }
         );
@@ -154,17 +154,21 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    private void changeNavSelectedItem() {
+    private void changeInterface() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Fragment currFrag = getSupportFragmentManager().findFragmentById(R.id.frame_container);
 
         if (currFrag != null && navigationView != null) {
             if (currFrag instanceof MainContentFragment) {
                 navigationView.setCheckedItem(R.id.nav_home);
+                toolbar.setTitle(R.string.app_name);
             } else if (currFrag instanceof FavoriteFragment) {
                 navigationView.setCheckedItem(R.id.nav_favorites);
+                toolbar.setTitle(R.string.favorites);
             } else if (currFrag instanceof HistoryFragment) {
                 navigationView.setCheckedItem(R.id.nav_history);
+                toolbar.setTitle(R.string.history);
             }
         }
     }
