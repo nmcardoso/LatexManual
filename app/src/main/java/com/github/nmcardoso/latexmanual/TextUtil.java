@@ -11,6 +11,7 @@ public class TextUtil {
     public static Spannable highlight(String text, String token) {
         Spannable spannable = new SpannableString(text);
         String regex = token.replace(" ", "|");
+        regex = "\\Q" + regex + "\\E"; // Escape all special chars into regex
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(text);
 
