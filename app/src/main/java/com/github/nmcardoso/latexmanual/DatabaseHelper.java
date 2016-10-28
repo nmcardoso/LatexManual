@@ -165,7 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Return the primary key of documentation that file name match with the parameter.
+     * Returns the primary key of documentation that file name match with the parameter.
      * @param fileName The file name of documentation
      * @return The id (primary key) of the documentation.
      */
@@ -522,7 +522,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Return the amount of documentation first seen,
+     * Returns the amount of documentation first seen,
      * excluding other views of the same documentation
      * @return An integer representing the unique views
      */
@@ -547,6 +547,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Returns a history list without repeating documentations viewed more than once
+     * @param limit max number of result
+     * @return A {@link List} of {@link History} with size <= limit, or an empty {@link List}
+     * @see #getHistory(int, int)
+     */
+    public List<History> getUniqueHistory(int limit) {
+        List<History> histList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        final String query = "SELECT h.*, d.* "
+                + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
+                + " INNER JOIN " + TABLE_HISTORY + " AS h "
+                + " ON d." + DOCUMENTATIONS_ID + " = h." + HISTORY_DOC_ID
+                + " GROUP BY h." + HISTORY_DOC_ID
+                + " ORDER BY h." + HISTORY_ID + " DESC "
+                + " LIMIT ? ";
+        Cursor cursor = db.rawQuery(query, new String[] { String.valueOf(limit) });
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Documentation doc = new Documentation();
+                    doc.setId(cursor.getInt(cursor.getColumnIndex(HISTORY_DOC_ID)));
+                    doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
+                    doc.setTitle(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)));
+                    doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
+
+                    History hist = new History();
+                    hist.setId(cursor.getInt(cursor.getColumnIndex(HISTORY_ID)));
+                    hist.setCreatedAt(cursor.getString(cursor.getColumnIndex(HISTORY_CREATED_AT)));
+                    hist.setDocumentation(doc);
+
+                    histList.add(hist);
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+        }
+
+        return histList;
+    }
+
+    /**
      * Clear all registers of table history.
      * @return The number of row deleted
      */
@@ -560,7 +602,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * The {@link Pair} contains a {@link Documentation} object as first value
      * and its count of views as second value.
      * @param limit The max number of registers
-     * @return The most viewed {@link List} or a empty {@link List}
+     * @return The most viewed {@link List} or an empty {@link List}
      */
     public List<Pair<Documentation, Integer>> getMostViewed(int limit) {
         List<Pair<Documentation, Integer>> mvList = new ArrayList<>();
