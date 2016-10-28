@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Pair;
 
@@ -115,6 +116,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * This method search all documentations that match with query parameter
+     * in title or content field.
+     * @param query Search string
+     * @param limit The max number of register
+     * @return A {@link List} of {@link Documentation} if the search result >= 1,
+     * or an empty {@link List} otherwise.
+     */
     public List<Documentation> search(String query, int limit) {
         List<Documentation> docList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -135,7 +144,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         query =  "%" + query.replace(" ", "%") + "%";
 
-        Cursor cursor = db.rawQuery(sqlQuery, new String[] {query, query, query, String.valueOf(limit)});
+        Cursor cursor = db.rawQuery(sqlQuery, new String[] {query, query, query,
+                String.valueOf(limit)});
 
         if (cursor != null && !cursor.isClosed()) {
             if (cursor.moveToFirst()) {
@@ -179,6 +189,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    /**
+     * Fetch documentation that matches the provided primary key.
+     * @param id Primary key of documentation
+     * @return A {@link Documentation} object or null
+     */
+    @Nullable
     public Documentation getDocumentation(int id) {
         Documentation ret = null;
         SQLiteDatabase db = getReadableDatabase();
@@ -214,6 +230,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return getDocumentation(id) != null;
     }
 
+    /**
+     * Calculate the number of documentation in the database
+     * @return The amount of documentation or -1.
+     */
     public int getDocumentationCount() {
         int count = -1;
         final String query = "SELECT COUNT(*) AS count "
@@ -262,25 +282,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return doc;
     }
 
-    public boolean isFavorite(String fileName) {
-        SQLiteDatabase db = getReadableDatabase();
-        boolean isFavorite;
-
-        final String query = "SELECT * FROM " + TABLE_DOCUMENTATIONS + " AS d "
-                + " INNER JOIN " + TABLE_FAVORITES + " AS f "
-                + " ON d." + DOCUMENTATIONS_ID + " = f." + FAVORITES_DOC_ID
-                + " WHERE d." + DOCUMENTATIONS_FILE_NAME + " = ?";
-
-        Cursor cursor = db.rawQuery(query, new String[] { fileName });
-
-        isFavorite = cursor.getCount() > 0;
-
-        cursor.close();
-        //db.close();
-
-        return isFavorite;
-    }
-
+    /**
+     * Verify if a documentation is assigned as favorite.
+     * @param docId The primary key of documentation.
+     * @return True if the documentation is a favorite, False otherwise.
+     */
     public boolean isFavorite(int docId) {
         SQLiteDatabase db = getReadableDatabase();
         boolean isFavorite;
@@ -298,6 +304,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return isFavorite;
     }
 
+    /**
+     * Assign a documentation as favorite.
+     * @param docId Primary key of the documentation.
+     * @see #getDocumentationId(String)
+     */
     public void insertFavorite(int docId) {
         ContentValues values = new ContentValues();
         values.put(FAVORITES_DOC_ID, docId);
@@ -370,6 +381,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return getFavorites(limit, 0);
     }
 
+    /**
+     * The amount of documentation assigned as favorite.
+     * @return The number of favorites or 0.
+     */
     public int getFavoritesCount() {
         int count = 0;
         final String query = "SELECT COUNT(*) AS count "
@@ -389,12 +404,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void deleteFavorite(int docId) {
+    /**
+     * Remove a documentation from favorites
+     * @param docId The primary key of a documentation in database
+     * @return 1 if the favorite was deleted, 0 otherwise
+     * @see #getDocumentationId(String)
+     */
+    public int deleteFavorite(int docId) {
         SQLiteDatabase db = getReadableDatabase();
-        db.delete(TABLE_FAVORITES, FAVORITES_DOC_ID + " = ?",
+        int deletedRows = db.delete(TABLE_FAVORITES, FAVORITES_DOC_ID + " = ?",
                 new String[] { Integer.toString(docId) });
 
-        //db.close();
+        return deletedRows;
     }
 
     /**
@@ -460,6 +481,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return getHistory(limit, 0);
     }
 
+    /**
+     * Assign an documentation as viewed.
+     * The current time will be automatically generated by System
+     * @param docId Primary key of the documentation in database
+     */
     public void insertHistory(int docId) {
         ContentValues values = new ContentValues();
         values.put(HISTORY_DOC_ID, docId);
@@ -471,6 +497,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_HISTORY, null, values);
     }
 
+    /**
+     * Amount of documentations viewed in all time.
+     * @return An integer with value of views or zero
+     * @see #getUniqueHistoryCount()
+     */
     public int getHistoryCount() {
         int count = 0;
         final String query = "SELECT COUNT(*) AS count "
@@ -524,6 +555,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_HISTORY, "1", null);
     }
 
+    /**
+     * Return a {@link List} of {@link Pair}.
+     * The {@link Pair} contains a {@link Documentation} object as first value
+     * and its count of views as second value.
+     * @param limit The max number of registers
+     * @return The most viewed {@link List} or a empty {@link List}
+     */
     public List<Pair<Documentation, Integer>> getMostViewed(int limit) {
         List<Pair<Documentation, Integer>> mvList = new ArrayList<>();
 
