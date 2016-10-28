@@ -7,6 +7,113 @@
     android:padding="10dp"
     tools:context="com.github.nmcardoso.latexmanual.SettingsActivity">
 
+    <!-- Search Results -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#4b4b4b"
+            android:text="@string/search_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:text="@string/filter" />
+            <Spinner
+                android:id="@+id/spn_search_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:text="@string/number_of_results" />
+            <Spinner
+                android:id="@+id/spn_search_results"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_height="1dp"
+        android:background="#acacac" />
+
+    <!-- Doc Reader -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#4b4b4b"
+            android:text="@string/doc_reader" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:text="@string/font_size" />
+            <Spinner
+                android:id="@+id/spn_font_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_height="1dp"
+        android:background="#acacac" />
+
     <!-- History -->
 
     <LinearLayout
@@ -92,49 +199,6 @@
             android:drawableStart="@drawable/btn_remove"
             android:drawablePadding="6dp"
             android:text="@string/clear" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="14dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_height="1dp"
-        android:background="#acacac" />
-
-    <!-- Doc Reader -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="#4b4b4b"
-            android:text="@string/doc_reader" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="6dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="16sp"
-                android:text="@string/font_size" />
-            <Spinner
-                android:id="@+id/spn_font_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dialog" />
-        </LinearLayout>
     </LinearLayout>
 
     <View

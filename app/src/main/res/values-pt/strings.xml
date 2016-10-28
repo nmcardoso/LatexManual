@@ -36,6 +36,8 @@
     <string name="font_size">Tamanho da fonte</string>
     <string name="doc_reader">Leitor de Documentações</string>
     <string name="random_doc">Documentação Aleatória</string>
+    <string name="number_of_results">Quantidade de resultados</string>
+    <string name="filter">Filtro</string>
 
     <plurals name="n_favorites_deleted">
         <item quantity="one">%1$d favorito removido</item>
@@ -46,5 +48,9 @@
         <item>Pequena</item>
         <item>Padrão</item>
         <item>Grande</item>
+    </string-array>
+    <string-array name="search_filters">
+        <item>Mostrar tudo</item>
+        <item>Comandos apenas</item>
     </string-array>
 </resources>
