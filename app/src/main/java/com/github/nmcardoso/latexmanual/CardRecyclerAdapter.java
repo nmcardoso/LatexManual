@@ -45,7 +45,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
 
     private Context context;
     private List<Card> cardsList;
-    private int lastPosition = -1;
 
     public CardRecyclerAdapter(Context context, List<Card> cardsList) {
         this.context = context;
