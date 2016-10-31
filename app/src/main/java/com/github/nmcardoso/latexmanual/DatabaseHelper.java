@@ -164,6 +164,111 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return docList;
     }
 
+    public List<Documentation> searchWithChar(String startWith, String query, int limit, int offset) {
+        List<Documentation> docList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        final String sqlQuery = "SELECT d.*, 1 AS priority "
+                + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
+                + " WHERE d." + DOCUMENTATIONS_TITLE + " LIKE ? "
+                + " UNION "
+                + " SELECT d.*, 2 AS priority "
+                + " FROM " + TABLE_DOCUMENTATIONS + " AS d "
+                + " WHERE d." + DOCUMENTATIONS_ID + " NOT IN "
+                + "     (SELECT " + DOCUMENTATIONS_ID
+                + "     FROM " + TABLE_DOCUMENTATIONS
+                + "     WHERE " + DOCUMENTATIONS_TITLE + " LIKE ?)"
+                + " AND d." + DOCUMENTATIONS_DATA + " LIKE ?"
+                + " ORDER BY priority ASC"
+                + " LIMIT ?";
+
+        query =  "%" + query.replace(" ", "%") + "%";
+
+        Cursor cursor = db.rawQuery(sqlQuery, new String[] {query, query, query,
+                String.valueOf(limit)});
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Documentation doc = new Documentation();
+                    doc.setId(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)));
+                    doc.setTitle(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)));
+                    doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
+                    doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
+                    docList.add(doc);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        return docList;
+    }
+
+    /**
+     * Fetches all documentations in the database such that the title starts with
+     * the specified character.
+     * @param firstChar initial character in the title of documentation
+     * @param limit max results returned
+     * @param offset point to start search
+     * @return A {@link List} of {@link Documentation} if documentations has been found
+     * or a empty {@link List} otherwise.
+     * @see #getAllFirstChars()
+     */
+    public List<Documentation> getDocsByFirstChar(String firstChar, int limit, int offset) {
+        List<Documentation> docList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        final String query = "SELECT * "
+                + " FROM " + TABLE_DOCUMENTATIONS
+                + " WHERE " + DOCUMENTATIONS_TITLE + " LIKE ?%"
+                + " ORDER BY " + DOCUMENTATIONS_TITLE
+                + " LIMIT ? "
+                + " OFFSET ? ";
+
+        Cursor cursor = db.rawQuery(query, new String[] { firstChar, String.valueOf(limit),
+                String.valueOf(offset) });
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+
+                } while (cursor.moveToNext());
+            }
+        }
+
+        return docList;
+    }
+
+    /**
+     * Fetch all rows of documentation table and maps the first character
+     * of all title fields.
+     * @return A {@link List} of {@link String} with the 1st chars,
+     * or an empty {@link List} otherwise.
+     */
+    public List<String> getAllFirstChars() {
+        SQLiteDatabase db = getReadableDatabase();
+        List<String> charList = new ArrayList<>();
+
+        final String query = "SELECT substr(" + DOCUMENTATIONS_TITLE + ", 1) AS ch"
+                + " FROM " + TABLE_DOCUMENTATIONS
+                + " GROUP BY ch "
+                + " ORDER BY ch ASC";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+                    charList.add(cursor.getString(cursor.getColumnIndex("ch")));
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+        }
+
+        return charList;
+    }
+
     /**
      * Returns the primary key of documentation that file name match with the parameter.
      * @param fileName The file name of documentation
