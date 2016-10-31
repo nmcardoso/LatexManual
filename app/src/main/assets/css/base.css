@@ -35,6 +35,11 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0px;
 }
 
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
+    font-family: 'PlayfairDisplay', sans-serif;
+    margin: 0px;
+}
+
 p {
     font-family: 'Raleway', sans-serif;
     line-height: 140%;
