@@ -94,6 +94,12 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapte
         return cardsList.get(position).getContentType();
     }
 
+    public void swap(List<Card> newData) {
+        cardsList.clear();
+        cardsList.addAll(newData);
+        notifyDataSetChanged();
+    }
+
     private void configureListView(ListViewHolder viewHolder, int position) {
         Card card = cardsList.get(position);
 

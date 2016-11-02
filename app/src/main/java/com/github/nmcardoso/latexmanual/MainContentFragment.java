@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -19,6 +20,8 @@ import java.util.List;
 
 public class MainContentFragment extends Fragment {
     CallbackInterface mCallback;
+    RecyclerView rvCards;
+    SwipeRefreshLayout srLayout;
 
     public interface CallbackInterface {
         void swapFragment(Fragment fragment);
@@ -43,12 +46,33 @@ public class MainContentFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_main_content, container, false);
 
-        setupCards((RecyclerView) rootView.findViewById(R.id.rv_cards));
+        rvCards = (RecyclerView) rootView.findViewById(R.id.rv_cards);
+        setupCardsView(setupCardsList());
+
+        srLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.sr_layout);
+        srLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                updateCards(setupCardsList());
+                srLayout.setRefreshing(false);
+            }
+        });
 
         return rootView;
     }
 
-    private void setupCards(RecyclerView rvCards) {
+    private void updateCards(List<Card> newData) {
+        CardRecyclerAdapter adapter = (CardRecyclerAdapter) rvCards.getAdapter();
+        adapter.swap(newData);
+    }
+
+    private void setupCardsView(List<Card> data) {
+        CardRecyclerAdapter adapter = new CardRecyclerAdapter(getActivity(), data);
+        rvCards.setAdapter(adapter);
+        rvCards.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    private List<Card> setupCardsList() {
         DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
         List<Card> cardsList = new ArrayList<>();
 
@@ -160,9 +184,6 @@ public class MainContentFragment extends Fragment {
                         .build()
         );
 
-        // Putting in view
-        CardRecyclerAdapter adapter = new CardRecyclerAdapter(getActivity(), cardsList);
-        rvCards.setAdapter(adapter);
-        rvCards.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return cardsList;
     }
 }
