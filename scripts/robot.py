@@ -197,11 +197,6 @@ class TextProcessor:
     def create_database(self):
         conn = sqlite3.connect(self.DATABASE_NAME)
         cursor = conn.cursor()
-        # Android metadata
-        """cursor.execute('''CREATE TABLE IF NOT EXISTS android_metadata (
-                       locale TEXT DEFAULT "en_US")''')
-        cursor.execute('INSERT INTO android_metadata(locale) VALUES ("en_US")')"""
-
         cursor.execute('DROP TABLE IF EXISTS documentations')
         cursor.execute('''CREATE TABLE documentations (
                        id INTEGER PRIMARY KEY AUTOINCREMENT,
