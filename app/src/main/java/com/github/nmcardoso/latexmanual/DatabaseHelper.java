@@ -119,12 +119,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * This method search all documentations that match with query parameter
      * in title or content field.
-     * @param query Search string
-     * @param limit The max number of register
+     * Paginate results using limit and offset parameters.
+     * @param query Search string.
+     * @param limit The max number of register.
+     * @param offset Start point to search.
      * @return A {@link List} of {@link Documentation} if the search result >= 1,
      * or an empty {@link List} otherwise.
      */
-    public List<Documentation> search(String query, int limit) {
+    public List<Documentation> search(String query, int limit, int offset) {
         List<Documentation> docList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
@@ -140,12 +142,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "     WHERE " + DOCUMENTATIONS_TITLE + " LIKE ?)"
                 + " AND d." + DOCUMENTATIONS_DATA + " LIKE ?"
                 + " ORDER BY priority ASC"
-                + " LIMIT ?";
+                + " LIMIT ?"
+                + " OFFSET ?";
 
         query =  "%" + query.replace(" ", "%") + "%";
 
         Cursor cursor = db.rawQuery(sqlQuery, new String[] {query, query, query,
-                String.valueOf(limit)});
+                String.valueOf(limit), String.valueOf(offset)});
 
         if (cursor != null && !cursor.isClosed()) {
             if (cursor.moveToFirst()) {
@@ -162,6 +165,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return docList;
+    }
+
+    /**
+     * Calls the method {@link #search(String, int, int)} with 0 offset.
+     * This method is used if implementation has no paginated results.
+     * @param query Search string.
+     * @param limit Max number of registers that will be returned.
+     * @return A {@link List} of {@link Documentation} if the search result >= 1,
+     * or an empty {@link List} otherwise.
+     * @see #search(String, int, int)
+     */
+    public List<Documentation> search(String query, int limit) {
+        return search(query, limit, 0);
     }
 
     public List<Documentation> searchWithChar(String startWith, String query, int limit, int offset) {
@@ -214,7 +230,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * or a empty {@link List} otherwise.
      * @see #getAllFirstChars()
      */
-    public List<Documentation> getDocsByFirstChar(String firstChar, int limit, int offset) {
+    public List<Documentation> getDocsStartingWith(String firstChar, int limit, int offset) {
         List<Documentation> docList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
@@ -240,7 +256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Fetch all rows of documentation table and maps the first character
+     * Fetches all rows of documentation table and maps the first character
      * of all title fields.
      * @return A {@link List} of {@link String} with the 1st chars,
      * or an empty {@link List} otherwise.
@@ -249,7 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         List<String> charList = new ArrayList<>();
 
-        final String query = "SELECT substr(" + DOCUMENTATIONS_TITLE + ", 1) AS ch"
+        final String query = "SELECT UPPER(SUBSTR(" + DOCUMENTATIONS_TITLE + ", 1, 1)) AS ch"
                 + " FROM " + TABLE_DOCUMENTATIONS
                 + " GROUP BY ch "
                 + " ORDER BY ch ASC";
@@ -331,8 +347,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ret;
     }
 
+    /**
+     * Receives an ID and verifies if has a doc in db with this ID.
+     * @param id doc primary key
+     * @return true if exists doc, false otherwise.
+     */
     public boolean existsDocumentation(int id) {
         return getDocumentation(id) != null;
+    }
+
+    /**
+     * Fetches all database documentation in alphabetical order within the limits
+     * set by parameters.
+     * @param limit Number of objects returned.
+     * @param offset Start point to fetch data.
+     * @return {@link List} of {@link Documentation} if has doc after offset point,
+     * or an empty {@link List} otherwise.
+     * @see #search(String, int, int)
+     */
+    public List<Documentation> getAllDocumentations(int limit, int offset) {
+        SQLiteDatabase db = getReadableDatabase();
+        List<Documentation> docs = new ArrayList<>();
+
+        final String query = "SELECT * "
+                + " FROM " + TABLE_DOCUMENTATIONS
+                + " LIMIT ? "
+                + " OFFSET ? "
+                + " ORDER BY " + DOCUMENTATIONS_TITLE;
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(limit),
+                String.valueOf(offset)});
+
+        if (cursor != null && !cursor.isClosed()) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Documentation doc = new Documentation();
+                    doc.setId(cursor.getInt(cursor.getColumnIndex(DOCUMENTATIONS_ID)));
+                    doc.setTitle(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_TITLE)));
+                    doc.setData(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_DATA)));
+                    doc.setFileName(cursor.getString(cursor.getColumnIndex(DOCUMENTATIONS_FILE_NAME)));
+
+                    docs.add(doc);
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+        }
+
+        return docs;
     }
 
     /**
@@ -552,7 +614,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + " LIMIT ? "
                 + " OFFSET ? ";
 
-        Cursor cursor = db.rawQuery(query, new String[] { String.valueOf(limit), String.valueOf(offset) });
+        Cursor cursor = db.rawQuery(query, new String[] {String.valueOf(limit),
+                String.valueOf(offset)});
 
         if (cursor != null && !cursor.isClosed() && cursor.moveToFirst()) {
             do {
