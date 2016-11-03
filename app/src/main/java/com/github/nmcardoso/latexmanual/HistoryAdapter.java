@@ -41,9 +41,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View historicView = inflater.inflate(R.layout.list_history, parent, false);
+        View historyView = inflater.inflate(R.layout.list_history, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(historicView);
+        ViewHolder viewHolder = new ViewHolder(historyView);
         return viewHolder;
     }
 
@@ -55,7 +55,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         leftText.setText(history.getDocumentation().getTitle());
 
         TextView rightText = holder.rightText;
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DatabaseHelper.DATE_FORMAT, Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                DatabaseHelper.DATE_FORMAT, Locale.getDefault());
         String dateStr = "";
 
         try {
