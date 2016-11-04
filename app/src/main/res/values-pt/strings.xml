@@ -38,6 +38,9 @@
     <string name="random_doc">Documentação Aleatória</string>
     <string name="number_of_results">Quantidade de resultados</string>
     <string name="filter">Filtro</string>
+    <string name="full_index">Índice Completo</string>
+    <string name="navigate">Navegar</string>
+    <string name="explore">Explorar</string>
 
     <plurals name="n_favorites_deleted">
         <item quantity="one">%1$d favorito removido</item>

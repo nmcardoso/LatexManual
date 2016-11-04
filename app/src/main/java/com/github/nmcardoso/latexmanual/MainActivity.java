@@ -138,6 +138,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_full_index) {
+            FullIndexFragment fullIndexFragment = new FullIndexFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_container, fullIndexFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

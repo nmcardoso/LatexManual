@@ -38,6 +38,9 @@
     <string name="random_doc">Random Documentation</string>
     <string name="number_of_results">Number of results</string>
     <string name="filter">Filter</string>
+    <string name="full_index">Full Index</string>
+    <string name="navigate">Navigate</string>
+    <string name="explore">Explore</string>
 
     <plurals name="n_favorites_deleted">
         <item quantity="one">%1$d favorite deleted</item>
