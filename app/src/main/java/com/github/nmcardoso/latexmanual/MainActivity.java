@@ -145,6 +145,10 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frame_container, fullIndexFragment)
                     .addToBackStack(null)
                     .commit();
+        } else if(id == R.id.nav_search) {
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            MenuItem searchItem = toolbar.getMenu().findItem(R.id.search);
+            searchItem.expandActionView();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

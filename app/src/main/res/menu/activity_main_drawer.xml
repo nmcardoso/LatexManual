@@ -23,6 +23,10 @@
         <menu>
             <group android:checkableBehavior="single" android:id="@+id/menu_group_2">
                 <item
+                    android:id="@+id/nav_search"
+                    android:icon="@drawable/ic_search"
+                    android:title="@string/search_title" />
+                <item
                     android:id="@+id/nav_full_index"
                     android:icon="@drawable/ic_menu_list_bulleted"
                     android:title="@string/full_index" />
