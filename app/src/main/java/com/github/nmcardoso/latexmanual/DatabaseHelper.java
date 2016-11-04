@@ -371,9 +371,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         final String query = "SELECT * "
                 + " FROM " + TABLE_DOCUMENTATIONS
+                + " ORDER BY " + DOCUMENTATIONS_TITLE
                 + " LIMIT ? "
-                + " OFFSET ? "
-                + " ORDER BY " + DOCUMENTATIONS_TITLE;
+                + " OFFSET ? ";
+
 
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(limit),
                 String.valueOf(offset)});
