@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Manual Latex</string>
+    <string name="app_version">Versão %1$s</string>
     <string name="fav_added">Documentação adicionada aos favoritos</string>
     <string name="fav_removed">Documentação removida dos favoritos</string>
     <string name="search_hint">Pesquisar</string>
@@ -41,6 +42,12 @@
     <string name="full_index">Índice Completo</string>
     <string name="navigate">Navegar</string>
     <string name="explore">Explorar</string>
+    <string name="about">Sobre</string>
+    <string name="report_a_bug">Reporte um bug</string>
+    <string name="github_repository">Repositório no Github</string>
+    <string name="licensing_information">Informações de licenciamento</string>
+    <string name="about_description">Este é um aplicativo grátis e de código aberto para pesquisa de documentações do LaTeX.</string>
+    <string name="logo">Logo</string>
 
     <plurals name="n_favorites_deleted">
         <item quantity="one">%1$d favorito removido</item>
