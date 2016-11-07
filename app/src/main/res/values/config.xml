@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="PREF_DEFAULT">p_def</string>
-    <string name="KEY_FIRST_RUN">k_st_run</string>
+    <string name="app_release">0.45.1</string>
 
-    <string name="PREF_SETTINGS">p_settings</string>
-    <string name="KEY_FONT_SIZE">k_font_size</string>
+    <string name="gh_repo_url">http://github.com/nmcardoso/LatexManual/</string>
+    <string name="gh_new_issue_url">https://github.com/nmcardoso/LatexManual/issues/new</string>
+
+    <string name="PREF_DEFAULT">pref_def</string>
+    <string name="KEY_FIRST_RUN">key_first_run</string>
+
+    <string name="PREF_SETTINGS">pref_settings</string>
+    <string name="KEY_FONT_SIZE">key_font_size</string>
     <string name="VALUE_DEFAULT">default</string>
     <string name="VALUE_SMALL">small</string>
     <string name="VALUE_LARGE">large</string>
-    <string name="KEY_SEARCH_FILTER">k_s_filter</string>
+    <string name="KEY_SEARCH_FILTER">key_search_filter</string>
     <string name="VALUE_SHOW_ALL">show_all</string>
     <string name="VALUE_COMMANDS_ONLY">commands_only</string>
-    <string name="KEY_SEARCH_RESULTS">k_s_result</string>
+    <string name="KEY_SEARCH_RESULTS">key_search_result</string>
     <string name="VALUE_SEARCH_RESULTS">15</string>
 </resources>

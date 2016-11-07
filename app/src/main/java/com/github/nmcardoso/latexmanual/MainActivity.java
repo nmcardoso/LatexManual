@@ -22,12 +22,11 @@ public class MainActivity extends AppCompatActivity
                    MainContentFragment.CallbackInterface {
 
     private AutoCompleteFragment autoCompleteFragment;
+    private Fragment currFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        verifyFirstRun();
 
         setContentView(R.layout.activity_main);
 
@@ -145,10 +144,13 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.frame_container, fullIndexFragment)
                     .addToBackStack(null)
                     .commit();
-        } else if(id == R.id.nav_search) {
+        } else if (id == R.id.nav_search) {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             MenuItem searchItem = toolbar.getMenu().findItem(R.id.search);
             searchItem.expandActionView();
+        } else if (id == R.id.nav_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
