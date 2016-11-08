@@ -41,7 +41,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".LicenseActivity"></activity>
+        <activity
+            android:name=".LicenseActivity"
+            android:label="@string/license"
+            android:parentActivityName=".SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SettingsActivity" />
+        </activity>
     </application>
 
 </manifest>

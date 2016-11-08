@@ -48,6 +48,8 @@
     <string name="licensing_information">Informações de licenciamento</string>
     <string name="about_description">Este é um aplicativo grátis e de código aberto para pesquisa de documentações do LaTeX.</string>
     <string name="logo">Logo</string>
+    <string name="license">Licença</string>
+    <string name="unable_to_load_url">Impossível carregar este endereço.</string>
 
     <plurals name="n_favorites_deleted">
         <item quantity="one">%1$d favorito removido</item>

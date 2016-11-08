@@ -13,5 +13,6 @@
 /scripts/*.html
 /scripts/*.txt
 /app/src/main/assets/*.html
+!/app/src/main/assets/_*.html
 /app/src/main/assets/fonts/*.ttf
 /app/src/main/res/raw/*.sql

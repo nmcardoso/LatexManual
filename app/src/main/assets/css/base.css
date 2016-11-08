@@ -50,6 +50,11 @@ code, pre, samp, var {
 	font-family: 'OxygenMono', monospace;
 }
 
+a[href^="http://"]:after, a[href^="https://"]:after {
+    content: url(../img/external_link.png);
+    margin: 0 0 0 5px;
+}
+
 a:link {
     color: #0055FF;
     text-decoration: none;
@@ -61,4 +66,15 @@ a:visited {
 
 a:active {
     text-decoration: underline;
+}
+
+hr {
+    border: 0px;
+    height: 1px;
+    background-color: #ccc;
+}
+
+hr.lic_separator {
+    margin-top: 12px;
+    margin-bottom: 12px;
 }

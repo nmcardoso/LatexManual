@@ -48,6 +48,8 @@
     <string name="licensing_information">Licensing information</string>
     <string name="about_description">This is a free and open source app for search LaTeX documentation.</string>
     <string name="logo">Logo</string>
+    <string name="license">License</string>
+    <string name="unable_to_load_url">Unable to load this url.</string>
 
     <plurals name="n_favorites_deleted">
         <item quantity="one">%1$d favorite deleted</item>
