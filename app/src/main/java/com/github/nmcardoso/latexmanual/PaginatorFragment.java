@@ -59,11 +59,16 @@ public class PaginatorFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (getParentFragment() instanceof OnPageChangedListener) {
+        if (context instanceof OnPageChangedListener) {
+            // Paginator inner a activity
+            mListener = (OnPageChangedListener) context;
+        } else if (getParentFragment() != null &&
+                getParentFragment() instanceof OnPageChangedListener) {
+            // Paginator inner a fragment
             mListener = (OnPageChangedListener) getParentFragment();
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnPageChangedListener");
+                    + " must implement OnPageChangedListener interface");
         }
     }
 
