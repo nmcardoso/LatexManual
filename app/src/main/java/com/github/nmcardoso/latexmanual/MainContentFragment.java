@@ -126,7 +126,9 @@ public class MainContentFragment extends Fragment {
                             .clickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mCallback.swapFragment(new FavoriteFragment());
+                                    Intent intent = new Intent(view.getContext(),
+                                            FavoriteActivity.class);
+                                    startActivity(intent);
                                 }
                             })
                             .build()
@@ -175,7 +177,8 @@ public class MainContentFragment extends Fragment {
                         .clickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(getActivity(), DocViewerActivity.class);
+                                Intent intent = new Intent(view.getContext(),
+                                        DocViewerActivity.class);
                                 intent.putExtra(DatabaseHelper.DOCUMENTATIONS_FILE_NAME,
                                         randomDoc.getFileName());
                                 startActivity(intent);

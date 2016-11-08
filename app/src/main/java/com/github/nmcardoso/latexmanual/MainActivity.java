@@ -121,12 +121,8 @@ public class MainActivity extends AppCompatActivity
                     .addToBackStack(null)
                     .commit();
         } else if (id == R.id.nav_favorites) {
-            FavoriteFragment favoriteFragment = new FavoriteFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frame_container, favoriteFragment)
-                    .addToBackStack(null)
-                    .commit();
+            Intent intent = new Intent(this, FavoriteActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_history) {
             HistoryFragment historyFragment = new HistoryFragment();
             getSupportFragmentManager()
@@ -176,9 +172,6 @@ public class MainActivity extends AppCompatActivity
             if (currFrag instanceof MainContentFragment) {
                 navigationView.setCheckedItem(R.id.nav_home);
                 toolbar.setTitle(R.string.app_name);
-            } else if (currFrag instanceof FavoriteFragment) {
-                navigationView.setCheckedItem(R.id.nav_favorites);
-                toolbar.setTitle(R.string.favorites);
             } else if (currFrag instanceof HistoryFragment) {
                 navigationView.setCheckedItem(R.id.nav_history);
                 toolbar.setTitle(R.string.history);
