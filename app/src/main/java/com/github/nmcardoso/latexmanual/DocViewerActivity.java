@@ -1,5 +1,6 @@
 package com.github.nmcardoso.latexmanual;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -65,8 +66,13 @@ public class DocViewerActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url != null && (url.startsWith("http://") || url.startsWith("https://"))) {
-                    view.getContext().startActivity(
-                            new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                    try {
+                        view.getContext().startActivity(
+                                new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(view.getContext(), getString(R.string.unable_to_load_url),
+                                Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 } else {
                     view.loadUrl(url + params);

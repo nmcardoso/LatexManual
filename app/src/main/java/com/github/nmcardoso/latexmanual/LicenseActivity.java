@@ -29,7 +29,7 @@ public class LicenseActivity extends AppCompatActivity {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     view.getContext().startActivity(intent);
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(view.getContext(), "Impossible to open this link",
+                    Toast.makeText(view.getContext(), getString(R.string.unable_to_load_url),
                             Toast.LENGTH_SHORT).show();
                 }
                 return true;
