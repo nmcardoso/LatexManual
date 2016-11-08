@@ -105,7 +105,9 @@ public class MainContentFragment extends Fragment {
                             .clickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mCallback.swapFragment(new HistoryFragment());
+                                    Intent intent = new Intent(view.getContext(),
+                                            HistoryActivity.class);
+                                    startActivity(intent);
                                 }
                             })
                             .build()

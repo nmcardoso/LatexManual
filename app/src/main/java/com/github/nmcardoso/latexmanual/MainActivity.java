@@ -124,12 +124,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, FavoriteActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_history) {
-            HistoryFragment historyFragment = new HistoryFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frame_container, historyFragment)
-                    .addToBackStack(null)
-                    .commit();
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
@@ -172,9 +168,6 @@ public class MainActivity extends AppCompatActivity
             if (currFrag instanceof MainContentFragment) {
                 navigationView.setCheckedItem(R.id.nav_home);
                 toolbar.setTitle(R.string.app_name);
-            } else if (currFrag instanceof HistoryFragment) {
-                navigationView.setCheckedItem(R.id.nav_history);
-                toolbar.setTitle(R.string.history);
             }
         }
     }
